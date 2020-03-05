@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="LeetCode,算法,LPS,">
+  <meta name="keywords" content="LeetCode,算法,字符串,易位串,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="先找出每个对称中心对应的LPS的长度，然后取最长的即可。注意奇数长度的串和偶数长度的串情况是不一样的，对称中心可以是元素本身也可以是元素间的间隙。若将所有间隙全部填充上同一字符（不能是串中出现的字符），便可统一为奇数情形进行处理，如 “ada” 变为 “a#d#a” ， “adaa” 变为 “a#d#a#a” 。 代码如下，这里不进行填充而是分情况讨论: 123456789101112131415">
-<meta name="keywords" content="LeetCode,算法,LPS">
+<meta name="description" content="242. Valid Anagram  Easy    Given two strings _s_ and _t_, write a function to determine if _t_ is an anagram of _s_. Example 1: 12Input: s = &amp;quot;anagram&amp;quot;, t = &amp;quot;nagaram&amp;quot;Output: true E">
+<meta name="keywords" content="LeetCode,算法,字符串,易位串">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode-05.最长回文子串(LPS)">
-<meta property="og:url" content="http://yoursite.com/2019/10/09/LeetCode-05-最长回文子串-LPS/index.html">
+<meta property="og:title" content="LeetCode-242-Valid Anagram-有效易位串">
+<meta property="og:url" content="http://yoursite.com/2020/03/05/LeetCode-242-Valid-Anagram-有效易位串/index.html">
 <meta property="og:site_name" content="Mind Palace of Claps">
-<meta property="og:description" content="先找出每个对称中心对应的LPS的长度，然后取最长的即可。注意奇数长度的串和偶数长度的串情况是不一样的，对称中心可以是元素本身也可以是元素间的间隙。若将所有间隙全部填充上同一字符（不能是串中出现的字符），便可统一为奇数情形进行处理，如 “ada” 变为 “a#d#a” ， “adaa” 变为 “a#d#a#a” 。 代码如下，这里不进行填充而是分情况讨论: 123456789101112131415">
+<meta property="og:description" content="242. Valid Anagram  Easy    Given two strings _s_ and _t_, write a function to determine if _t_ is an anagram of _s_. Example 1: 12Input: s = &amp;quot;anagram&amp;quot;, t = &amp;quot;nagaram&amp;quot;Output: true E">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-10-09T08:57:44.000Z">
+<meta property="og:updated_time" content="2020-03-05T07:51:18.024Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode-05.最长回文子串(LPS)">
-<meta name="twitter:description" content="先找出每个对称中心对应的LPS的长度，然后取最长的即可。注意奇数长度的串和偶数长度的串情况是不一样的，对称中心可以是元素本身也可以是元素间的间隙。若将所有间隙全部填充上同一字符（不能是串中出现的字符），便可统一为奇数情形进行处理，如 “ada” 变为 “a#d#a” ， “adaa” 变为 “a#d#a#a” 。 代码如下，这里不进行填充而是分情况讨论: 123456789101112131415">
+<meta name="twitter:title" content="LeetCode-242-Valid Anagram-有效易位串">
+<meta name="twitter:description" content="242. Valid Anagram  Easy    Given two strings _s_ and _t_, write a function to determine if _t_ is an anagram of _s_. Example 1: 12Input: s = &amp;quot;anagram&amp;quot;, t = &amp;quot;nagaram&amp;quot;Output: true E">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/10/09/LeetCode-05-最长回文子串-LPS/">
+  <link rel="canonical" href="http://yoursite.com/2020/03/05/LeetCode-242-Valid-Anagram-有效易位串/">
 
 
 
 
 
-  <title>LeetCode-05.最长回文子串(LPS) | Mind Palace of Claps</title>
+  <title>LeetCode-242-Valid Anagram-有效易位串 | Mind Palace of Claps</title>
   
 
 
@@ -285,7 +285,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/09/LeetCode-05-最长回文子串-LPS/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/05/LeetCode-242-Valid-Anagram-有效易位串/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Claps">
@@ -302,7 +302,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">LeetCode-05.最长回文子串(LPS)</h1>
+          <h1 class="post-title" itemprop="name headline">LeetCode-242-Valid Anagram-有效易位串</h1>
         
 
         <div class="post-meta">
@@ -314,8 +314,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-09T15:21:32+08:00">
-                2019-10-09
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-05T15:40:58+08:00">
+                2020-03-05
               </time>
             
 
@@ -374,11 +374,22 @@
       
 
       
-        <p>先找出每个对称中心对应的LPS的长度，然后取最长的即可。注意奇数长度的串和偶数长度的串情况是不一样的，对称中心可以是元素本身也可以是元素间的间隙。若将所有间隙全部填充上同一字符（不能是串中出现的字符），便可统一为奇数情形进行处理，如 “ada” 变为 “a#d#a” ， “adaa” 变为 “a#d#a#a” 。</p>
-<p>代码如下，这里不进行填充而是分情况讨论:</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">longestPalindrome</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> L = s.length();</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> k = <span class="number">0</span>, len = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; L; i++) &#123;</span><br><span class="line">			<span class="comment">//考虑s[i]为对称中心</span></span><br><span class="line">			<span class="keyword">int</span> pr1 = <span class="number">1</span>; <span class="comment">//回文半径(包含中心)</span></span><br><span class="line">			<span class="keyword">while</span> (i - pr1 &gt;= <span class="number">0</span> &amp;&amp; i + pr1 &lt; L &amp;&amp; s[i - pr1] == s[i + pr1])</span><br><span class="line">				pr1++;</span><br><span class="line"></span><br><span class="line">			<span class="comment">//考虑s[i]与s[i+1]之间的空隙为对称中心</span></span><br><span class="line">			<span class="keyword">int</span> pr2 = <span class="number">0</span>; <span class="comment">//回文半径</span></span><br><span class="line">			<span class="keyword">while</span> (i - pr2 &gt;= <span class="number">0</span> &amp;&amp; i + pr2 + <span class="number">1</span> &lt; L &amp;&amp; s[i - pr2] == s[i + pr2 + <span class="number">1</span>])</span><br><span class="line">				pr2++;</span><br><span class="line"></span><br><span class="line">			<span class="keyword">int</span> len1 = <span class="number">2</span> * (pr1 - <span class="number">1</span>) + <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">int</span> len2 = <span class="number">2</span> * pr2;</span><br><span class="line">			<span class="keyword">if</span> (max(len1, len2) &gt; len) &#123;</span><br><span class="line">				<span class="keyword">if</span> (len1 &gt; len2) &#123;</span><br><span class="line">					k = i - pr1 + <span class="number">1</span>;</span><br><span class="line">					len = len1;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span> &#123;</span><br><span class="line">					k = i - pr2 + <span class="number">1</span>;</span><br><span class="line">					len = len2;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> s.substr(k, len);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>该算法时间复杂度显然为$O(n^2)$，提交LeetCode发现AC了。</p>
-<p>实际上，有一种Manacher算法能够在$O(n)$时间内找到LPS，不过这是一种非通用算法，即该算法只能应用于解决LPS问题，因而实用价值不高。</p>
+        <h2 id="242-Valid-Anagram"><a href="#242-Valid-Anagram" class="headerlink" title="242. Valid Anagram"></a>242. Valid Anagram</h2><font color="green">
+<b>
+Easy
+</b>
+</font>
+
+<p>Given two strings _s_ and _t_, write a function to determine if _t_ is an anagram of _s_.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: s = &quot;anagram&quot;, t = &quot;nagaram&quot;</span><br><span class="line">Output: true</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: s = &quot;rat&quot;, t = &quot;car&quot;</span><br><span class="line">Output: false</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong><br>You may assume the string contains only lowercase alphabets.</p>
+<p><strong>Follow up:</strong><br>What if the inputs contain unicode characters? How would you adapt your solution to such case?</p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>建立一个 Hash 表来计数，如果字符串中只包含小写字母，可以直接用数组来计数。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isAnagram</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(s.length() != t.length()) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>,<span class="keyword">int</span>&gt; count;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;s.length();i++)&#123;</span><br><span class="line">            count[s[i]]++;</span><br><span class="line">            count[t[i]]--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> x:count)</span><br><span class="line">            <span class="keyword">if</span>(x.second) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>注意这里利用了 <code>map</code> 的初始化特性，对于语句 <code>count[s[i]];</code>, 如果 <code>count</code> 中没有键 <code>s[i]</code>，将自动插入改键并将相应的值初始化为0。因此 <code>count[s[i]]++;</code> 无需检测 <code>s[i]</code> 的存在性。</p>
 
       
     </div>
@@ -400,7 +411,9 @@
           
             <a href="/tags/算法/" rel="tag"># 算法</a>
           
-            <a href="/tags/LPS/" rel="tag"># LPS</a>
+            <a href="/tags/字符串/" rel="tag"># 字符串</a>
+          
+            <a href="/tags/易位串/" rel="tag"># 易位串</a>
           
         </div>
       
@@ -413,15 +426,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2020/03/05/LeetCode-257-Binary-Tree-Paths-二叉树路径/" rel="next" title="LeetCode-257-Binary Tree Paths-二叉树路径">
+                <i class="fa fa-chevron-left"></i> LeetCode-257-Binary Tree Paths-二叉树路径
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/10/15/LeetCode-06-之字形转换-ZigZag-Conversion/" rel="prev" title="LeetCode-06-之字形转换-ZigZag-Conversion">
-                LeetCode-06-之字形转换-ZigZag-Conversion <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -473,8 +486,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -534,6 +556,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#242-Valid-Anagram"><span class="nav-number">1.</span> <span class="nav-text">242. Valid Anagram</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution"><span class="nav-number">1.1.</span> <span class="nav-text">Solution</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

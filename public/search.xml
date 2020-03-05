@@ -1,9 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[测试]]></title>
-    <url>%2F2020%2F03%2F04%2F%E6%B5%8B%E8%AF%95%2F</url>
-    <content type="text"></content>
+    <title><![CDATA[LeetCode-242-Valid Anagram-有效易位串]]></title>
+    <url>%2F2020%2F03%2F05%2FLeetCode-242-Valid-Anagram-%E6%9C%89%E6%95%88%E6%98%93%E4%BD%8D%E4%B8%B2%2F</url>
+    <content type="text"><![CDATA[242. Valid Anagram Easy Given two strings _s_ and _t_, write a function to determine if _t_ is an anagram of _s_. Example 1: 12Input: s = &quot;anagram&quot;, t = &quot;nagaram&quot;Output: true Example 2: 12Input: s = &quot;rat&quot;, t = &quot;car&quot;Output: false Note:You may assume the string contains only lowercase alphabets. Follow up:What if the inputs contain unicode characters? How would you adapt your solution to such case? Solution建立一个 Hash 表来计数，如果字符串中只包含小写字母，可以直接用数组来计数。 1234567891011121314class Solution &#123;public: bool isAnagram(string s, string t) &#123; if(s.length() != t.length()) return false; unordered_map&lt;char,int&gt; count; for(int i=0;i&lt;s.length();i++)&#123; count[s[i]]++; count[t[i]]--; &#125; for(auto x:count) if(x.second) return false; return true; &#125;&#125;; 注意这里利用了 map 的初始化特性，对于语句 count[s[i]];, 如果 count 中没有键 s[i]，将自动插入改键并将相应的值初始化为0。因此 count[s[i]]++; 无需检测 s[i] 的存在性。]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>算法</tag>
+        <tag>字符串</tag>
+        <tag>易位串</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode-257-Binary Tree Paths-二叉树路径]]></title>
+    <url>%2F2020%2F03%2F05%2FLeetCode-257-Binary-Tree-Paths-%E4%BA%8C%E5%8F%89%E6%A0%91%E8%B7%AF%E5%BE%84%2F</url>
+    <content type="text"><![CDATA[257. Binary Tree PathsEasy Given a binary tree, return all root-to-leaf paths. Note: A leaf is a node with no children. Example: 1234567891011Input: 1 / \2 3 \ 5Output: [&quot;1-&gt;2-&gt;5&quot;, &quot;1-&gt;3&quot;]Explanation: All root-to-leaf paths are: 1-&gt;2-&gt;5, 1-&gt;3 Solution递归。需要3个参数：当前节点，当前节点的祖先节点组成的路径（用字符串保存），当前结果集（字符串数组）。 1234567891011121314151617181920212223242526272829/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: vector&lt;string&gt; binaryTreePaths(TreeNode* root) &#123; vector&lt;string&gt; res; string ans = ""; visit(root, ans, res); return res; &#125; void visit(TreeNode* p, string ans, vector&lt;string&gt; &amp;res)&#123; if(!p) return; if(!p-&gt;left &amp;&amp; !p-&gt;right)&#123; ans += to_string(p-&gt;val); res.push_back(ans); return; &#125; ans += to_string(p-&gt;val) + "-&gt;"; if(p-&gt;left) visit(p-&gt;left, ans, res); if(p-&gt;right) visit(p-&gt;right, ans, res); &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>算法</tag>
+        <tag>二叉树</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[LeetCode-01-两数之和-Two Sum]]></title>
