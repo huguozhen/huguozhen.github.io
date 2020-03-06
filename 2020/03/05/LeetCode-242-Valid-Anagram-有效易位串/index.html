@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Mind Palace of Claps">
 <meta property="og:description" content="242. Valid Anagram  Easy    Given two strings _s_ and _t_, write a function to determine if _t_ is an anagram of _s_. Example 1: 12Input: s = &amp;quot;anagram&amp;quot;, t = &amp;quot;nagaram&amp;quot;Output: true E">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-03-05T07:51:18.024Z">
+<meta property="og:updated_time" content="2020-03-05T07:53:40.534Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode-242-Valid Anagram-有效易位串">
 <meta name="twitter:description" content="242. Valid Anagram  Easy    Given two strings _s_ and _t_, write a function to determine if _t_ is an anagram of _s_. Example 1: 12Input: s = &amp;quot;anagram&amp;quot;, t = &amp;quot;nagaram&amp;quot;Output: true E">
@@ -389,7 +389,7 @@ Easy
 <p><strong>Follow up:</strong><br>What if the inputs contain unicode characters? How would you adapt your solution to such case?</p>
 <h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>建立一个 Hash 表来计数，如果字符串中只包含小写字母，可以直接用数组来计数。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isAnagram</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(s.length() != t.length()) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>,<span class="keyword">int</span>&gt; count;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;s.length();i++)&#123;</span><br><span class="line">            count[s[i]]++;</span><br><span class="line">            count[t[i]]--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> x:count)</span><br><span class="line">            <span class="keyword">if</span>(x.second) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>注意这里利用了 <code>map</code> 的初始化特性，对于语句 <code>count[s[i]];</code>, 如果 <code>count</code> 中没有键 <code>s[i]</code>，将自动插入改键并将相应的值初始化为0。因此 <code>count[s[i]]++;</code> 无需检测 <code>s[i]</code> 的存在性。</p>
+<p>注意这里利用了 <code>map</code> 的初始化特性，对于语句 <code>count[s[i]];</code>, 如果 <code>count</code> 中没有键 <code>s[i]</code>，将自动插入改该键并将相应的值初始化为 0。因此 <code>count[s[i]]++;</code> 无需检测 <code>s[i]</code> 的存在性。</p>
 
       
     </div>
@@ -435,6 +435,10 @@ Easy
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/06/LeetCode-241-Different-Ways-to-Add-Parentheses-不同方式j加括号/" rel="prev" title="LeetCode-241-Different Ways to Add Parentheses-不同方式加括号">
+                LeetCode-241-Different Ways to Add Parentheses-不同方式加括号 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -511,7 +515,7 @@ Easy
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
