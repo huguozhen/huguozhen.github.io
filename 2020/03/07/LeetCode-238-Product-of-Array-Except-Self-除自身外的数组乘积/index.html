@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="241. Different Ways to Add Parentheses  Medium    Given a string of numbers and operators, return all possible results from computing all the different possible ways to group numbers and operators. Th">
+<meta name="description" content="238. Product of Array Except Self  Medium    Given an array nums of _n_ integers where _n_ &amp;gt; 1,  return an array output such that output[i] is equal to the product of all the elements of nums except n">
 <meta name="keywords" content="LeetCode,算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode-241-Different Ways to Add Parentheses-不同方式加括号">
-<meta property="og:url" content="http://yoursite.com/2020/03/06/LeetCode-241-Different-Ways-to-Add-Parentheses-不同方式j加括号/index.html">
+<meta property="og:title" content="LeetCode-238-Product of Array Except Self-除自身外的数组乘积">
+<meta property="og:url" content="http://yoursite.com/2020/03/07/LeetCode-238-Product-of-Array-Except-Self-除自身外的数组乘积/index.html">
 <meta property="og:site_name" content="Mind Palace of Claps">
-<meta property="og:description" content="241. Different Ways to Add Parentheses  Medium    Given a string of numbers and operators, return all possible results from computing all the different possible ways to group numbers and operators. Th">
+<meta property="og:description" content="238. Product of Array Except Self  Medium    Given an array nums of _n_ integers where _n_ &amp;gt; 1,  return an array output such that output[i] is equal to the product of all the elements of nums except n">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-03-06T02:49:03.988Z">
+<meta property="og:updated_time" content="2020-03-07T07:57:02.734Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode-241-Different Ways to Add Parentheses-不同方式加括号">
-<meta name="twitter:description" content="241. Different Ways to Add Parentheses  Medium    Given a string of numbers and operators, return all possible results from computing all the different possible ways to group numbers and operators. Th">
+<meta name="twitter:title" content="LeetCode-238-Product of Array Except Self-除自身外的数组乘积">
+<meta name="twitter:description" content="238. Product of Array Except Self  Medium    Given an array nums of _n_ integers where _n_ &amp;gt; 1,  return an array output such that output[i] is equal to the product of all the elements of nums except n">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/03/06/LeetCode-241-Different-Ways-to-Add-Parentheses-不同方式j加括号/">
+  <link rel="canonical" href="http://yoursite.com/2020/03/07/LeetCode-238-Product-of-Array-Except-Self-除自身外的数组乘积/">
 
 
 
 
 
-  <title>LeetCode-241-Different Ways to Add Parentheses-不同方式加括号 | Mind Palace of Claps</title>
+  <title>LeetCode-238-Product of Array Except Self-除自身外的数组乘积 | Mind Palace of Claps</title>
   
 
 
@@ -285,7 +285,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/06/LeetCode-241-Different-Ways-to-Add-Parentheses-不同方式j加括号/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/07/LeetCode-238-Product-of-Array-Except-Self-除自身外的数组乘积/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Claps">
@@ -302,7 +302,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">LeetCode-241-Different Ways to Add Parentheses-不同方式加括号</h1>
+          <h1 class="post-title" itemprop="name headline">LeetCode-238-Product of Array Except Self-除自身外的数组乘积</h1>
         
 
         <div class="post-meta">
@@ -314,8 +314,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-06T09:42:52+08:00">
-                2020-03-06
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-07T15:39:04+08:00">
+                2020-03-07
               </time>
             
 
@@ -374,25 +374,22 @@
       
 
       
-        <h2 id="241-Different-Ways-to-Add-Parentheses"><a href="#241-Different-Ways-to-Add-Parentheses" class="headerlink" title="241. Different Ways to Add Parentheses"></a>241. Different Ways to Add Parentheses</h2><font color="orange">
+        <h2 id="238-Product-of-Array-Except-Self"><a href="#238-Product-of-Array-Except-Self" class="headerlink" title="238. Product of Array Except Self"></a>238. Product of Array Except Self</h2><font color="orange">
 <b>
 Medium
 </b>
 </font>
 
-<p>Given a string of numbers and operators, return all possible results from computing all the different possible ways to group numbers and operators. The valid operators are <code>+</code>, <code>-</code> and <code>*</code>.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;2-1-1&quot;</span><br><span class="line">Output: [0, 2]</span><br><span class="line">Explanation: </span><br><span class="line">((2-1)-1) = 0 </span><br><span class="line">(2-(1-1)) = 2</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;2*3-4*5&quot;</span><br><span class="line">Output: [-34, -14, -10, -10, 10]</span><br><span class="line">Explanation: </span><br><span class="line">(2*(3-(4*5))) = -34 </span><br><span class="line">((2*3)-(4*5)) = -14 </span><br><span class="line">((2*(3-4))*5) = -10 </span><br><span class="line">(2*((3-4)*5)) = -10 </span><br><span class="line">(((2*3)-4)*5) = 10</span><br></pre></td></tr></table></figure>
-<h3 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution 1"></a>Solution 1</h3><p>分治法。对于每个运算符分成左右两段，递归计算做左边的所有可能取值和右边的所有可能取值，再把左右两边通过当前运算符计算的所有值存到结果集中。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; diffWaysToCompute(<span class="built_in">string</span> input)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; input.length(); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (input[i] == <span class="string">'+'</span> || input[i] == <span class="string">'-'</span> || input[i] == <span class="string">'*'</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res_left = diffWaysToCompute(input.substr(<span class="number">0</span>, i));</span><br><span class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res_right = diffWaysToCompute(input.substr(i + <span class="number">1</span>));</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> a : res_left)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> b : res_right)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">if</span> (input[i] == <span class="string">'+'</span>)</span><br><span class="line">                        res.push_back(a + b);</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (input[i] == <span class="string">'-'</span>)</span><br><span class="line">                        res.push_back(a - b);</span><br><span class="line">                    <span class="keyword">else</span></span><br><span class="line">                        res.push_back(a * b);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (res.empty()) <span class="comment">//当前串只含数字</span></span><br><span class="line">        res.push_back(atoi(input.c_str()));</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution 2"></a>Solution 2</h3><p>DP。注意到在上面的递归中有很多重复计算，所以可以建立一个备忘录，用查表的方式避免重复计算。自顶向下递归式DP的代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; diffWaysToCompute(<span class="built_in">string</span> input)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="built_in">string</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; dp;</span><br><span class="line">    <span class="keyword">return</span> cal(input, dp);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; cal(<span class="built_in">string</span> input, <span class="built_in">unordered_map</span>&lt;<span class="built_in">string</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; &amp;dp)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (dp.find(input) != dp.end())</span><br><span class="line">        <span class="keyword">return</span> dp[input];</span><br><span class="line"></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; input.length(); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (input[i] == <span class="string">'+'</span> || input[i] == <span class="string">'-'</span> || input[i] == <span class="string">'*'</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">string</span> s_left = input.substr(<span class="number">0</span>, i);</span><br><span class="line">            <span class="built_in">string</span> s_right = input.substr(i + <span class="number">1</span>);</span><br><span class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res_left = cal(s_left, dp);</span><br><span class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res_right = cal(s_right, dp);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> a : res_left)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> b : res_right)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">if</span> (input[i] == <span class="string">'+'</span>)</span><br><span class="line">                        res.push_back(a + b);</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (input[i] == <span class="string">'-'</span>)</span><br><span class="line">                        res.push_back(a - b);</span><br><span class="line">                    <span class="keyword">else</span></span><br><span class="line">                        res.push_back(a * b);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (res.empty())</span><br><span class="line">        res.push_back(atoi(input.c_str()));</span><br><span class="line">    dp[input] = res;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Follow-up"><a href="#Follow-up" class="headerlink" title="Follow up"></a>Follow up</h3><ol>
-<li>不用递归，自底向上的迭代式 DP 如何写？</li>
-<li>本题的复杂度如何分析？</li>
-</ol>
+<p>Given an array <code>nums</code> of _n_ integers where _n_ > 1,  return an array <code>output</code> such that <code>output[i]</code> is equal to the product of all the elements of <code>nums</code> except <code>nums[i]</code>.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input:  [1,2,3,4]</span><br><span class="line">Output: [24,12,8,6]</span><br></pre></td></tr></table></figure>
+<p><strong>Constraint:</strong> It’s guaranteed that the product of the elements of any prefix or suffix of the array (including the whole array) fits in a 32 bit integer.</p>
+<p><strong>Note:</strong> Please solve it <strong>without division</strong> and in O(_n_).</p>
+<p><strong>Follow up:</strong><br>Could you solve it with constant space complexity? (The output array <strong>does not</strong> count as extra space for the purpose of space complexity analysis.)</p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>建立两个数组 <code>left[i]</code> 和 <code>right[i]</code>，<code>left[i]</code>记录数组从 <code>0</code> 到 <code>i</code> 段的乘积，<code>right[i]</code> 记录数组从 <code>i</code> 到 <code>len -1</code> 段的乘积，结果 <code>res[i] = left[i-1] * right[i+1]</code></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; productExceptSelf(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">        <span class="keyword">int</span> len = nums.size();</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; left(len);</span><br><span class="line">        left[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; right(len);</span><br><span class="line">        right[len<span class="number">-1</span>] = nums[len<span class="number">-1</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;len;i++)</span><br><span class="line">            left[i] = left[i<span class="number">-1</span>]*nums[i];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=len<span class="number">-2</span>;i&gt;=<span class="number">0</span>;i--)</span><br><span class="line">            right[i] = right[i+<span class="number">1</span>]*nums[i];</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">        res.push_back(right[<span class="number">1</span>]);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;len<span class="number">-1</span>;i++)</span><br><span class="line">            res.push_back(left[i<span class="number">-1</span>]*right[i+<span class="number">1</span>]);</span><br><span class="line">        res.push_back(left[len<span class="number">-2</span>]);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>并把循环合并一下，用两个整数 <code>left</code> 和 <code>right</code> 代替数组，可得到空间复杂度为 $O(1)$ 的代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; productExceptSelf(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">        <span class="keyword">int</span> len = nums.size();</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res(len,<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> left = nums[<span class="number">0</span>], right = nums[len<span class="number">-1</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;len<span class="number">-1</span>;i++)&#123;</span><br><span class="line">            res[i] *= left;</span><br><span class="line">            left *= nums[i];</span><br><span class="line">            res[len-i<span class="number">-1</span>] *= right;</span><br><span class="line">            right *= nums[len-i<span class="number">-1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        res[<span class="number">0</span>] = right;</span><br><span class="line">        res[len<span class="number">-1</span>] = left;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -425,8 +422,8 @@ Medium
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/05/LeetCode-242-Valid-Anagram-有效易位串/" rel="next" title="LeetCode-242-Valid Anagram-有效易位串">
-                <i class="fa fa-chevron-left"></i> LeetCode-242-Valid Anagram-有效易位串
+              <a href="/2020/03/07/LeetCode-239-Sliding-Window-Maximum-滑动窗口最大值/" rel="next" title="LeetCode-239-Sliding Window Maximum-滑动窗口最大值">
+                <i class="fa fa-chevron-left"></i> LeetCode-239-Sliding Window Maximum-滑动窗口最大值
               </a>
             
           </div>
@@ -510,7 +507,7 @@ Medium
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -532,7 +529,7 @@ Medium
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -565,7 +562,7 @@ Medium
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#241-Different-Ways-to-Add-Parentheses"><span class="nav-number">1.</span> <span class="nav-text">241. Different Ways to Add Parentheses</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-1"><span class="nav-number">1.1.</span> <span class="nav-text">Solution 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-2"><span class="nav-number">1.2.</span> <span class="nav-text">Solution 2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Follow-up"><span class="nav-number">1.3.</span> <span class="nav-text">Follow up</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#238-Product-of-Array-Except-Self"><span class="nav-number">1.</span> <span class="nav-text">238. Product of Array Except Self</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution"><span class="nav-number">1.1.</span> <span class="nav-text">Solution</span></a></li></ol></li></ol></div>
             
 
           </div>

@@ -1,8 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode-238-Product of Array Except Self-除自身外的数组乘积]]></title>
+    <url>%2F2020%2F03%2F07%2FLeetCode-238-Product-of-Array-Except-Self-%E9%99%A4%E8%87%AA%E8%BA%AB%E5%A4%96%E7%9A%84%E6%95%B0%E7%BB%84%E4%B9%98%E7%A7%AF%2F</url>
+    <content type="text"><![CDATA[238. Product of Array Except Self Medium Given an array nums of _n_ integers where _n_ > 1, return an array output such that output[i] is equal to the product of all the elements of nums except nums[i]. Example: 12Input: [1,2,3,4]Output: [24,12,8,6] Constraint: It’s guaranteed that the product of the elements of any prefix or suffix of the array (including the whole array) fits in a 32 bit integer. Note: Please solve it without division and in O(_n_). Follow up:Could you solve it with constant space complexity? (The output array does not count as extra space for the purpose of space complexity analysis.) Solution建立两个数组 left[i] 和 right[i]，left[i]记录数组从 0 到 i 段的乘积，right[i] 记录数组从 i 到 len -1 段的乘积，结果 res[i] = left[i-1] * right[i+1] 1234567891011121314151617181920212223class Solution &#123;public: vector&lt;int&gt; productExceptSelf(vector&lt;int&gt;&amp; nums) &#123; int len = nums.size(); vector&lt;int&gt; left(len); left[0] = nums[0]; vector&lt;int&gt; right(len); right[len-1] = nums[len-1]; for(int i=1;i&lt;len;i++) left[i] = left[i-1]*nums[i]; for(int i=len-2;i&gt;=0;i--) right[i] = right[i+1]*nums[i]; vector&lt;int&gt; res; res.push_back(right[1]); for(int i=1;i&lt;len-1;i++) res.push_back(left[i-1]*right[i+1]); res.push_back(left[len-2]); return res; &#125;&#125;; 并把循环合并一下，用两个整数 left 和 right 代替数组，可得到空间复杂度为 $O(1)$ 的代码： 1234567891011121314151617181920class Solution &#123;public: vector&lt;int&gt; productExceptSelf(vector&lt;int&gt;&amp; nums) &#123; int len = nums.size(); vector&lt;int&gt; res(len,1); int left = nums[0], right = nums[len-1]; for(int i=1;i&lt;len-1;i++)&#123; res[i] *= left; left *= nums[i]; res[len-i-1] *= right; right *= nums[len-i-1]; &#125; res[0] = right; res[len-1] = left; return res; &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode-239-Sliding Window Maximum-滑动窗口最大值]]></title>
+    <url>%2F2020%2F03%2F07%2FLeetCode-239-Sliding-Window-Maximum-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC%2F</url>
+    <content type="text"><![CDATA[239. Sliding Window Maximum Hard Given an array _nums_, there is a sliding window of size _k_ which is moving from the very left of the array to the very right. You can only see the _k_ numbers in the window. Each time the sliding window moves right by one position. Return the max sliding window. Example: 123456789101112Input: nums = [1,3,-1,-3,5,3,6,7], and k = 3Output: [3,3,5,5,6,7] Explanation: Window position Max--------------- -----[1 3 -1] -3 5 3 6 7 3 1 [3 -1 -3] 5 3 6 7 3 1 3 [-1 -3 5] 3 6 7 5 1 3 -1 [-3 5 3] 6 7 5 1 3 -1 -3 [5 3 6] 7 6 1 3 -1 -3 5 [3 6 7] 7 Note:You may assume _k_ is always valid, 1 ≤ k ≤ input array’s size for non-empty array. Follow up:Could you solve it in linear time? Solution单调队列的典型题。单调队列是指维护一个具有单调性的队列，只能从队尾入队，但从队头和队尾两端都可以出队，一般用标准库的双端队列实现。 本题求一个范围内的最大值，因此维护一个单调递减队列，队头就是最大元。该队列的维护逻辑如下： 若队列为空，当前元素直接入队； 若队尾元素大于或等于当前元素，当前元素直接入队，这样保持了队列的单调递减特性。从题意上讲，当前元素虽然比队列中的元素都小，但是它出现的晚，随着窗口的滑动队列中比它大的元素可能不在窗口内了，当前元素有成为某个滑动窗口最大值的潜力； 若队尾元素小于当前元素，则弹出队尾元素，重复此过程直到遇到比当前元素大的或者队列变空为止，然后当前元素入队。从题意上讲，当前元素不仅比队列中的某些元素大，还出现的更晚，因此队列中那些比它小的元素没有成为某个滑动窗口最大值的的可能了，因此丢掉； 每滑动一步，检查队头元素是否还在窗口内，如果不在了就弹出队头元素。 由于要检查队头元素是否在窗口内，因此本题的单调队列保存值的索引而不是值本身，这样更方便操作。 1234567891011121314class Solution &#123;public: vector&lt;int&gt; maxSlidingWindow(vector&lt;int&gt;&amp; nums, int k) &#123; deque&lt;int&gt; dq; vector&lt;int&gt; res; for(int i=0;i&lt;nums.size();i++)&#123; while(dq.size() != 0 &amp;&amp; nums[dq.back()] &lt; nums[i]) dq.pop_back(); dq.push_back(i); if(dq.front() &lt; i-k+1) dq.pop_front(); if(i &gt;= k-1) res.push_back(nums[dq.front()]); &#125; return res; &#125;&#125;; 时间复杂度为 $O(n)$。]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>算法</tag>
+        <tag>单调队列</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeeoCode-240-Search a 2D Matrix II-搜索二维矩阵2]]></title>
+    <url>%2F2020%2F03%2F07%2FLeetCode-240-Search-a-2D-Matrix-II-%E6%90%9C%E7%B4%A2%E4%BA%8C%E7%BB%B4%E7%9F%A9%E9%98%B52%2F</url>
+    <content type="text"><![CDATA[240. Search a 2D Matrix II Medium Write an efficient algorithm that searches for a value in an _m_ x _n_ matrix. This matrix has the following properties: Integers in each row are sorted in ascending from left to right. Integers in each column are sorted in ascending from top to bottom. Example: Consider the following matrix: 1234567[ [1, 4, 7, 11, 15], [2, 5, 8, 12, 19], [3, 6, 9, 16, 22], [10, 13, 14, 17, 24], [18, 21, 23, 26, 30]] Given target = 5, return true. Given target = 20, return false. Solution注意到任何一个元素左上方的元素都比它小，右下方的元素都比它大，因此可以从最右上的元素开始搜索，遇到比待查找元素小的就向下搜索，遇到比待查找元素大的就向左搜索，直到找到该元素或者碰到边界为止。当然，从最左下的元素开始搜索也一样。 12345678910111213141516class Solution &#123;public: bool searchMatrix(vector&lt;vector&lt;int&gt;&gt;&amp; matrix, int target) &#123; if(matrix.size() == 0) return false; int m = matrix.size(); int n = matrix[0].size(); int i = 0, j = n-1; while(i&lt;m &amp;&amp; j&gt;=0)&#123; if(matrix[i][j] == target) return true; else if(matrix[i][j] &gt; target) j--; else i++; &#125; return false; &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>算法</tag>
+        <tag>矩阵</tag>
+        <tag>搜索</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode-241-Different Ways to Add Parentheses-不同方式加括号]]></title>
-    <url>%2F2020%2F03%2F06%2FLeetCode-241-Different-Ways-to-Add-Parentheses-%E4%B8%8D%E5%90%8C%E6%96%B9%E5%BC%8Fj%E5%8A%A0%E6%8B%AC%E5%8F%B7%2F</url>
+    <url>%2F2020%2F03%2F06%2FLeetCode-241-Different-Ways-to-Add-Parentheses-%E4%B8%8D%E5%90%8C%E6%96%B9%E5%BC%8F%E5%8A%A0%E6%8B%AC%E5%8F%B7%2F</url>
     <content type="text"><![CDATA[241. Different Ways to Add Parentheses Medium Given a string of numbers and operators, return all possible results from computing all the different possible ways to group numbers and operators. The valid operators are +, - and *. Example 1: 12345Input: &quot;2-1-1&quot;Output: [0, 2]Explanation: ((2-1)-1) = 0 (2-(1-1)) = 2 Example 2: 12345678Input: &quot;2*3-4*5&quot;Output: [-34, -14, -10, -10, 10]Explanation: (2*(3-(4*5))) = -34 ((2*3)-(4*5)) = -14 ((2*(3-4))*5) = -10 (2*((3-4)*5)) = -10 (((2*3)-4)*5) = 10 Solution 1分治法。对于每个运算符分成左右两段，递归计算做左边的所有可能取值和右边的所有可能取值，再把左右两边通过当前运算符计算的所有值存到结果集中。 123456789101112131415161718192021222324252627vector&lt;int&gt; diffWaysToCompute(string input)&#123; vector&lt;int&gt; res; for (int i = 0; i &lt; input.length(); i++) &#123; if (input[i] == '+' || input[i] == '-' || input[i] == '*') &#123; vector&lt;int&gt; res_left = diffWaysToCompute(input.substr(0, i)); vector&lt;int&gt; res_right = diffWaysToCompute(input.substr(i + 1)); for (int a : res_left) &#123; for (int b : res_right) &#123; if (input[i] == '+') res.push_back(a + b); else if (input[i] == '-') res.push_back(a - b); else res.push_back(a * b); &#125; &#125; &#125; &#125; if (res.empty()) //当前串只含数字 res.push_back(atoi(input.c_str())); return res;&#125; Solution 2DP。注意到在上面的递归中有很多重复计算，所以可以建立一个备忘录，用查表的方式避免重复计算。自顶向下递归式DP的代码如下： 1234567891011121314151617181920212223242526272829303132333435363738vector&lt;int&gt; diffWaysToCompute(string input)&#123; unordered_map&lt;string, vector&lt;int&gt;&gt; dp; return cal(input, dp);&#125;vector&lt;int&gt; cal(string input, unordered_map&lt;string, vector&lt;int&gt;&gt; &amp;dp)&#123; if (dp.find(input) != dp.end()) return dp[input]; vector&lt;int&gt; res; for (int i = 0; i &lt; input.length(); i++) &#123; if (input[i] == '+' || input[i] == '-' || input[i] == '*') &#123; string s_left = input.substr(0, i); string s_right = input.substr(i + 1); vector&lt;int&gt; res_left = cal(s_left, dp); vector&lt;int&gt; res_right = cal(s_right, dp); for (int a : res_left) &#123; for (int b : res_right) &#123; if (input[i] == '+') res.push_back(a + b); else if (input[i] == '-') res.push_back(a - b); else res.push_back(a * b); &#125; &#125; &#125; &#125; if (res.empty()) res.push_back(atoi(input.c_str())); dp[input] = res; return res;&#125; Follow up 不用递归，自底向上的迭代式 DP 如何写？ 本题的复杂度如何分析？]]></content>
       <categories>
         <category>LeetCode</category>
