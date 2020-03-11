@@ -1,6 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode-230-Kth Smallest Element in a BST-二叉排序树中第k小的元素]]></title>
+    <url>%2F2020%2F03%2F11%2FLeetCode-230-Kth-Smallest-Element-in-a-BST-%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91%E4%B8%AD%E7%AC%ACk%E5%B0%8F%E7%9A%84%E5%85%83%E7%B4%A0%2F</url>
+    <content type="text"><![CDATA[230. Kth Smallest Element in a BST Medium Given a binary search tree, write a function kthSmallest to find the kth smallest element in it. Note:You may assume k is always valid, 1 ≤ k ≤ BST’s total elements. Example 1: 1234567Input: root = [3,1,4,null,2], k = 1 3 / \ 1 4 \ 2Output: 1 Example 2: 123456789Input: root = [5,3,6,2,4,null,null,1], k = 3 5 / \ 3 6 / \ 2 4 / 1Output: 3 Follow up:What if the BST is modified (insert/delete operations) often and you need to find the kth smallest frequently? How would you optimize the kthSmallest routine? SolutionBST 的特点是其中序遍历就是递增序列，故利用二叉树非递归形式的中序遍历结合简单计数便可找到所求元素。 1234567891011121314151617181920212223242526272829/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: int kthSmallest(TreeNode* root, int k) &#123; TreeNode *p = root; stack&lt;TreeNode*&gt; stk; while(p || !stk.empty())&#123; while(p)&#123; stk.push(p); p = p-&gt;left; &#125; if(!stk.empty())&#123; p = stk.top(); if(!(--k)) return p-&gt;val; stk.pop(); p = p-&gt;right; &#125; &#125; return 0; &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>算法</tag>
+        <tag>BST</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode-231-Power of Two-2的幂]]></title>
+    <url>%2F2020%2F03%2F11%2FLeetCode-231-Power-of-Two-2%E7%9A%84%E5%B9%82%2F</url>
+    <content type="text"><![CDATA[231. Power of Two Easy Given an integer, write a function to determine if it is a power of two. Example 1: 123Input: 1Output: true Explanation: 20 = 1 Example 2: 123Input: 16Output: trueExplanation: 24 = 16 Example 3: 12Input: 218Output: false Solution注意到 2 的幂的特点是其二进制表示中只有一个 1 ，其余数位全部为 0 ，可以用 n &amp; n-1 的技巧来检验这一点： 若 n 是 2 的幂，设其二进制中第 k 位为 1 ，则 n-1 的二进制必然是1 ~ k - 1位均为 1 ，其余位为0 。这样 n &amp; n-1 必为 0 ； 若 n &gt; 0 不是 2 的幂，则其二进制中必然包含至少两个 1 ，设位次最小的两个 1 分别在 k, m 位 (k &lt; m) ，则n-1 的二进制必然是1 ~ k - 1位均为 1，第 k 位为 0 ，第 m 位以及更高位的 1 均保持不变。这样 n &amp; n-1 必不为 0 。 123456class Solution &#123;public: bool isPowerOfTwo(int n) &#123; return n&gt;0 &amp;&amp; !(n&amp;(n-1)); &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode-232-Implement Queue using Stacks-用栈实现队列]]></title>
+    <url>%2F2020%2F03%2F11%2FLeetCode-232-Implement-Queue-using-Stacks-%E7%94%A8%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97%2F</url>
+    <content type="text"><![CDATA[232. Implement Queue using Stacks Easy Implement the following operations of a queue using stacks. push(x) — Push element x to the back of queue. pop() — Removes the element from in front of queue. peek() — Get the front element. empty() — Return whether the queue is empty. Example: 1234567MyQueue queue = new MyQueue();queue.push(1);queue.push(2); queue.peek(); // returns 1queue.pop(); // returns 1queue.empty(); // returns false Notes: You must use _only_ standard operations of a stack — which means only push to top, peek/pop from top, size, and is empty operations are valid. Depending on your language, stack may not be supported natively. You may simulate a stack by using a list or deque (double-ended queue), as long as you use only standard operations of a stack. You may assume that all operations are valid (for example, no pop or peek operations will be called on an empty queue). Solution想象两个栈的栈底连在一起，一个作为队尾，一个作为队头。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455class MyQueue &#123; stack&lt;int&gt; stk_head; stack&lt;int&gt; stk_tail;public: /** Initialize your data structure here. */ MyQueue() &#123; &#125; /** Push element x to the back of queue. */ void push(int x) &#123; stk_tail.push(x); &#125; /** Removes the element from in front of queue and returns that element. */ int pop() &#123; if(!empty())&#123; int res = peek(); stk_head.pop(); return res; &#125; else return 0; &#125; /** Get the front element. */ int peek() &#123; if(!stk_head.empty()) return stk_head.top(); else if(!stk_tail.empty())&#123; while(!stk_tail.empty())&#123; int temp = stk_tail.top(); stk_tail.pop(); stk_head.push(temp); &#125; return stk_head.top(); &#125; else return 0; &#125; /** Returns whether the queue is empty. */ bool empty() &#123; return stk_head.empty() &amp;&amp; stk_tail.empty(); &#125;&#125;;/** * Your MyQueue object will be instantiated and called as such: * MyQueue* obj = new MyQueue(); * obj-&gt;push(x); * int param_2 = obj-&gt;pop(); * int param_3 = obj-&gt;peek(); * bool param_4 = obj-&gt;empty(); */]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>算法</tag>
+        <tag>栈</tag>
+        <tag>队列</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode-233-Number of Digit One-数字1的个数]]></title>
     <url>%2F2020%2F03%2F10%2FLeetCode-233-Number-of-Digit-One-%E6%95%B0%E5%AD%971%E7%9A%84%E4%B8%AA%E6%95%B0%2F</url>
     <content type="text"><![CDATA[233. Number of Digit One Hard Given an integer n, count the total number of digit 1 appearing in all non-negative integers less than or equal to n. Example: 123Input: 13Output: 6 Explanation: Digit 1 occurred in the following numbers: 1, 10, 11, 12, 13. SolutionBroute - Force 将会超时。 显然本题应当从数字 1 在 n 的任一数位上出现的次数分析，找出规律，本质上是一个数学问题。 对于 n = 1230567，分析数字 1 在千位上出现的次数，可能的形式包括 1221999 ~ 1221000 ，1211999 ~ 1211000 ，… … ，0001999 ~ 0001000 ，共 123 * 1000 次； 对于 n = 1231567，分析数字 1 在千位上出现的次数，可能的形式包括 1231567 ~ 1231000 ， 1221999 ~ 1221000 ，1211999 ~ 1211000 ，… … ，0001999 ~ 0001000 ，共 567 + 1 + 123 * 1000 次； 对于 n = 1232567，分析数字 1 在千位上出现的次数，可能的形式包括 1231999 ~ 1231000 ， 1221999 ~ 1221000 ，1211999 ~ 1211000 ，… … ，0001999 ~ 0001000 ，共 1000 + 123 * 1000 次； 对于 n = 1233567，1234567 ，… … ，结果同上。 故对于 $n=abcdefg$ ，数字 1 在千位上出现的次数为 \left\{ \begin{aligned} &abc*1000, &d=0 \\ &abc*1000+efg+1, &d=1 \\ &abc*1000+1000, &d>1 \\ \end{aligned} \right.同理可得数字 1 在百分位上出现的次数为 \left\{\begin{aligned} &abcd*100, &e=0 \\ &abcd*100+fg+1, &e=1 \\ &abcd*100+100, &e>1 \\\end{aligned}\right.其他数位规律相同，这就是一般规律，可据此编程，注意处理边界情形即可。 1234567891011121314151617181920212223242526class Solution &#123;public: int countDigitOne(int n) &#123; if(n&lt;=0) return 0; // num为数位基数，digit为当前数位，right为当前位右边的数 int num = 10, digit = n%10, right = digit; // n为当前位左边的数 n /= 10; int res; // 个位单独处理 if(digit == 0) res = n; else res = n + 1; while(n)&#123; digit = n%10; n /= 10; if(digit == 0) res += n*num; else if(digit == 1) res += n*num + right + 1; else res += n*num + num; right = digit*num + right; if(n) num *= 10; // 此处n比较大时num可能会在最后一次循环时溢出int的表示范围，故判断一下是否为最后一次循环。 &#125; return res; &#125;&#125;; 此方法时间复杂度为 $O(\log n)$ ，空间复杂度为 $O(1)$ 。]]></content>
@@ -35,8 +74,8 @@
       <tags>
         <tag>LeetCode</tag>
         <tag>算法</tag>
-        <tag>二叉排序树</tag>
         <tag>BST</tag>
+        <tag>二叉排序树</tag>
       </tags>
   </entry>
   <entry>
