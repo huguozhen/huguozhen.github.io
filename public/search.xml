@@ -15,8 +15,22 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode-224-Basic Calculator-基本计算器]]></title>
-    <url>%2F2020%2F03%2F15%2FLeetCode-224-Basic-Calculator-%E5%9F%BA%E6%9C%AC%E8%AE%A1%E7%AE%97%E5%99%A8%2F</url>
+    <title><![CDATA[LeetCode-225-Implement Stack using Queues]]></title>
+    <url>%2F2020%2F03%2F16%2FLeetCode-225-Implement-Stack-using-Queues%2F</url>
+    <content type="text"><![CDATA[225. Implement Stack using Queues Easy DescriptionGo to LeetCode Solution用一个队列的队头表示栈顶，队尾表示栈底。第 k 个元素入栈的时候先将其从队尾入队，然后将前面的 k-1 个元素依次从队头出队并从队尾入队。由于队列是 FIFO 的数据结构，这样能够保持先入栈的元素始终更靠近队头，也即更靠近栈顶，恰好符合栈的定义。 1234567891011121314151617181920212223242526272829303132333435363738394041424344class MyStack &#123; queue&lt;int&gt; q;public: /** Initialize your data structure here. */ MyStack() &#123; &#125; /** Push element x onto stack. */ void push(int x) &#123; q.push(x); int k = q.size() - 1; while(k--)&#123; q.push(q.front()); q.pop(); &#125; &#125; /** Removes the element on top of the stack and returns that element. */ int pop() &#123; int res = top(); q.pop(); return res; &#125; /** Get the top element. */ int top() &#123; return q.front(); &#125; /** Returns whether the stack is empty. */ bool empty() &#123; return q.empty(); &#125;&#125;;/** * Your MyStack object will be instantiated and called as such: * MyStack* obj = new MyStack(); * obj-&gt;push(x); * int param_2 = obj-&gt;pop(); * int param_3 = obj-&gt;top(); * bool param_4 = obj-&gt;empty(); */ 此方法时间复杂度为 push $O(n)$ ，pop/top/empty $O(1)$ 。]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>算法</tag>
+        <tag>栈</tag>
+        <tag>队列</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode-224-Basic Calculator]]></title>
+    <url>%2F2020%2F03%2F15%2FLeetCode-224-Basic-Calculator%2F</url>
     <content type="text"><![CDATA[224. Basic Calculator Hard Implement a basic calculator to evaluate a simple expression string. The expression string may contain open ( and closing parentheses ), the plus + or minus sign -, non-negative integers and empty spaces . Example 1: 12Input: &quot;1 + 1&quot;Output: 2 Example 2: 12Input: &quot; 2-1 + 2 &quot;Output: 3 Example 3: 12Input: &quot;(1+(4+5+2)-3)+(6+8)&quot;Output: 23 Note: You may assume that the given expression is always valid. Do not use the eval built-in library function. Solution由于表达式只含加减法，故只需要确定每个数在最终结果中的符号，最后相加即可。对于括号外的数，其最终符号就是数字前面的符号；对于括号里面的数，其最终的符号与数字前面的符号以及所有包含它的括号的符号均相关。 用 1 和 -1 分别表示正负号，考虑最外层括号，设 s 为最外层括号的符号，那么对于这层括号里面的任何一项（包含数字或者括号），设其本来的符号为 t ，则这一项在这层括号去掉后的符号为 s*t 。根据这一规律，便可以逐层求得括号里面的数的最终符号，相当于逐层去括号。 编程实现的核心要点是用一个栈 stk 保存每一层括号成为最外层括号时的符号 。 1234567891011121314151617181920212223class Solution &#123;public: int calculate(string s) &#123; int res = 0, num = 0, sign = 1; stack&lt;int&gt; stk; stk.push(sign); for(auto x:s)&#123; if(x &gt;= '0' &amp;&amp; x &lt;= '9') num = num*10 + (x-'0'); //这个括号必须加，不然先计算前面的加法可能溢出 else if(x == '+' || x == '-')&#123; res += sign*num; sign = stk.top()*(x=='+' ? 1 : -1); num = 0; &#125; else if(x == '(') stk.push(sign); else if(x == ')') stk.pop(); &#125; res += sign*num; return res; &#125;&#125;;]]></content>
       <categories>
         <category>LeetCode</category>
@@ -27,8 +41,8 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode-230-Kth Smallest Element in a BST-二叉排序树中第k小的元素]]></title>
-    <url>%2F2020%2F03%2F11%2FLeetCode-230-Kth-Smallest-Element-in-a-BST-%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91%E4%B8%AD%E7%AC%ACk%E5%B0%8F%E7%9A%84%E5%85%83%E7%B4%A0%2F</url>
+    <title><![CDATA[LeetCode-230-Kth Smallest Element in a BST]]></title>
+    <url>%2F2020%2F03%2F11%2FLeetCode-230-Kth-Smallest-Element-in-a-BST%2F</url>
     <content type="text"><![CDATA[230. Kth Smallest Element in a BST Medium Given a binary search tree, write a function kthSmallest to find the kth smallest element in it. Note:You may assume k is always valid, 1 ≤ k ≤ BST’s total elements. Example 1: 1234567Input: root = [3,1,4,null,2], k = 1 3 / \ 1 4 \ 2Output: 1 Example 2: 123456789Input: root = [5,3,6,2,4,null,null,1], k = 3 5 / \ 3 6 / \ 2 4 / 1Output: 3 Follow up:What if the BST is modified (insert/delete operations) often and you need to find the kth smallest frequently? How would you optimize the kthSmallest routine? SolutionBST 的特点是其中序遍历就是递增序列，故利用二叉树非递归形式的中序遍历结合简单计数便可找到所求元素。 1234567891011121314151617181920212223242526272829/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: int kthSmallest(TreeNode* root, int k) &#123; TreeNode *p = root; stack&lt;TreeNode*&gt; stk; while(p || !stk.empty())&#123; while(p)&#123; stk.push(p); p = p-&gt;left; &#125; if(!stk.empty())&#123; p = stk.top(); if(!(--k)) return p-&gt;val; stk.pop(); p = p-&gt;right; &#125; &#125; return 0; &#125;&#125;;]]></content>
       <categories>
         <category>LeetCode</category>
@@ -40,8 +54,8 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode-231-Power of Two-2的幂]]></title>
-    <url>%2F2020%2F03%2F11%2FLeetCode-231-Power-of-Two-2%E7%9A%84%E5%B9%82%2F</url>
+    <title><![CDATA[LeetCode-231-Power of Two]]></title>
+    <url>%2F2020%2F03%2F11%2FLeetCode-231-Power-of-Two%2F</url>
     <content type="text"><![CDATA[231. Power of Two Easy Given an integer, write a function to determine if it is a power of two. Example 1: 123Input: 1Output: true Explanation: 20 = 1 Example 2: 123Input: 16Output: trueExplanation: 24 = 16 Example 3: 12Input: 218Output: false Solution注意到 2 的幂的特点是其二进制表示中只有一个 1 ，其余数位全部为 0 ，可以用 n &amp; n-1 的技巧来检验这一点： 若 n 是 2 的幂，设其二进制中第 k 位为 1 ，则 n-1 的二进制必然是1 ~ k - 1位均为 1 ，其余位为0 。这样 n &amp; n-1 必为 0 ； 若 n &gt; 0 不是 2 的幂，则其二进制中必然包含至少两个 1 ，设位次最小的两个 1 分别在 k, m 位 (k &lt; m) ，则n-1 的二进制必然是1 ~ k - 1位均为 1，第 k 位为 0 ，第 m 位以及更高位的 1 均保持不变。这样 n &amp; n-1 必不为 0 。 123456class Solution &#123;public: bool isPowerOfTwo(int n) &#123; return n&gt;0 &amp;&amp; !(n&amp;(n-1)); &#125;&#125;;]]></content>
       <categories>
         <category>LeetCode</category>
@@ -52,8 +66,8 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode-232-Implement Queue using Stacks-用栈实现队列]]></title>
-    <url>%2F2020%2F03%2F11%2FLeetCode-232-Implement-Queue-using-Stacks-%E7%94%A8%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97%2F</url>
+    <title><![CDATA[LeetCode-232-Implement Queue using Stacks]]></title>
+    <url>%2F2020%2F03%2F11%2FLeetCode-232-Implement-Queue-using-Stacks%2F</url>
     <content type="text"><![CDATA[232. Implement Queue using Stacks Easy Implement the following operations of a queue using stacks. push(x) — Push element x to the back of queue. pop() — Removes the element from in front of queue. peek() — Get the front element. empty() — Return whether the queue is empty. Example: 1234567MyQueue queue = new MyQueue();queue.push(1);queue.push(2); queue.peek(); // returns 1queue.pop(); // returns 1queue.empty(); // returns false Notes: You must use _only_ standard operations of a stack — which means only push to top, peek/pop from top, size, and is empty operations are valid. Depending on your language, stack may not be supported natively. You may simulate a stack by using a list or deque (double-ended queue), as long as you use only standard operations of a stack. You may assume that all operations are valid (for example, no pop or peek operations will be called on an empty queue). Solution想象两个栈的栈底连在一起，一个作为队尾，一个作为队头。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455class MyQueue &#123; stack&lt;int&gt; stk_head; stack&lt;int&gt; stk_tail;public: /** Initialize your data structure here. */ MyQueue() &#123; &#125; /** Push element x to the back of queue. */ void push(int x) &#123; stk_tail.push(x); &#125; /** Removes the element from in front of queue and returns that element. */ int pop() &#123; if(!empty())&#123; int res = peek(); stk_head.pop(); return res; &#125; else return 0; &#125; /** Get the front element. */ int peek() &#123; if(!stk_head.empty()) return stk_head.top(); else if(!stk_tail.empty())&#123; while(!stk_tail.empty())&#123; int temp = stk_tail.top(); stk_tail.pop(); stk_head.push(temp); &#125; return stk_head.top(); &#125; else return 0; &#125; /** Returns whether the queue is empty. */ bool empty() &#123; return stk_head.empty() &amp;&amp; stk_tail.empty(); &#125;&#125;;/** * Your MyQueue object will be instantiated and called as such: * MyQueue* obj = new MyQueue(); * obj-&gt;push(x); * int param_2 = obj-&gt;pop(); * int param_3 = obj-&gt;peek(); * bool param_4 = obj-&gt;empty(); */]]></content>
       <categories>
         <category>LeetCode</category>
@@ -66,8 +80,8 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode-233-Number of Digit One-数字1的个数]]></title>
-    <url>%2F2020%2F03%2F10%2FLeetCode-233-Number-of-Digit-One-%E6%95%B0%E5%AD%971%E7%9A%84%E4%B8%AA%E6%95%B0%2F</url>
+    <title><![CDATA[LeetCode-233-Number of Digit One]]></title>
+    <url>%2F2020%2F03%2F10%2FLeetCode-233-Number-of-Digit-One%2F</url>
     <content type="text"><![CDATA[233. Number of Digit One Hard Given an integer n, count the total number of digit 1 appearing in all non-negative integers less than or equal to n. Example: 123Input: 13Output: 6 Explanation: Digit 1 occurred in the following numbers: 1, 10, 11, 12, 13. SolutionBroute - Force 将会超时。 显然本题应当从数字 1 在 n 的任一数位上出现的次数分析，找出规律，本质上是一个数学问题。 对于 n = 1230567，分析数字 1 在千位上出现的次数，可能的形式包括 1221999 ~ 1221000 ，1211999 ~ 1211000 ，… … ，0001999 ~ 0001000 ，共 123 * 1000 次； 对于 n = 1231567，分析数字 1 在千位上出现的次数，可能的形式包括 1231567 ~ 1231000 ， 1221999 ~ 1221000 ，1211999 ~ 1211000 ，… … ，0001999 ~ 0001000 ，共 567 + 1 + 123 * 1000 次； 对于 n = 1232567，分析数字 1 在千位上出现的次数，可能的形式包括 1231999 ~ 1231000 ， 1221999 ~ 1221000 ，1211999 ~ 1211000 ，… … ，0001999 ~ 0001000 ，共 1000 + 123 * 1000 次； 对于 n = 1233567，1234567 ，… … ，结果同上。 故对于 $n=abcdefg$ ，数字 1 在千位上出现的次数为 \left\{ \begin{aligned} &abc*1000, &d=0 \\ &abc*1000+efg+1, &d=1 \\ &abc*1000+1000, &d>1 \\ \end{aligned} \right.同理可得数字 1 在百分位上出现的次数为 \left\{\begin{aligned} &abcd*100, &e=0 \\ &abcd*100+fg+1, &e=1 \\ &abcd*100+100, &e>1 \\\end{aligned}\right.其他数位规律相同，这就是一般规律，可据此编程，注意处理边界情形即可。 1234567891011121314151617181920212223242526class Solution &#123;public: int countDigitOne(int n) &#123; if(n&lt;=0) return 0; // num为数位基数，digit为当前数位，right为当前位右边的数 int num = 10, digit = n%10, right = digit; // n为当前位左边的数 n /= 10; int res; // 个位单独处理 if(digit == 0) res = n; else res = n + 1; while(n)&#123; digit = n%10; n /= 10; if(digit == 0) res += n*num; else if(digit == 1) res += n*num + right + 1; else res += n*num + num; right = digit*num + right; if(n) num *= 10; // 此处n比较大时num可能会在最后一次循环时溢出int的表示范围，故判断一下是否为最后一次循环。 &#125; return res; &#125;&#125;; 此方法时间复杂度为 $O(\log n)$ ，空间复杂度为 $O(1)$ 。]]></content>
       <categories>
         <category>LeetCode</category>
@@ -78,8 +92,8 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode-234-Palindrome Linked List-回文链表]]></title>
-    <url>%2F2020%2F03%2F09%2FLeetCode-234-Palindrome-Linked-List-%E5%9B%9E%E6%96%87%E9%93%BE%E8%A1%A8%2F</url>
+    <title><![CDATA[LeetCode-234-Palindrome Linked List]]></title>
+    <url>%2F2020%2F03%2F09%2FLeetCode-234-Palindrome-Linked-List%2F</url>
     <content type="text"><![CDATA[234. Palindrome Linked List Easy Given a singly linked list, determine if it is a palindrome. Example 1: 12Input: 1-&gt;2Output: false Example 2: 12Input: 1-&gt;2-&gt;2-&gt;1Output: true Follow up:Could you do it in O(n) time and O(1) space? Solution先用快慢指针法找到链表的中点，然后将链表的一半反转，最后比较两半链表是否相同。这一过程中涉及很多细节问题，比如节点个数的奇偶性，反转链表的操作等，需要小心处理。 1234567891011121314151617181920212223242526272829303132333435363738394041/** * Definition for singly-linked list. * struct ListNode &#123; * int val; * ListNode *next; * ListNode(int x) : val(x), next(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: bool isPalindrome(ListNode* head) &#123; if(!head || !head-&gt;next) return true; ListNode *mid = head, *p = head; //快慢指针法找中点 while(p &amp;&amp; p-&gt;next)&#123; mid = mid-&gt;next; p = p-&gt;next-&gt;next; &#125; ListNode* temp=mid-&gt;next; p = temp; //反转后一半链表 while(p)&#123; temp = p-&gt;next; p-&gt;next = mid; if(mid-&gt;next == p) mid-&gt;next = NULL; mid = p; p = temp; &#125; p = mid; temp = head; //比较两半链表 while(p &amp;&amp; temp)&#123; if(p-&gt;val != temp-&gt;val) return false; p=p-&gt;next; temp=temp-&gt;next; &#125; return true; &#125;&#125;;]]></content>
       <categories>
         <category>LeetCode</category>
@@ -91,8 +105,8 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode-235-Lowest Common Ancestor of a Binary Search Tree-二叉排序树的最近公共祖先]]></title>
-    <url>%2F2020%2F03%2F09%2FLeetCode-235-Lowest-Common-Ancestor-of-a-Binary-Search-Tree-%E4%BA%8C%E5%8F%89%E6%8E%92%E5%BA%8F%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88%2F</url>
+    <title><![CDATA[LeetCode-235-Lowest Common Ancestor of a Binary Search Tree]]></title>
+    <url>%2F2020%2F03%2F09%2FLeetCode-235-Lowest-Common-Ancestor-of-a-Binary-Search-Tree%2F</url>
     <content type="text"><![CDATA[235. Lowest Common Ancestor of a Binary Search Tree Easy Given a binary search tree (BST), find the lowest common ancestor (LCA) of two given nodes in the BST. According to the definition of LCA on Wikipedia: “The lowest common ancestor is defined between two nodes p and q as the lowest node in T that has both p and q as descendants (where we allow a node to be a descendant of itself).” Given binary search tree: root = [6,2,8,0,4,7,9,null,null,3,5] Example 1: 123Input: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 8Output: 6Explanation: The LCA of nodes 2 and 8 is 6. Example 2: 123Input: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 4Output: 2Explanation: The LCA of nodes 2 and 4 is 2, since a node can be a descendant of itself according to the LCA definition. Note: All of the nodes’ values will be unique. p and q are different and both values will exist in the BST. Solution递归。若当前节点就是 p , q 之一 ，或者p 和 q 分别位于 当前节点 root 的两边 ，则当前节点即为所求，递归停止。若 p 和 q 都位于 root 的左边，则在左子树中递归地查找 LCA ，否则在右子树中递归查找 LCA 。 12345678910111213141516171819/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) &#123; int a = min(p-&gt;val,q-&gt;val), b = max(p-&gt;val,q-&gt;val); if(!root || a == root-&gt;val || b == root-&gt;val || (a &lt; root-&gt;val &amp;&amp; b &gt; root-&gt;val)) return root; if(b &lt; root-&gt;val) return lowestCommonAncestor(root-&gt;left, p, q); else return lowestCommonAncestor(root-&gt;right, p, q); &#125;&#125;;]]></content>
       <categories>
         <category>LeetCode</category>
@@ -105,8 +119,8 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode-236-Lowest Common Ancestor of a Binary Tree-二叉树的最近公共祖先]]></title>
-    <url>%2F2020%2F03%2F09%2FLeetCode-236-Lowest-Common-Ancestor-of-a-Binary-Tree-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88%2F</url>
+    <title><![CDATA[LeetCode-236-Lowest Common Ancestor of a Binary Tree]]></title>
+    <url>%2F2020%2F03%2F09%2FLeetCode-236-Lowest-Common-Ancestor-of-a-Binary-Tree%2F</url>
     <content type="text"><![CDATA[236. Lowest Common Ancestor of a Binary Tree Medium Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree. According to the definition of LCA on Wikipedia: “The lowest common ancestor is defined between two nodes p and q as the lowest node in T that has both p and q as descendants (where we allow a node to be a descendant of itself).” Given the following binary tree: root = [3,5,1,6,2,0,8,null,null,7,4] Example 1: 123Input: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1Output: 3Explanation: The LCA of nodes 5 and 1 is 3. Example 2: 123Input: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4Output: 5Explanation: The LCA of nodes 5 and 4 is 5, since a node can be a descendant of itself according to the LCA definition. Note: All of the nodes’ values will be unique. p and q are different and both values will exist in the binary tree. Solution 1用一个 search 函数从根节点开始递归地查找两个节点 p 和 q ，递归过程中用数组 a 和 b 分别记录下查找路径，两条查找路径公共部分地最后一个节点即为所求。 12345678910111213141516171819202122232425262728293031323334353637383940/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q) &#123; vector&lt;TreeNode*&gt; a; vector&lt;TreeNode*&gt; b; search(root, p, a); search(root, q, b); if (a.size() == 0 || b.size() == 0) return 0; int i = a.size() - 1, j = b.size() - 1; while (i &gt;= 0 &amp;&amp; j &gt;= 0 &amp;&amp; a[i] == b[j]) &#123; i--; j--; &#125; return a[i + 1]; &#125; bool search(TreeNode *root, TreeNode *p, vector&lt;TreeNode *&gt; &amp;a) &#123; if (!root) return false; if (root == p || search(root-&gt;left, p, a) || search(root-&gt;right, p, a)) &#123; a.push_back(root); return true; &#125; else return false; &#125;&#125;; 此方法时间复杂度为 $O(n)$，空间复杂度为 $O(树的深度)$。 Solution 2直接用 lowestCommonAncestor 函数进行递归，既可以用它查找节点 p 和 q ，又可以用它查找最近公共祖先，具体看代码注释。 12345678910111213141516171819202122/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q)&#123; // 递归停止条件，当前节点为空或者找到了p,q之一 if(!root || root == p || root == q) return root; TreeNode *left = lowestCommonAncestor(root-&gt;left, p, q); TreeNode *right = lowestCommonAncestor(root-&gt;right, p, q); if(!left &amp;&amp; !right) return NULL; //p,q不在以当前节点为根的子树中，返回空指针。 if(left &amp;&amp; right) return root; //left和right均不为空，说明p,q必然一个在当前节点的左子树中，一个在右子树中，因为递归只要找到任何一个就停止。这种情况下当前节点即为所求。 if(left &amp;&amp; !right) return left; //left不空而right为空说明p,q都在当前节点的左子树中，并且找到了p,q之一，找到的节点就是最终的结果，通过递归逐层返回。 else return right; //与上一种情形相反。 &#125;&#125;; 此方法的复杂度与方法 1 相同。]]></content>
       <categories>
         <category>LeetCode</category>
@@ -118,8 +132,8 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode-237-Delete Node in a Linked List-删除链表节点]]></title>
-    <url>%2F2020%2F03%2F09%2FLeetCode-237-Delete-Node-in-a-Linked-List-%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E8%8A%82%E7%82%B9%2F</url>
+    <title><![CDATA[LeetCode-237-Delete Node in a Linked List]]></title>
+    <url>%2F2020%2F03%2F09%2FLeetCode-237-Delete-Node-in-a-Linked-List%2F</url>
     <content type="text"><![CDATA[237. Delete Node in a Linked List Easy Write a function to delete a node (except the tail) in a singly linked list, given only access to that node. Given linked list — head = [4,5,1,9], which looks like following: Example 1: 123Input: head = [4,5,1,9], node = 5Output: [4,1,9]Explanation: You are given the second node with value 5, the linked list should become 4 -&gt; 1 -&gt; 9 after calling your function. Example 2: 123Input: head = [4,5,1,9], node = 1Output: [4,5,9]Explanation: You are given the third node with value 1, the linked list should become 4 -&gt; 5 -&gt; 9 after calling your function. Note: The linked list will have at least two elements. All of the nodes’ values will be unique. The given node will not be the tail and it will always be a valid node of the linked list. Do not return anything from your function. Solution由于只给了指向待删除节点的指针，故将下一个节点的值复制给待删除节点，然后删除下一个节点即可。 123456789101112131415/** * Definition for singly-linked list. * struct ListNode &#123; * int val; * ListNode *next; * ListNode(int x) : val(x), next(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: void deleteNode(ListNode* node) &#123; node-&gt;val = node-&gt;next-&gt;val; node-&gt;next = node-&gt;next-&gt;next; &#125;&#125;;]]></content>
       <categories>
         <category>LeetCode</category>
@@ -144,8 +158,8 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode-238-Product of Array Except Self-除自身外的数组乘积]]></title>
-    <url>%2F2020%2F03%2F07%2FLeetCode-238-Product-of-Array-Except-Self-%E9%99%A4%E8%87%AA%E8%BA%AB%E5%A4%96%E7%9A%84%E6%95%B0%E7%BB%84%E4%B9%98%E7%A7%AF%2F</url>
+    <title><![CDATA[LeetCode-238-Product of Array Except Self]]></title>
+    <url>%2F2020%2F03%2F07%2FLeetCode-238-Product-of-Array-Except-Self%2F</url>
     <content type="text"><![CDATA[238. Product of Array Except Self Medium Given an array nums of _n_ integers where _n_ > 1, return an array output such that output[i] is equal to the product of all the elements of nums except nums[i]. Example: 12Input: [1,2,3,4]Output: [24,12,8,6] Constraint: It’s guaranteed that the product of the elements of any prefix or suffix of the array (including the whole array) fits in a 32 bit integer. Note: Please solve it without division and in O(_n_). Follow up:Could you solve it with constant space complexity? (The output array does not count as extra space for the purpose of space complexity analysis.) Solution建立两个数组 left[i] 和 right[i]，left[i]记录数组从 0 到 i 段的乘积，right[i] 记录数组从 i 到 len -1 段的乘积，结果 res[i] = left[i-1] * right[i+1] 1234567891011121314151617181920212223class Solution &#123;public: vector&lt;int&gt; productExceptSelf(vector&lt;int&gt;&amp; nums) &#123; int len = nums.size(); vector&lt;int&gt; left(len); left[0] = nums[0]; vector&lt;int&gt; right(len); right[len-1] = nums[len-1]; for(int i=1;i&lt;len;i++) left[i] = left[i-1]*nums[i]; for(int i=len-2;i&gt;=0;i--) right[i] = right[i+1]*nums[i]; vector&lt;int&gt; res; res.push_back(right[1]); for(int i=1;i&lt;len-1;i++) res.push_back(left[i-1]*right[i+1]); res.push_back(left[len-2]); return res; &#125;&#125;; 并把循环合并一下，用两个整数 left 和 right 代替数组，可得到空间复杂度为 $O(1)$ 的代码： 1234567891011121314151617181920class Solution &#123;public: vector&lt;int&gt; productExceptSelf(vector&lt;int&gt;&amp; nums) &#123; int len = nums.size(); vector&lt;int&gt; res(len,1); int left = nums[0], right = nums[len-1]; for(int i=1;i&lt;len-1;i++)&#123; res[i] *= left; left *= nums[i]; res[len-i-1] *= right; right *= nums[len-i-1]; &#125; res[0] = right; res[len-1] = left; return res; &#125;&#125;;]]></content>
       <categories>
         <category>LeetCode</category>
@@ -156,8 +170,8 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode-239-Sliding Window Maximum-滑动窗口最大值]]></title>
-    <url>%2F2020%2F03%2F07%2FLeetCode-239-Sliding-Window-Maximum-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC%2F</url>
+    <title><![CDATA[LeetCode-239-Sliding Window Maximum]]></title>
+    <url>%2F2020%2F03%2F07%2FLeetCode-239-Sliding-Window-Maximum%2F</url>
     <content type="text"><![CDATA[239. Sliding Window Maximum Hard Given an array _nums_, there is a sliding window of size _k_ which is moving from the very left of the array to the very right. You can only see the _k_ numbers in the window. Each time the sliding window moves right by one position. Return the max sliding window. Example: 123456789101112Input: nums = [1,3,-1,-3,5,3,6,7], and k = 3Output: [3,3,5,5,6,7] Explanation: Window position Max--------------- -----[1 3 -1] -3 5 3 6 7 3 1 [3 -1 -3] 5 3 6 7 3 1 3 [-1 -3 5] 3 6 7 5 1 3 -1 [-3 5 3] 6 7 5 1 3 -1 -3 [5 3 6] 7 6 1 3 -1 -3 5 [3 6 7] 7 Note:You may assume _k_ is always valid, 1 ≤ k ≤ input array’s size for non-empty array. Follow up:Could you solve it in linear time? Solution单调队列的典型题。单调队列是指维护一个具有单调性的队列，只能从队尾入队，但从队头和队尾两端都可以出队，一般用标准库的双端队列实现。 本题求一个范围内的最大值，因此维护一个单调递减队列，队头就是最大元。该队列的维护逻辑如下： 若队列为空，当前元素直接入队； 若队尾元素大于或等于当前元素，当前元素直接入队，这样保持了队列的单调递减特性。从题意上讲，当前元素虽然比队列中的元素都小，但是它出现的晚，随着窗口的滑动队列中比它大的元素可能不在窗口内了，当前元素有成为某个滑动窗口最大值的潜力； 若队尾元素小于当前元素，则弹出队尾元素，重复此过程直到遇到比当前元素大的或者队列变空为止，然后当前元素入队。从题意上讲，当前元素不仅比队列中的某些元素大，还出现的更晚，因此队列中那些比它小的元素没有成为某个滑动窗口最大值的的可能了，因此丢掉； 每滑动一步，检查队头元素是否还在窗口内，如果不在了就弹出队头元素。 由于要检查队头元素是否在窗口内，因此本题的单调队列保存值的索引而不是值本身，这样更方便操作。 1234567891011121314class Solution &#123;public: vector&lt;int&gt; maxSlidingWindow(vector&lt;int&gt;&amp; nums, int k) &#123; deque&lt;int&gt; dq; vector&lt;int&gt; res; for(int i=0;i&lt;nums.size();i++)&#123; while(dq.size() != 0 &amp;&amp; nums[dq.back()] &lt; nums[i]) dq.pop_back(); dq.push_back(i); if(dq.front() &lt; i-k+1) dq.pop_front(); if(i &gt;= k-1) res.push_back(nums[dq.front()]); &#125; return res; &#125;&#125;; 时间复杂度为 $O(n)$。]]></content>
       <categories>
         <category>LeetCode</category>
@@ -169,8 +183,8 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeeoCode-240-Search a 2D Matrix II-搜索二维矩阵2]]></title>
-    <url>%2F2020%2F03%2F07%2FLeetCode-240-Search-a-2D-Matrix-II-%E6%90%9C%E7%B4%A2%E4%BA%8C%E7%BB%B4%E7%9F%A9%E9%98%B52%2F</url>
+    <title><![CDATA[LeeoCode-240-Search a 2D Matrix II]]></title>
+    <url>%2F2020%2F03%2F07%2FLeetCode-240-Search-a-2D-Matrix-II%2F</url>
     <content type="text"><![CDATA[240. Search a 2D Matrix II Medium Write an efficient algorithm that searches for a value in an _m_ x _n_ matrix. This matrix has the following properties: Integers in each row are sorted in ascending from left to right. Integers in each column are sorted in ascending from top to bottom. Example: Consider the following matrix: 1234567[ [1, 4, 7, 11, 15], [2, 5, 8, 12, 19], [3, 6, 9, 16, 22], [10, 13, 14, 17, 24], [18, 21, 23, 26, 30]] Given target = 5, return true. Given target = 20, return false. Solution注意到任何一个元素左上方的元素都比它小，右下方的元素都比它大，因此可以从最右上的元素开始搜索，遇到比待查找元素小的就向下搜索，遇到比待查找元素大的就向左搜索，直到找到该元素或者碰到边界为止。当然，从最左下的元素开始搜索也一样。 12345678910111213141516class Solution &#123;public: bool searchMatrix(vector&lt;vector&lt;int&gt;&gt;&amp; matrix, int target) &#123; if(matrix.size() == 0) return false; int m = matrix.size(); int n = matrix[0].size(); int i = 0, j = n-1; while(i&lt;m &amp;&amp; j&gt;=0)&#123; if(matrix[i][j] == target) return true; else if(matrix[i][j] &gt; target) j--; else i++; &#125; return false; &#125;&#125;;]]></content>
       <categories>
         <category>LeetCode</category>
@@ -183,8 +197,8 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode-241-Different Ways to Add Parentheses-不同方式加括号]]></title>
-    <url>%2F2020%2F03%2F06%2FLeetCode-241-Different-Ways-to-Add-Parentheses-%E4%B8%8D%E5%90%8C%E6%96%B9%E5%BC%8F%E5%8A%A0%E6%8B%AC%E5%8F%B7%2F</url>
+    <title><![CDATA[LeetCode-241-Different Ways to Add Parentheses]]></title>
+    <url>%2F2020%2F03%2F06%2FLeetCode-241-Different-Ways-to-Add-Parentheses%2F</url>
     <content type="text"><![CDATA[241. Different Ways to Add Parentheses Medium Given a string of numbers and operators, return all possible results from computing all the different possible ways to group numbers and operators. The valid operators are +, - and *. Example 1: 12345Input: &quot;2-1-1&quot;Output: [0, 2]Explanation: ((2-1)-1) = 0 (2-(1-1)) = 2 Example 2: 12345678Input: &quot;2*3-4*5&quot;Output: [-34, -14, -10, -10, 10]Explanation: (2*(3-(4*5))) = -34 ((2*3)-(4*5)) = -14 ((2*(3-4))*5) = -10 (2*((3-4)*5)) = -10 (((2*3)-4)*5) = 10 Solution 1分治法。对于每个运算符分成左右两段，递归计算做左边的所有可能取值和右边的所有可能取值，再把左右两边通过当前运算符计算的所有值存到结果集中。 123456789101112131415161718192021222324252627vector&lt;int&gt; diffWaysToCompute(string input)&#123; vector&lt;int&gt; res; for (int i = 0; i &lt; input.length(); i++) &#123; if (input[i] == '+' || input[i] == '-' || input[i] == '*') &#123; vector&lt;int&gt; res_left = diffWaysToCompute(input.substr(0, i)); vector&lt;int&gt; res_right = diffWaysToCompute(input.substr(i + 1)); for (int a : res_left) &#123; for (int b : res_right) &#123; if (input[i] == '+') res.push_back(a + b); else if (input[i] == '-') res.push_back(a - b); else res.push_back(a * b); &#125; &#125; &#125; &#125; if (res.empty()) //当前串只含数字 res.push_back(atoi(input.c_str())); return res;&#125; Solution 2DP。注意到在上面的递归中有很多重复计算，所以可以建立一个备忘录，用查表的方式避免重复计算。自顶向下递归式DP的代码如下： 1234567891011121314151617181920212223242526272829303132333435363738vector&lt;int&gt; diffWaysToCompute(string input)&#123; unordered_map&lt;string, vector&lt;int&gt;&gt; dp; return cal(input, dp);&#125;vector&lt;int&gt; cal(string input, unordered_map&lt;string, vector&lt;int&gt;&gt; &amp;dp)&#123; if (dp.find(input) != dp.end()) return dp[input]; vector&lt;int&gt; res; for (int i = 0; i &lt; input.length(); i++) &#123; if (input[i] == '+' || input[i] == '-' || input[i] == '*') &#123; string s_left = input.substr(0, i); string s_right = input.substr(i + 1); vector&lt;int&gt; res_left = cal(s_left, dp); vector&lt;int&gt; res_right = cal(s_right, dp); for (int a : res_left) &#123; for (int b : res_right) &#123; if (input[i] == '+') res.push_back(a + b); else if (input[i] == '-') res.push_back(a - b); else res.push_back(a * b); &#125; &#125; &#125; &#125; if (res.empty()) res.push_back(atoi(input.c_str())); dp[input] = res; return res;&#125; Follow up 不用递归，自底向上的迭代式 DP 如何写？ 本题的复杂度如何分析？]]></content>
       <categories>
         <category>LeetCode</category>
@@ -195,8 +209,8 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode-242-Valid Anagram-有效易位串]]></title>
-    <url>%2F2020%2F03%2F05%2FLeetCode-242-Valid-Anagram-%E6%9C%89%E6%95%88%E6%98%93%E4%BD%8D%E4%B8%B2%2F</url>
+    <title><![CDATA[LeetCode-242-Valid Anagram]]></title>
+    <url>%2F2020%2F03%2F05%2FLeetCode-242-Valid-Anagram%2F</url>
     <content type="text"><![CDATA[242. Valid Anagram Easy Given two strings _s_ and _t_, write a function to determine if _t_ is an anagram of _s_. Example 1: 12Input: s = &quot;anagram&quot;, t = &quot;nagaram&quot;Output: true Example 2: 12Input: s = &quot;rat&quot;, t = &quot;car&quot;Output: false Note:You may assume the string contains only lowercase alphabets. Follow up:What if the inputs contain unicode characters? How would you adapt your solution to such case? Solution建立一个 Hash 表来计数，如果字符串中只包含小写字母，可以直接用数组来计数。 1234567891011121314class Solution &#123;public: bool isAnagram(string s, string t) &#123; if(s.length() != t.length()) return false; unordered_map&lt;char,int&gt; count; for(int i=0;i&lt;s.length();i++)&#123; count[s[i]]++; count[t[i]]--; &#125; for(auto x:count) if(x.second) return false; return true; &#125;&#125;; 注意这里利用了 map 的初始化特性，对于语句 count[s[i]];, 如果 count 中没有键 s[i]，将自动插入改该键并将相应的值初始化为 0。因此 count[s[i]]++; 无需检测 s[i] 的存在性。]]></content>
       <categories>
         <category>LeetCode</category>
@@ -209,8 +223,8 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode-257-Binary Tree Paths-二叉树路径]]></title>
-    <url>%2F2020%2F03%2F05%2FLeetCode-257-Binary-Tree-Paths-%E4%BA%8C%E5%8F%89%E6%A0%91%E8%B7%AF%E5%BE%84%2F</url>
+    <title><![CDATA[LeetCode-257-Binary Tree Paths]]></title>
+    <url>%2F2020%2F03%2F05%2FLeetCode-257-Binary-Tree-Paths%2F</url>
     <content type="text"><![CDATA[257. Binary Tree PathsEasy Given a binary tree, return all root-to-leaf paths. Note: A leaf is a node with no children. Example: 1234567891011Input: 1 / \2 3 \ 5Output: [&quot;1-&gt;2-&gt;5&quot;, &quot;1-&gt;3&quot;]Explanation: All root-to-leaf paths are: 1-&gt;2-&gt;5, 1-&gt;3 Solution递归。需要3个参数：当前节点，当前节点的祖先节点组成的路径（用字符串保存），当前结果集（字符串数组）。 1234567891011121314151617181920212223242526272829/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: vector&lt;string&gt; binaryTreePaths(TreeNode* root) &#123; vector&lt;string&gt; res; string ans = ""; visit(root, ans, res); return res; &#125; void visit(TreeNode* p, string ans, vector&lt;string&gt; &amp;res)&#123; if(!p) return; if(!p-&gt;left &amp;&amp; !p-&gt;right)&#123; ans += to_string(p-&gt;val); res.push_back(ans); return; &#125; ans += to_string(p-&gt;val) + "-&gt;"; if(p-&gt;left) visit(p-&gt;left, ans, res); if(p-&gt;right) visit(p-&gt;right, ans, res); &#125;&#125;;]]></content>
       <categories>
         <category>LeetCode</category>
