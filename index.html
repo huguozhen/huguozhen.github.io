@@ -281,6 +281,321 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/16/LeetCode-225-Implement-Stack-using-Queues-用队列实现栈/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Claps">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mind Palace of Claps">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/16/LeetCode-225-Implement-Stack-using-Queues-用队列实现栈/" itemprop="url">LeetCode-225-Implement Stack using Queues-用队列实现栈</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-16T09:21:27+08:00">
+                2020-03-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
+                    <span itemprop="name">LeetCode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="225-Implement-Stack-using-Queues"><a href="#225-Implement-Stack-using-Queues" class="headerlink" title="225. Implement Stack using Queues"></a>225. Implement Stack using Queues</h2><font color="green">
+<b>
+Easy
+</b>
+</font>
+
+<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p><a href="https://leetcode.com/problems/implement-stack-using-queues/" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/-Go%20to%20LeetCode-blue" alt></a></p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>用一个队列的队头表示栈顶，队尾表示栈底。第 <code>k</code> 个元素入栈的时候先将其从队尾入队，然后将前面的 <code>k-1</code> 个元素依次从队头出队并从队尾入队。由于队列是 FIFO 的数据结构，这样能够保持先入栈的元素始终更靠近队头，也即更靠近栈顶，恰好符合栈的定义。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyStack</span> &#123;</span></span><br><span class="line">    <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">/** Initialize your data structure here. */</span></span><br><span class="line">    MyStack() &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Push element x onto stack. */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        q.push(x);</span><br><span class="line">        <span class="keyword">int</span> k = q.size() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(k--)&#123;</span><br><span class="line">            q.push(q.front());</span><br><span class="line">            q.pop();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Removes the element on top of the stack and returns that element. */</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = top();</span><br><span class="line">        q.pop();</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Get the top element. */</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> q.front();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Returns whether the stack is empty. */</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">empty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> q.empty();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your MyStack object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * MyStack* obj = new MyStack();</span></span><br><span class="line"><span class="comment"> * obj-&gt;push(x);</span></span><br><span class="line"><span class="comment"> * int param_2 = obj-&gt;pop();</span></span><br><span class="line"><span class="comment"> * int param_3 = obj-&gt;top();</span></span><br><span class="line"><span class="comment"> * bool param_4 = obj-&gt;empty();</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<p>此方法时间复杂度为 <code>push</code> $O(n)$ ，<code>pop/top/empty</code> $O(1)$ 。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/15/LeetCode-224-Basic-Calculator-基本计算器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Claps">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mind Palace of Claps">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/15/LeetCode-224-Basic-Calculator-基本计算器/" itemprop="url">LeetCode-224-Basic Calculator-基本计算器</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-15T15:47:27+08:00">
+                2020-03-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
+                    <span itemprop="name">LeetCode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="224-Basic-Calculator"><a href="#224-Basic-Calculator" class="headerlink" title="224. Basic Calculator"></a>224. Basic Calculator</h2><font color="red">
+<b>
+Hard
+</b>
+</font>
+
+
+<p>Implement a basic calculator to evaluate a simple expression string.</p>
+<p>The expression string may contain open <code>(</code> and closing parentheses <code>)</code>, the plus <code>+</code> or minus sign <code>-</code>, <strong>non-negative</strong> integers and empty spaces .</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;1 + 1&quot;</span><br><span class="line">Output: 2</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot; 2-1 + 2 &quot;</span><br><span class="line">Output: 3</span><br></pre></td></tr></table></figure>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;(1+(4+5+2)-3)+(6+8)&quot;</span><br><span class="line">Output: 23</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
+<ul>
+<li>You may assume that the given expression is always valid.</li>
+<li><strong>Do not</strong> use the <code>eval</code> built-in library function.</li>
+</ul>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>由于表达式只含加减法，故只需要确定每个数在最终结果中的符号，最后相加即可。对于括号外的数，其最终符号就是数字前面的符号；对于括号里面的数，其最终的符号与数字前面的符号以及所有包含它的括号的符号均相关。</p>
+<p>用 1 和  -1 分别表示正负号，考虑最外层括号，设 <code>s</code> 为最外层括号的符号，那么对于这层括号里面的任何一项（包含数字或者括号），设其本来的符号为 <code>t</code> ，则这一项在这层括号去掉后的符号为 <code>s*t</code>  。根据这一规律，便可以逐层求得括号里面的数的最终符号，相当于逐层去括号。</p>
+<p>编程实现的核心要点是用一个栈 <code>stk</code> 保存<strong>每一层括号成为最外层括号时的符号</strong> 。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">calculate</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>, num = <span class="number">0</span>, sign = <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; stk;</span><br><span class="line">        stk.push(sign);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> x:s)&#123;</span><br><span class="line">            <span class="keyword">if</span>(x &gt;= <span class="string">'0'</span> &amp;&amp; x &lt;= <span class="string">'9'</span>)</span><br><span class="line">                num = num*<span class="number">10</span> + (x-<span class="string">'0'</span>); <span class="comment">//这个括号必须加，不然先计算前面的加法可能溢出</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(x == <span class="string">'+'</span> || x == <span class="string">'-'</span>)&#123;</span><br><span class="line">                res += sign*num;</span><br><span class="line">                sign = stk.top()*(x==<span class="string">'+'</span> ? <span class="number">1</span> : <span class="number">-1</span>);</span><br><span class="line">                num = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(x == <span class="string">'('</span>)</span><br><span class="line">                stk.push(sign);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(x == <span class="string">')'</span>)</span><br><span class="line">                stk.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        res += sign*num;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/11/LeetCode-230-Kth-Smallest-Element-in-a-BST-二叉排序树中第k小的元素/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1565,429 +1880,11 @@ Easy
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/08/LeetCode-Weekly-Contest-179/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Claps">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mind Palace of Claps">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/08/LeetCode-Weekly-Contest-179/" itemprop="url">LeetCode Weekly Contest 179</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-08T15:51:24+08:00">
-                2020-03-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="LeetCode-Weekly-Contest-179"><a href="#LeetCode-Weekly-Contest-179" class="headerlink" title="LeetCode Weekly Contest 179"></a>LeetCode Weekly Contest 179</h2><h3 id="1374-Generate-a-String-With-Characters-That-Have-Odd-Counts"><a href="#1374-Generate-a-String-With-Characters-That-Have-Odd-Counts" class="headerlink" title="1374. Generate a String With Characters That Have Odd Counts"></a>1374. Generate a String With Characters That Have Odd Counts</h3><font color="green">
-<b>
-Easy
-</b>
-</font>
-
-<p>Given an integer <code>n</code>, _return a string with <code>n</code> characters such that each character in such string occurs <strong>an odd number of times</strong>_.</p>
-<p>The returned string must contain only lowercase English letters. If there are multiples valid strings, return <strong>any</strong> of them.  </p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: n = 4</span><br><span class="line">Output: &quot;pppz&quot;</span><br><span class="line">Explanation: &quot;pppz&quot; is a valid string since the character &apos;p&apos; occurs three times and the character &apos;z&apos; occurs once. Note that there are many other valid strings such as &quot;ohhh&quot; and &quot;love&quot;.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: n = 2</span><br><span class="line">Output: &quot;xy&quot;</span><br><span class="line">Explanation: &quot;xy&quot; is a valid string since the characters &apos;x&apos; and &apos;y&apos; occur once. Note that there are many other valid strings such as &quot;ag&quot; and &quot;ur&quot;.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 3:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: n = 7</span><br><span class="line">Output: &quot;holasss&quot;</span><br></pre></td></tr></table></figure>
-<p><strong>Constraints:</strong></p>
-<ul>
-<li><code>1 &lt;= n &lt;= 500</code></li>
-</ul>
-<h4 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h4><p>若 n 是奇数，返回 n 个 a 组成的串，若 n 是偶数，返回 n-1 个 a 再加一个 b 组成的串</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">generateTheString</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n&amp;<span class="number">1</span>) <span class="keyword">return</span> <span class="built_in">string</span>(n, <span class="string">'a'</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> <span class="built_in">string</span>(n<span class="number">-1</span>, <span class="string">'a'</span>) + <span class="string">'b'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="1375-Bulb-Switcher-III"><a href="#1375-Bulb-Switcher-III" class="headerlink" title="1375. Bulb Switcher III"></a>1375. Bulb Switcher III</h3><font color="orange">
-<b>
-Medium
-</b>
-</font>
-
-<p>There is a room with <code>n</code> bulbs, numbered from <code>1</code> to <code>n</code>, arranged in a row from left to right. Initially, all the bulbs are turned off.</p>
-<p>At moment _k_ (for _k_ from <code>0</code> to <code>n - 1</code>), we turn on the <code>light[k]</code> bulb. A bulb <strong>change color to blue</strong> only if it is on and all the previous bulbs (to the left) are turned on too.</p>
-<p>Return the number of moments in which <strong>all turned on</strong> bulbs <strong>are blue.</strong></p>
-<p><strong>Example 1:</strong></p>
-<p><img width="575" height="300" src="https://assets.leetcode.com/uploads/2020/02/29/sample_2_1725.png"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: light = [2,1,3,5,4]</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: All bulbs turned on, are blue at the moment 1, 2 and 4.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: light = [3,2,4,1,5]</span><br><span class="line">Output: 2</span><br><span class="line">Explanation: All bulbs turned on, are blue at the moment 3, and 4 (index-0).</span><br></pre></td></tr></table></figure>
-<p><strong>Example 3:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: light = [4,1,2,3]</span><br><span class="line">Output: 1</span><br><span class="line">Explanation: All bulbs turned on, are blue at the moment 3 (index-0).</span><br><span class="line">Bulb 4th changes to blue at the moment 3.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 4:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: light = [2,1,4,3,6,5]</span><br><span class="line">Output: 3</span><br></pre></td></tr></table></figure>
-<p><strong>Example 5:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: light = [1,2,3,4,5,6]</span><br><span class="line">Output: 6</span><br></pre></td></tr></table></figure>
-<p><strong>Constraints:</strong></p>
-<ul>
-<li><code>n == light.length</code></li>
-<li><code>1 &lt;= n &lt;= 5 * 10^4</code></li>
-<li><code>light</code> is a permutation of  <code>[1, 2, ..., n]</code></li>
-</ul>
-<h4 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution"></a>Solution</h4><p>用 <code>mx</code> 表示当前时刻点燃的灯的最大编号，由于灯的编号为<code>1...n</code> ，如果 <code>mx</code> 恰好等于点燃的灯的数目，则灯 <code>mx</code> 及其之前的灯一定全部点亮了，并且 <code>mx</code> 之后的所有灯一定都未点亮，此时就是一个符合题意的解，计数 <code>res</code> 加一。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numTimesAllBlue</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; light)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> mx = <span class="number">0</span>, res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;light.size();i++)&#123;</span><br><span class="line">            mx = max(mx, light[i]);</span><br><span class="line">            <span class="keyword">if</span>(mx == i+<span class="number">1</span>) res++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="1376-Time-Needed-to-Inform-All-Employees"><a href="#1376-Time-Needed-to-Inform-All-Employees" class="headerlink" title="1376. Time Needed to Inform All Employees"></a>1376. Time Needed to Inform All Employees</h3><font color="orange">
-<b>
-Medium
-</b>
-</font>
-
-<p>A company has <code>n</code> employees with a unique ID for each employee from <code>0</code> to <code>n - 1</code>. The head of the company has is the one with <code>headID</code>.</p>
-<p>Each employee has one direct manager given in the <code>manager</code> array where <code>manager[i]</code> is the direct manager of the <code>i-th</code> employee, <code>manager[headID] = -1</code>. Also it’s guaranteed that the subordination relationships have a tree structure.</p>
-<p>The head of the company wants to inform all the employees of the company of an urgent piece of news. He will inform his direct subordinates and they will inform their subordinates and so on until all employees know about the urgent news.</p>
-<p>The <code>i-th</code> employee needs <code>informTime[i]</code> minutes to inform all of his direct subordinates (i.e After informTime[i] minutes, all his direct subordinates can start spreading the news).</p>
-<p>Return _the number of minutes_ needed to inform all the employees about the urgent news.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: n = 1, headID = 0, manager = [-1], informTime = [0]</span><br><span class="line">Output: 0</span><br><span class="line">Explanation: The head of the company is the only employee in the company.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2020/02/27/graph.png" alt></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input: n = 6, headID = 2, manager = [2,2,-1,2,2,2], informTime = [0,0,1,0,0,0]</span><br><span class="line">Output: 1</span><br><span class="line">Explanation: The head of the company with id = 2 is the direct manager of all the employees in the company and needs 1 minute to inform them all.</span><br><span class="line">The tree structure of the employees in the company is shown.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 3:</strong></p>
-<p><img src="https://assets.leetcode.com/uploads/2020/02/28/1730_example_3_5.PNG" alt></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Input: n = 7, headID = 6, manager = [1,2,3,4,5,6,-1], informTime = [0,6,5,4,3,2,1]</span><br><span class="line">Output: 21</span><br><span class="line">Explanation: The head has id = 6. He will inform employee with id = 5 in 1 minute.</span><br><span class="line">The employee with id = 5 will inform the employee with id = 4 in 2 minutes.</span><br><span class="line">The employee with id = 4 will inform the employee with id = 3 in 3 minutes.</span><br><span class="line">The employee with id = 3 will inform the employee with id = 2 in 4 minutes.</span><br><span class="line">The employee with id = 2 will inform the employee with id = 1 in 5 minutes.</span><br><span class="line">The employee with id = 1 will inform the employee with id = 0 in 6 minutes.</span><br><span class="line">Needed time = 1 + 2 + 3 + 4 + 5 + 6 = 21.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 4:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: n = 15, headID = 0, manager = [-1,0,0,1,1,2,2,3,3,4,4,5,5,6,6], informTime = [1,1,1,1,1,1,1,0,0,0,0,0,0,0,0]</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: The first minute the head will inform employees 1 and 2.</span><br><span class="line">The second minute they will inform employees 3, 4, 5 and 6.</span><br><span class="line">The third minute they will inform the rest of employees.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 5:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: n = 4, headID = 2, manager = [3,3,-1,2], informTime = [0,0,162,914]</span><br><span class="line">Output: 1076</span><br></pre></td></tr></table></figure>
-<p><strong>Constraints:</strong></p>
-<ul>
-<li><code>1 &lt;= n &lt;= 10^5</code></li>
-<li><code>0 &lt;= headID &lt; n</code></li>
-<li><code>manager.length == n</code></li>
-<li><code>0 &lt;= manager[i] &lt; n</code></li>
-<li><code>manager[headID] == -1</code></li>
-<li><code>informTime.length == n</code></li>
-<li><code>0 &lt;= informTime[i] &lt;= 1000</code></li>
-<li><code>informTime[i] == 0</code> if employee <code>i</code> has no subordinates.</li>
-<li>It is <strong>guaranteed</strong> that all the employees can be informed.</li>
-</ul>
-<h4 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution 1"></a>Solution 1</h4><p>注意到 <code>manager</code> 数组实际上给出了 <code>children -&gt; parent</code>的逆向关系，所以充分利用这一结构，从叶节点开始向祖先方向逆推到根节点，计算消息从根节点传递到每个叶节点的时间，最终结果就是遍历每个叶节点得到的传递时间的最大值。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numOfMinutes</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> headID, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; manager, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; informTime)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(informTime[i] == <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">int</span> temp_sum = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">int</span> t = manager[i];</span><br><span class="line">                <span class="keyword">while</span>(t != <span class="number">-1</span>)&#123;</span><br><span class="line">                    temp_sum += informTime[t];</span><br><span class="line">                    t = manager[t];</span><br><span class="line">                &#125;</span><br><span class="line">                res = max(res, temp_sum);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>可以看出此方法的时间复杂度为 $O(n\cdot 树的深度)$ ，空间复杂度为 $O(1)$ 。</p>
-<h4 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution 2"></a>Solution 2</h4><p>方法 1 中包含一些重复的计算，因为不同叶节点有公共的祖先，而上面的代码对于每一条从根节点到叶节点的路径都完整计算了传递时间，这样对于公共路径部分的计算就重复了。可以用 DP 的方法来消除重复计算，建立一个备忘录数组 <code>dp</code> 来存储已知结果，<code>dp[k]</code> 表示节点 <code>k</code> 收到来自根节点的消息所需要的时间。状态转移方程为 <code>dp[k] = dp[manager[k]] + informTime[manager[k]]</code>.</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numOfMinutes</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> headID, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; manager, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; informTime)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp(n,<span class="number">-1</span>);</span><br><span class="line">        dp[headID] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">            <span class="keyword">if</span>(!informTime[i])</span><br><span class="line">                res = max(res, rec(dp, i, manager, informTime));</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">rec</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;dp, <span class="keyword">int</span> k, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; manager, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; informTime)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(dp[k] != <span class="number">-1</span>) <span class="keyword">return</span> dp[k];</span><br><span class="line">        dp[k] = rec(dp, manager[k], manager, informTime) + informTime[manager[k]];</span><br><span class="line">        <span class="keyword">return</span> dp[k];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>此为最优解法，时间复杂度 $O(n)$ ，空间复杂度 $O(n)$ 。</p>
-<h4 id="Solution-3"><a href="#Solution-3" class="headerlink" title="Solution 3"></a>Solution 3</h4><p>DFS 即可，注意要先建立邻接表来存储树。消息从节点 <code>k</code> 传递到 <code>k</code> 的所有子孙节点所用的时间 = <code>informTime[k]</code> + 消息从 <code>k</code> 的所有孩子的传递传递到它的所有子孙节点所用时间的最大值。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numOfMinutes</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> headID, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; manager, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; informTime)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; children(n);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;manager.size();i++)</span><br><span class="line">            <span class="keyword">if</span>(manager[i] != <span class="number">-1</span>) children[manager[i]].push_back(i);</span><br><span class="line">        <span class="keyword">return</span> dfs(children, headID, informTime);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; children, <span class="keyword">int</span> k, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; informTime)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> time = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> ch:children[k])</span><br><span class="line">            time = max(time, dfs(children, ch, informTime));</span><br><span class="line">        <span class="keyword">return</span> informTime[k] + time;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>此方法时间复杂度 $O(n)$ ，但是由于要先建立邻接表，常数因子比方法 2 大；空间复杂度 $O(n)$ 。</p>
-<h3 id="1377-Frog-Position-After-T-Seconds"><a href="#1377-Frog-Position-After-T-Seconds" class="headerlink" title="1377. Frog Position After T Seconds"></a>1377. Frog Position After T Seconds</h3><font color="red">
-<b>
-Hard
-</b>
-</font>
-
-<p>Given an undirected tree consisting of <code>n</code> vertices numbered from 1 to <code>n</code>. A frog starts jumping from the <strong>vertex 1</strong>. In one second, the frog jumps from its current vertex to another <strong>unvisited</strong> vertex if they are directly connected. The frog can not jump back to a visited vertex. In case the frog can jump to several vertices it jumps randomly to one of them with the same probability, otherwise, when the frog can not jump to any unvisited vertex it jumps forever on the same vertex. </p>
-<p>The edges of the undirected tree are given in the array <code>edges</code>, where <code>edges[i] = [fromi, toi]</code> means that exists an edge connecting directly the vertices <code>fromi</code> and <code>toi</code>.</p>
-<p>_Return the probability that after <code>t</code> seconds the frog is on the vertex <code>target</code>._</p>
-<p><strong>Example 1:</strong></p>
-<p><img width="350" height="236" src="https://assets.leetcode.com/uploads/2020/02/20/frog_2.png"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: n = 7, edges = [[1,2],[1,3],[1,7],[2,4],[2,6],[3,5]], t = 2, target = 4</span><br><span class="line">Output: 0.16666666666666666 </span><br><span class="line">Explanation: The figure above shows the given graph. The frog starts at vertex 1, jumping with 1/3 probability to the vertex 2 after second 1 and then jumping with 1/2 probability to vertex 4 after second 2. Thus the probability for the frog is on the vertex 4 after 2 seconds is 1/3 * 1/2 = 1/6 = 0.16666666666666666.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<p><img width="350" height="236" src="https://assets.leetcode.com/uploads/2020/02/20/frog_3.png"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: n = 7, edges = [[1,2],[1,3],[1,7],[2,4],[2,6],[3,5]], t = 1, target = 7</span><br><span class="line">Output: 0.3333333333333333</span><br><span class="line">Explanation: The figure above shows the given graph. The frog starts at vertex 1, jumping with 1/3 = 0.3333333333333333 probability to the vertex 7 after second 1.</span><br></pre></td></tr></table></figure>
-<p><strong>Example 3:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: n = 7, edges = [[1,2],[1,3],[1,7],[2,4],[2,6],[3,5]], t = 20, target = 6</span><br><span class="line">Output: 0.16666666666666666</span><br></pre></td></tr></table></figure>
-<p><strong>Constraints:</strong></p>
-<ul>
-<li><code>1 &lt;= n &lt;= 100</code></li>
-<li><code>edges.length == n-1</code></li>
-<li><code>edges[i].length == 2</code></li>
-<li><code>1 &lt;= edges[i][0], edges[i][1] &lt;= n</code></li>
-<li><code>1 &lt;= t &lt;= 50</code></li>
-<li><code>1 &lt;= target &lt;= n</code></li>
-<li>Answers within <code>10^-5</code> of the actual value will be accepted as correct.</li>
-</ul>
-<h4 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution"></a>Solution</h4><p>（待补充…）</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/07/LeetCode-238-Product-of-Array-Except-Self-除自身外的数组乘积/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Claps">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mind Palace of Claps">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/07/LeetCode-238-Product-of-Array-Except-Self-除自身外的数组乘积/" itemprop="url">LeetCode-238-Product of Array Except Self-除自身外的数组乘积</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-07T15:39:04+08:00">
-                2020-03-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="238-Product-of-Array-Except-Self"><a href="#238-Product-of-Array-Except-Self" class="headerlink" title="238. Product of Array Except Self"></a>238. Product of Array Except Self</h2><font color="orange">
-<b>
-Medium
-</b>
-</font>
-
-<p>Given an array <code>nums</code> of _n_ integers where _n_ > 1,  return an array <code>output</code> such that <code>output[i]</code> is equal to the product of all the elements of <code>nums</code> except <code>nums[i]</code>.</p>
-<p><strong>Example:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input:  [1,2,3,4]</span><br><span class="line">Output: [24,12,8,6]</span><br></pre></td></tr></table></figure>
-<p><strong>Constraint:</strong> It’s guaranteed that the product of the elements of any prefix or suffix of the array (including the whole array) fits in a 32 bit integer.</p>
-<p><strong>Note:</strong> Please solve it <strong>without division</strong> and in O(_n_).</p>
-<p><strong>Follow up:</strong><br>Could you solve it with constant space complexity? (The output array <strong>does not</strong> count as extra space for the purpose of space complexity analysis.)</p>
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>建立两个数组 <code>left[i]</code> 和 <code>right[i]</code>，<code>left[i]</code>记录数组从 <code>0</code> 到 <code>i</code> 段的乘积，<code>right[i]</code> 记录数组从 <code>i</code> 到 <code>len -1</code> 段的乘积，结果 <code>res[i] = left[i-1] * right[i+1]</code></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; productExceptSelf(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">        <span class="keyword">int</span> len = nums.size();</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; left(len);</span><br><span class="line">        left[<span class="number">0</span>] = nums[<span class="number">0</span>];</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; right(len);</span><br><span class="line">        right[len<span class="number">-1</span>] = nums[len<span class="number">-1</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;len;i++)</span><br><span class="line">            left[i] = left[i<span class="number">-1</span>]*nums[i];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=len<span class="number">-2</span>;i&gt;=<span class="number">0</span>;i--)</span><br><span class="line">            right[i] = right[i+<span class="number">1</span>]*nums[i];</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">        res.push_back(right[<span class="number">1</span>]);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;len<span class="number">-1</span>;i++)</span><br><span class="line">            res.push_back(left[i<span class="number">-1</span>]*right[i+<span class="number">1</span>]);</span><br><span class="line">        res.push_back(left[len<span class="number">-2</span>]);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>并把循环合并一下，用两个整数 <code>left</code> 和 <code>right</code> 代替数组，可得到空间复杂度为 $O(1)$ 的代码：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; productExceptSelf(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">        <span class="keyword">int</span> len = nums.size();</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res(len,<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> left = nums[<span class="number">0</span>], right = nums[len<span class="number">-1</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;len<span class="number">-1</span>;i++)&#123;</span><br><span class="line">            res[i] *= left;</span><br><span class="line">            left *= nums[i];</span><br><span class="line">            res[len-i<span class="number">-1</span>] *= right;</span><br><span class="line">            right *= nums[len-i<span class="number">-1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        res[<span class="number">0</span>] = right;</span><br><span class="line">        res[len<span class="number">-1</span>] = left;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2033,7 +1930,7 @@ Medium
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
