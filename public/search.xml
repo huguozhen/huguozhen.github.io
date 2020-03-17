@@ -1,6 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode-229-Majority Element II]]></title>
+    <url>%2F2020%2F03%2F17%2FLeetCode-229-Majority-Element-II%2F</url>
+    <content type="text"><![CDATA[229. Majority Element II Medium DescriptionGo to LeetCode SolutionBoyer-Moore 多数投票算法的扩展。 Boyer-Moore Majority Vote algorithm 是一个利用 $O(n)$ 时间和 $O(1)$ 空间寻找长度为 $n$ 的数组中出现次数超过 $\lfloor n/2 \rfloor$ 的元素的算法，其流程如下： 变量 candidate 表示当前候选元素，初始化为任意值，变量 count 表示当前计数，初始化为0，从第一个元素开始扫描数组： 若当前元素与 candidate 相同，count 加1； 若当前元素与 candidate 不同且 count &gt; 0 ，count 减1； 若当前元素与 candidate 不同且 count = 0 ，当前元素成为新的 candidate ，count 重置为1； 最终 candidate 的值即为所求。 该算法的原理在于，对于任意的 candidate ，如果扫描到的元素和 candidate 不相等，就在数组中同时划去一个 candidate 和当前元素。count = 0 表示当前的 candidate 都被划去了，因此指定新的 candidate 。由于目标元素 $x$ 在数组中出现的次数超过了一半，那么其它元素出现的次数必定小于一半。这样不断划去成对的不相同的元素之后，最终剩下的一定是 $x$ 。 注意上述算法需要保证给定的数组中一定存在目标元素，如果没有这一保证，只需要在求出最后的 candidate 后再检查一遍它出现的额次数即可，这一操作不增加复杂度。 本题将 $\lfloor n/2 \rfloor$ 改成了 $\lfloor n/3 \rfloor$ ，解法是一样的。只需要维护两个候选元素 cdt1 ，cdt2 和它们各自的计数 cnt1 ，cnt2 ，若当前扫描的元素和其中任一个相同，对应的计数加1；若都不同则将当前元素和任一个候选元素同时划去（对应计数减一）；若某个候选元素被全部划去（计数为0）则将当前元素置为新的候选元素。最终剩下的两个候选元素就是可能的目标，若题目并未保证存在目标元素则再检验一下两个元素出现的次数。 1234567891011121314151617181920212223242526272829303132class Solution &#123;public: vector&lt;int&gt; majorityElement(vector&lt;int&gt;&amp; nums) &#123; int cdt1 = 0, cdt2 = 0, cnt1 = 0, cnt2 = 0; for(auto x:nums)&#123; if(x == cdt1) cnt1++; else if(x == cdt2) cnt2++; else if(!cnt1)&#123; cdt1 = x; cnt1 = 1; &#125; else if(!cnt2)&#123; cdt2 = x; cnt2 = 1; &#125; else&#123; cnt1--; cnt2--; &#125; &#125; cnt1 = 0; cnt2 = 0; for(auto x:nums)&#123; if(x == cdt1) cnt1++; else if(x == cdt2) cnt2++; &#125; vector&lt;int&gt; res; if(cnt1 &gt; nums.size()/3) res.push_back(cdt1); if(cnt2 &gt; nums.size()/3) res.push_back(cdt2); return res; &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode-228-Summary Ranges]]></title>
+    <url>%2F2020%2F03%2F17%2FLeetCode-228-Summary-Ranges%2F</url>
+    <content type="text"><![CDATA[228. Summary Ranges Medium DescriptionGo to LeetCode Solution用两个指针 start 和 end 分别标识一段的起始元素和终止元素即可，注意区分出只含一个数的情形，即判断 start == end 。 12345678910111213141516171819202122232425262728class Solution &#123;public: vector&lt;string&gt; summaryRanges(vector&lt;int&gt;&amp; nums) &#123; if(nums.size() == 0) return &#123;&#125;; vector&lt;string&gt; res; int start = nums[0], end = start; for(int i=1;i&lt;nums.size();i++)&#123; if(nums[i] != nums[i-1]+1)&#123; end = nums[i-1]; if(start != end)&#123; string temp = to_string(start) + "-&gt;" + to_string(end); res.push_back(temp); &#125; else res.push_back(to_string(start)); start = nums[i]; &#125; &#125; end = nums[nums.size()-1]; if(start != end)&#123; string temp = to_string(start) + "-&gt;" + to_string(end); res.push_back(temp); &#125; else res.push_back(to_string(start)); return res; &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode-227-Basic Calculator II]]></title>
+    <url>%2F2020%2F03%2F16%2FLeetCode-227-Basic-Calculator-II%2F</url>
+    <content type="text"><![CDATA[227. Basic Calculator II Medium DescriptionGo to LeetCode Solution此类表达式实际上就是若干单项式的和，因此只要求出每一项的值然后加到结果变量中即可。 利用字符串流 stringstream 来处理表达式串相对比较方便，在输入的最前面补一个 + 号使得输入的串统一为符号与数字相间隔的模式，然后每次读入一个符号 op 和一个数字 num 。 用 term 表示当前项的值，每次循环读入一个运算符 op 及其后面的数 num ，若 op = + 或 - ，表示新的一项开始了，前一项计算完成，因此将 term 加到结果中，并重置 term 的值为新一项的第一个数 num 或者 -num (视 op 的值而定)；若 op = * 或 / ，则继续计算当前项，更新 term 。 注意最后一次循环只计算完成了最后一项的值，还需要加到结果中。 1234567891011121314151617181920212223242526class Solution &#123;public: int calculate(string s) &#123; istringstream ss("+" + s); long long res = 0; int term = 0, num = 0; char op; while(ss &gt;&gt; op &gt;&gt; num)&#123; if(op == '+' || op == '-')&#123; res += term; term = op == '+' ? num : - num; &#125; else&#123; term = op == '*' ? term * num : term / num; &#125; &#125; res += term; return res; &#125;&#125;;static int speedup = []()&#123; std::ios::sync_with_stdio(false); cin.tie(NULL); return 0;&#125;();]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>算法</tag>
+        <tag>二叉树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode-226-Invert Binary Tree]]></title>
+    <url>%2F2020%2F03%2F16%2FLeetCode-226-Invert-Binary-Tree%2F</url>
+    <content type="text"><![CDATA[226. Invert Binary Tree Easy DescriptionGo to LeetCode Solution递归即可。先交换当前节点的左右孩子，再递归反转左子树，最后递归反转右子树。终止条件为当前节点为空或者当前节点为叶节点。 123456789101112131415161718192021/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: TreeNode* invertTree(TreeNode* root) &#123; if(!root || (!root-&gt;left &amp;&amp; !root-&gt;right)) return root; TreeNode *temp = root-&gt;left; root-&gt;left = root-&gt;right; root-&gt;right = temp; invertTree(root-&gt;left); invertTree(root-&gt;right); return root; &#125;&#125;;]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>算法</tag>
+        <tag>二叉树</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode-225-Implement Stack using Queues]]></title>
     <url>%2F2020%2F03%2F16%2FLeetCode-225-Implement-Stack-using-Queues%2F</url>
     <content type="text"><![CDATA[225. Implement Stack using Queues Easy DescriptionGo to LeetCode Solution用一个队列的队头表示栈顶，队尾表示栈底。第 k 个元素入栈的时候先将其从队尾入队，然后将前面的 k-1 个元素依次从队头出队并从队尾入队。由于队列是 FIFO 的数据结构，这样能够保持先入栈的元素始终更靠近队头，也即更靠近栈顶，恰好符合栈的定义。 1234567891011121314151617181920212223242526272829303132333435363738394041424344class MyStack &#123; queue&lt;int&gt; q;public: /** Initialize your data structure here. */ MyStack() &#123; &#125; /** Push element x onto stack. */ void push(int x) &#123; q.push(x); int k = q.size() - 1; while(k--)&#123; q.push(q.front()); q.pop(); &#125; &#125; /** Removes the element on top of the stack and returns that element. */ int pop() &#123; int res = top(); q.pop(); return res; &#125; /** Get the top element. */ int top() &#123; return q.front(); &#125; /** Returns whether the stack is empty. */ bool empty() &#123; return q.empty(); &#125;&#125;;/** * Your MyStack object will be instantiated and called as such: * MyStack* obj = new MyStack(); * obj-&gt;push(x); * int param_2 = obj-&gt;pop(); * int param_3 = obj-&gt;top(); * bool param_4 = obj-&gt;empty(); */ 此方法时间复杂度为 push $O(n)$ ，pop/top/empty $O(1)$ 。]]></content>
