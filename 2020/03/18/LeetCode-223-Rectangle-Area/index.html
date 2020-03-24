@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"public/search.xml"};
   </script>
 
-  <meta name="description" content="本题算法层面无需赘述，唯一值得注意的是int溢出的检查，这可能涉及一些具体语言特性相关的知识。对C++而言，以下几个知识点可能有所帮助：  预定义常量：int最大正数INT_MAX，最小负数INT_MIN，其他类型也有类似常量定义 整数类型：一般而言 short，int，long long 分别为2字节，4字节，8字节整数，值得注意的是 long 一般与 int 相同，这一特殊情形是历史原因造成的">
-<meta name="keywords" content="LeetCode,算法,整数逆序">
+  <meta name="description" content="223. Rectangle Area  Medium    DescriptionGo to LeetCode Solution基本思路是两个矩形的面积之和减去相交部分的面积，关键在于如何求相交部分的面积。分不同位置的相交情形进行讨论可能是最直接的办法，但情况太多，太复杂。实际上相交部分的四条边的坐标都很容易求得，比如相交部分上边界的纵坐标一定是两个矩形的上边界的纵坐标中较小的一个，以此类推。当">
+<meta name="keywords" content="LeetCode,算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode-07-整数逆序-Reverse-Integer">
-<meta property="og:url" content="http://yoursite.com/2019/10/16/LeetCode-07-整数逆序-Reverse-Integer/index.html">
+<meta property="og:title" content="LeetCode-223-Rectangle Area">
+<meta property="og:url" content="http://yoursite.com/2020/03/18/LeetCode-223-Rectangle-Area/index.html">
 <meta property="og:site_name" content="Mind Palace of Claps">
-<meta property="og:description" content="本题算法层面无需赘述，唯一值得注意的是int溢出的检查，这可能涉及一些具体语言特性相关的知识。对C++而言，以下几个知识点可能有所帮助：  预定义常量：int最大正数INT_MAX，最小负数INT_MIN，其他类型也有类似常量定义 整数类型：一般而言 short，int，long long 分别为2字节，4字节，8字节整数，值得注意的是 long 一般与 int 相同，这一特殊情形是历史原因造成的">
+<meta property="og:description" content="223. Rectangle Area  Medium    DescriptionGo to LeetCode Solution基本思路是两个矩形的面积之和减去相交部分的面积，关键在于如何求相交部分的面积。分不同位置的相交情形进行讨论可能是最直接的办法，但情况太多，太复杂。实际上相交部分的四条边的坐标都很容易求得，比如相交部分上边界的纵坐标一定是两个矩形的上边界的纵坐标中较小的一个，以此类推。当">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-16T10:01:50.000Z">
+<meta property="og:updated_time" content="2020-03-18T04:04:46.618Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode-07-整数逆序-Reverse-Integer">
-<meta name="twitter:description" content="本题算法层面无需赘述，唯一值得注意的是int溢出的检查，这可能涉及一些具体语言特性相关的知识。对C++而言，以下几个知识点可能有所帮助：  预定义常量：int最大正数INT_MAX，最小负数INT_MIN，其他类型也有类似常量定义 整数类型：一般而言 short，int，long long 分别为2字节，4字节，8字节整数，值得注意的是 long 一般与 int 相同，这一特殊情形是历史原因造成的">
+<meta name="twitter:title" content="LeetCode-223-Rectangle Area">
+<meta name="twitter:description" content="223. Rectangle Area  Medium    DescriptionGo to LeetCode Solution基本思路是两个矩形的面积之和减去相交部分的面积，关键在于如何求相交部分的面积。分不同位置的相交情形进行讨论可能是最直接的办法，但情况太多，太复杂。实际上相交部分的四条边的坐标都很容易求得，比如相交部分上边界的纵坐标一定是两个矩形的上边界的纵坐标中较小的一个，以此类推。当">
 
-<link rel="canonical" href="http://yoursite.com/2019/10/16/LeetCode-07-整数逆序-Reverse-Integer/">
+<link rel="canonical" href="http://yoursite.com/2020/03/18/LeetCode-223-Rectangle-Area/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>LeetCode-07-整数逆序-Reverse-Integer | Mind Palace of Claps</title>
+  <title>LeetCode-223-Rectangle Area | Mind Palace of Claps</title>
   
 
 
@@ -190,7 +190,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/16/LeetCode-07-整数逆序-Reverse-Integer/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/18/LeetCode-223-Rectangle-Area/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -203,7 +203,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          LeetCode-07-整数逆序-Reverse-Integer
+          LeetCode-223-Rectangle Area
         </h1>
 
         <div class="post-meta">
@@ -214,7 +214,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2019-10-16 17:35:06 / 修改时间：18:01:50" itemprop="dateCreated datePublished" datetime="2019-10-16T17:35:06+08:00">2019-10-16</time>
+              <time title="创建时间：2020-03-18 11:57:19 / 修改时间：12:04:46" itemprop="dateCreated datePublished" datetime="2020-03-18T11:57:19+08:00">2020-03-18</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -237,15 +237,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>本题算法层面无需赘述，唯一值得注意的是int溢出的检查，这可能涉及一些具体语言特性相关的知识。对C++而言，以下几个知识点可能有所帮助：</p>
-<ul>
-<li>预定义常量：int最大正数INT_MAX，最小负数INT_MIN，其他类型也有类似常量定义</li>
-<li>整数类型：一般而言 short，int，long long 分别为2字节，4字节，8字节整数，值得注意的是 long 一般与 int 相同，这一特殊情形是历史原因造成的。int，long 等类型的实际宽度与机器字长、编译器等因素均有关</li>
-<li>代码中数字常量的默认类型：对于正数，按照 int $\rightarrow$ unsigned int $\rightarrow$ long long $\rightarrow$ unsigned long long 匹配；对于浮点数和科学计数法，一律为double型。超出最大表示范围的数字常量会报错</li>
-</ul>
-<p>本题代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">reverse</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> result = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span> (x != <span class="number">0</span>) &#123;</span><br><span class="line">			result = result * <span class="keyword">static_cast</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt;(<span class="number">10</span>) + <span class="keyword">static_cast</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt;(x % <span class="number">10</span>);</span><br><span class="line">			x /= <span class="number">10</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (result &gt; INT_MAX || result &lt; INT_MIN)</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">static_cast</span>&lt;<span class="keyword">int</span>&gt;(result);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>循环次数为十进制整数的位数，因此复杂度为$O(\mathrm{log}_{10} n)$ 。</p>
+        <h2 id="223-Rectangle-Area"><a href="#223-Rectangle-Area" class="headerlink" title="223. Rectangle Area"></a>223. Rectangle Area</h2><font color="orange">
+<b>
+Medium
+</b>
+</font>
+
+<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p><a href="https://leetcode.com/problems/rectangle-area/" target="_blank" rel="noopener">Go to LeetCode</a></p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>基本思路是两个矩形的面积之和减去相交部分的面积，关键在于如何求相交部分的面积。分不同位置的相交情形进行讨论可能是最直接的办法，但情况太多，太复杂。实际上相交部分的四条边的坐标都很容易求得，比如相交部分上边界的纵坐标一定是两个矩形的上边界的纵坐标中较小的一个，以此类推。当然，还需要考虑是否相交。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">computeArea</span><span class="params">(<span class="keyword">int</span> A, <span class="keyword">int</span> B, <span class="keyword">int</span> C, <span class="keyword">int</span> D, <span class="keyword">int</span> E, <span class="keyword">int</span> F, <span class="keyword">int</span> G, <span class="keyword">int</span> H)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> x = max(A,E) &lt; min(C,G) ? min(C,G) - max(A,E) : <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> y = max(B,F) &lt; min(D,H) ? min(D,H) - max(B,F) : <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> (C-A)*(D-B) - x*y + (G-E)*(H-F); <span class="comment">//此处减法必须放到中间，因为先算加法可能会溢出</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -257,7 +257,6 @@
           <div class="post-tags">
               <a href="/tags/LeetCode/" rel="tag"># LeetCode</a>
               <a href="/tags/算法/" rel="tag"># 算法</a>
-              <a href="/tags/整数逆序/" rel="tag"># 整数逆序</a>
           </div>
 
         
@@ -266,12 +265,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/10/15/LeetCode-06-之字形转换-ZigZag-Conversion/" rel="prev" title="LeetCode-06-之字形转换-ZigZag-Conversion">
-      <i class="fa fa-chevron-left"></i> LeetCode-06-之字形转换-ZigZag-Conversion
+    <a href="/2020/03/17/LeetCode-Weekly-Contest-180/" rel="prev" title="LeetCode Weekly Contest 180">
+      <i class="fa fa-chevron-left"></i> LeetCode Weekly Contest 180
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/11/22/LeetCode-01-两数之和-Two-Sum/" rel="next" title="LeetCode-01-两数之和-Two Sum">
-      LeetCode-01-两数之和-Two Sum <i class="fa fa-chevron-right"></i>
+    <a href="/2020/03/24/LeetCode-221-Maximal-Square/" rel="next" title="LeetCode-221-Maximal Square">
+      LeetCode-221-Maximal Square <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -332,6 +331,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#223-Rectangle-Area"><span class="nav-number">1.</span> <span class="nav-text">223. Rectangle Area</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Description"><span class="nav-number">1.1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution"><span class="nav-number">1.2.</span> <span class="nav-text">Solution</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
