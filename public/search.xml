@@ -1,6 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode-220-Contains Duplicate III]]></title>
+    <url>%2F2020%2F03%2F25%2FLeetCode-220-Contains-Duplicate-III%2F</url>
+    <content type="text"><![CDATA[220. Contains Duplicate III Medium DescriptionGo to LeetCode Solution 1滑动窗口法。维护一个宽度为 k 的滑动窗口 win ，显然窗口内的元素两两间的索引之差不会超过 k ，难点在于如何检查窗口内是否存在绝对差值不超过 t 的两个元素。 滑动窗口每插入一个新的元素 x ，就要检查窗口中是否已经存在与 x 的绝对差值不超过的 t 的元素。换句话说，要检查窗口内是否存在 [x-t, x+t] 区间内的元素。 为了做到这一点，可利用一个升序表存储滑动窗口，例如C++ STL 中的 set 容器；要检查一个升序表中是否存在包含于特定区间 [left, right] 中的元素，可利用二分查找的方法在 $O(\log n)$ 时间内完成。具体做法是：在升序表中二分查找区间的左边界 left ，返回第一个大于等于 left 的元素 ，即表中最小的大于等于 left 的元素，然后检查该元素是否小于等于区间的右边界 right ；如果表中所有元素都小于 left ，则查找失败，不存在目标区间内的元素。 C++ STL set 容器的 lower_bound 方法实现了查找有序表中第一个大于等于目标元素的功能，直接调用即可。 12345678910111213141516class Solution &#123;public: bool containsNearbyAlmostDuplicate(vector&lt;int&gt;&amp; nums, int k, int t) &#123; set&lt;long long&gt; win; long long kl = k, tl = t; for(int i=0;i&lt;nums.size();i++)&#123; long long x = nums[i]; if(i&gt;k) win.erase(nums[i-k-1]); //窗口满，每滑动一步删除第一个元素 auto it = win.lower_bound(x-tl); if(it != win.end() &amp;&amp; *it &lt;= x+tl) return true; win.insert(x); &#125; return false; &#125;&#125;; 上面的代码逻辑上虽然没问题，但涉及到两个 int 型变量的加减时可能导致溢出，在 LeetCode 上不能 AC，简单修改后防止 int 溢出的代码如下： 12345678910111213141516class Solution &#123;public: bool containsNearbyAlmostDuplicate(vector&lt;int&gt;&amp; nums, int k, int t) &#123; set&lt;long long&gt; win; long long kl = k, tl = t; for(int i=0;i&lt;nums.size();i++)&#123; long long x = nums[i]; if(i&gt;k) win.erase(nums[i-k-1]); auto it = win.lower_bound(x-tl); if(it != win.end() &amp;&amp; *it &lt;= x+tl) return true; win.insert(x); &#125; return false; &#125;&#125;; 此方法的时间复杂度为 $O(n\log k)$ ，空间复杂度为 $O(k)$ 。]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>算法</tag>
+        <tag>滑动窗口</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode-219-Contains Duplicate II]]></title>
+    <url>%2F2020%2F03%2F25%2FLeetCode-219-Contains-Duplicate-II%2F</url>
+    <content type="text"><![CDATA[219. Contains Duplicate II Easy DescriptionGo to LeetCode Solution滑动窗口法。维护一个长为 k 的滑动窗口，显然窗口内的元素都满足两两之间的索引相差不超过 k ，从而只需要检查窗口内是否有重复元素即可。为了方便检查是否有重复元素，可用一个哈希表存储该滑动窗口。 12345678910111213class Solution &#123;public: bool containsNearbyDuplicate(vector&lt;int&gt;&amp; nums, int k) &#123; unordered_set&lt;int&gt; hash; for(int i=0;i&lt;nums.size();i++)&#123; if(i &gt; k) hash.erase(nums[i-k-1]); if(!hash.insert(nums[i]).second) return true; &#125; return false; &#125;&#125;; 时间 $O(n)$ ，空间 $O(k)$ 。]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>算法</tag>
+        <tag>滑动窗口</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode-217-Contains Duplicate]]></title>
+    <url>%2F2020%2F03%2F25%2FLeetCode-217-Contains-Duplicate%2F</url>
+    <content type="text"><![CDATA[217. Contains Duplicate Easy DescriptionGo to LeetCode Solution 1先排序，然后检查相邻的两个元素有没有相等的情形。 123456789101112class Solution &#123;public: bool containsDuplicate(vector&lt;int&gt;&amp; nums) &#123; if(nums.empty()) return false; sort(nums.begin(),nums.end()); for(int i=0;i&lt;nums.size()-1;i++)&#123; if(nums[i] == nums[i+1]) return true; &#125; return false; &#125;&#125;; 时间 $O(n\log n)$ ，空间 $O(1)$ 。 Solution 2遍历的同时用一个哈希表存储已有的元素，每访问一个元素检查是否已在表中。 123456789class Solution &#123;public: bool containsDuplicate(vector&lt;int&gt;&amp; nums) &#123; unordered_set&lt;int&gt; hash; for(auto x:nums) if(!hash.insert(x).second) return true; return false; &#125;&#125;; 时间 $O(n)$ ，空间 $O(n)$ 。]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode-222-Count Complete Tree Nodes]]></title>
     <url>%2F2020%2F03%2F24%2FLeetCode-222-Count-Complete-Tree-Nodes%2F</url>
     <content type="text"><![CDATA[222. Count Complete Tree Nodes Medium DescriptionGo to LeetCode Solution如果是一般的二叉树，一个简单的递归即可： 12345678910111213141516/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: int countNodes(TreeNode* root) &#123; if(!root) return 0; return countNodes(root-&gt;left) + countNodes(root-&gt;right) + 1; &#125;&#125;; 时间复杂度为 $O(n)$ ，空间复杂度为 $O(\log n)$ 。 题目给了完全二叉树的条件，就要充分利用完全二叉树的性质。如果该完全二叉树是满二叉树，则其节点数为 $2^h-1$ ，其中 $h$ 为树的高度。如果不是满二叉树，那么它的左孩子和右孩子一定都是完全二叉树并且至少有一个是满二叉树，可由此递归求得节点总数。 判断一颗完全二叉树是否是满二叉树，只需要分别沿最左边和最右边的路径走到底，看路径长度是否相等即可，该操作的时间复杂度为 $O(\log n)$ ，同时也求出了树高 $h$ 。 12345678910111213141516171819202122232425262728/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: int countNodes(TreeNode* root) &#123; if(!root) return 0; int hl = 0, hr = 0; TreeNode* p = root; while(p)&#123; p = p-&gt;left; hl++; &#125; p = root; while(p)&#123; p = p-&gt;right; hr++; &#125; if(hl == hr) return pow(2, hl) - 1; else return 1 + countNodes(root-&gt;left) + countNodes(root-&gt;right); &#125;&#125;; 该算法的时间复杂度比较难以分析。由于节点数为 $n$ 的完全二叉树的两个孩子一定至少有一个是满二叉树，对这个孩子可在 $O(\log n)$ 时间内判定并求解；对于另一个孩子进行递归处理，产生了一个节点数至多为 $n/2$ 的子问题，故对于时间复杂度有如下的递推关系： \begin{aligned} O(n)&=O(n/2) + c_1 \log n \\ &=O(n/4) + c_1 \log n + c_2 \log n \\ &=\cdots \\ &=O(1)+c_1\log n + c_2\log n + \cdots \\ &=O(\log^2 n) \end{aligned}空间复杂度仍为 $O(\log n)$ 。]]></content>
