@@ -185,6 +185,244 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/29/LeetCode-216-Combination-Sum-III/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Claps">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mind Palace of Claps">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/29/LeetCode-216-Combination-Sum-III/" class="post-title-link" itemprop="url">LeetCode-216-Combination Sum III</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-03-29 19:59:37 / 修改时间：20:03:48" itemprop="dateCreated datePublished" datetime="2020-03-29T19:59:37+08:00">2020-03-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="216-Combination-Sum-III"><a href="#216-Combination-Sum-III" class="headerlink" title="216. Combination Sum III"></a>216. Combination Sum III</h2><font color="orange">
+<b>
+Medium
+</b>
+</font>
+
+<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p><a href="https://leetcode.com/problems/combination-sum-iii/" target="_blank" rel="noopener">Go to LeetCode</a></p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>相对于 <a href>原问题 Combination Sum</a>  只是限定了每个 combination 中数字的个数，因此只需要在原回溯解法中检查一下递归的深度即可。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; combinationSum3(<span class="keyword">int</span> k, <span class="keyword">int</span> n) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line">        backtrack(k, n, <span class="number">1</span>, res, ans);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="keyword">int</span> k, <span class="keyword">int</span> n, <span class="keyword">int</span> start, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; &amp;res, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;ans)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!k)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!n)</span><br><span class="line">                res.emplace_back(ans);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=start;i&lt;=min(<span class="number">9</span>,n);i++)&#123;</span><br><span class="line">            ans.emplace_back(i);</span><br><span class="line">            backtrack(k<span class="number">-1</span>, n-i, i+<span class="number">1</span>, res, ans);</span><br><span class="line">            ans.pop_back();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/29/LeetCode-040-Combination-Sum-II/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Claps">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mind Palace of Claps">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/29/LeetCode-040-Combination-Sum-II/" class="post-title-link" itemprop="url">LeetCode-040-Combination Sum II</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-03-29 15:40:13 / 修改时间：19:40:38" itemprop="dateCreated datePublished" datetime="2020-03-29T15:40:13+08:00">2020-03-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="040-Combination-Sum-II"><a href="#040-Combination-Sum-II" class="headerlink" title="040. Combination Sum II"></a>040. Combination Sum II</h2><font color="orange">
+<b>
+Medium
+</b>
+</font>
+
+<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p><a href="https://leetcode.com/problems/combination-sum-ii/" target="_blank" rel="noopener">Go to LeetCode</a></p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>相对于 <a href>原问题 Combination Sum</a> 有两点变化：</p>
+<ul>
+<li><code>candidates</code> 数组允许有重复元素</li>
+<li>限定每个 <code>candidate</code> 最多只能使用一次</li>
+</ul>
+<p>首先考虑第二个限定条件，一个很自然的想法是在原问题的回溯解法中稍作修改：如果当前选择了 <code>candidates[i]</code> ，在下一层递归中就从 <code>candidates[i+1]</code> 开始遍历，这样就能保证选出来的 combination 中每个 <code>candidate</code> 最多只用了一次。按照这一思路修改后的代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; combinationSum2(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; candidates, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        <span class="keyword">if</span>(candidates.empty()) <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">        sort(candidates.begin(),candidates.end());</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line">        backtrack(candidates, target, res, ans, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; candidates, <span class="keyword">int</span> target, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; &amp;res, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;ans, <span class="keyword">int</span> start)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!target)&#123;</span><br><span class="line">            res.emplace_back(ans);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=start;i&lt;candidates.size() &amp;&amp; candidates[i]&lt;=target;i++)&#123;</span><br><span class="line">            ans.emplace_back(candidates[i]);</span><br><span class="line">            backtrack(candidates, target-candidates[i], res, ans, i+<span class="number">1</span>);</span><br><span class="line">            ans.pop_back();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>接下来考虑第一个变化，由于 <code>candidates</code> 中可能包含重复的元素，因此上面的代码可能会导致结果集中有重复的 combination 。例如对于<code>candidates = [1,1,2,5,6,7,10]</code> 以及 <code>target = 7</code> ，第一个 1 和 6组成的 combination 与第二个 1 和 6 组成的 combination 会同时出现在结果集中，因为前两个 1 是不同的元素。</p>
+<p>如何对此类情形去重呢？考虑到 <code>candidates</code> 中的重复元素排序后必然是连在一起的，其实只需要对第一个元素递归求解，后面相同的元素直接略过即可。换句话说，对于当前层需要遍历的 <code>candidates</code> (上面代码中 for 循环访问的那一部分)，将其划分成若干个相同元素连在一起的段，然后只遍历每段的第一个元素即可。这是由于对每一段后面的元素递归求解的结果必然已经包含在对该段第一个元素递归求解的结果中，因为在当前层选择的元素的值相同的情况下，选择每段第一个元素后更深层的递归搜索可选择的元素个数最多。根据这一思想，容易修改得到如下代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; combinationSum2(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; candidates, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        <span class="keyword">if</span>(candidates.empty()) <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">        sort(candidates.begin(),candidates.end());</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line">        backtrack(candidates, target, res, ans, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; candidates, <span class="keyword">int</span> target, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; &amp;res, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;ans, <span class="keyword">int</span> start)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!target)&#123;</span><br><span class="line">            res.emplace_back(ans);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=start;i&lt;candidates.size() &amp;&amp; candidates[i]&lt;=target;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i==start || candidates[i<span class="number">-1</span>] != candidates[i])&#123;</span><br><span class="line">                ans.emplace_back(candidates[i]);</span><br><span class="line">                backtrack(candidates, target-candidates[i], res, ans, i+<span class="number">1</span>);</span><br><span class="line">                ans.pop_back();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/29/LeetCode-039-Combination-Sum/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Claps">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mind Palace of Claps">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/29/LeetCode-039-Combination-Sum/" class="post-title-link" itemprop="url">LeetCode-039-Combination Sum</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-03-29 14:58:57 / 修改时间：15:41:21" itemprop="dateCreated datePublished" datetime="2020-03-29T14:58:57+08:00">2020-03-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="039-Combination-Sum"><a href="#039-Combination-Sum" class="headerlink" title="039. Combination Sum"></a>039. Combination Sum</h2><font color="orange">
+<b>
+Medium
+</b>
+</font>
+
+<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p><a href="https://leetcode.com/problems/combination-sum/" target="_blank" rel="noopener">Go to LeetCode</a></p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>该问题具有非常明显的递归结构：在 <code>candidates</code> 中搜索 <code>target</code> 的所有 combination 等价于先选择每个可能的 <code>candidates[i]</code> 作为 combination 中的一个数，然后在 <code>candidates</code> 中搜索 <code>target-candiates[i]</code> 的所有 combination 。故可用回溯法递归地解决该问题。</p>
+<p>需要注意的一点是如何去除重复的 combination ，其实只需要先将 <code>candidates</code> 排序，然后每一层递归均从上一层选择的元素开始向后遍历，这样就能够保证遍历到的 combination 是有序的，因而也是唯一的。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; combinationSum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; candidates, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        <span class="keyword">if</span>(candidates.empty()) <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">        sort(candidates.begin(),candidates.end());</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line">        backtrack(candidates, target, res, ans, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; candidates, <span class="keyword">int</span> target, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; &amp;res, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;ans, <span class="keyword">int</span> start)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!target)&#123;</span><br><span class="line">            res.emplace_back(ans);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=start;i&lt;candidates.size() &amp;&amp; candidates[i]&lt;=target;i++)&#123;</span><br><span class="line">            ans.emplace_back(candidates[i]);</span><br><span class="line">            backtrack(candidates, target-candidates[i], res, ans, i);</span><br><span class="line">            ans.pop_back();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>(本题时空复杂度的分析待补充…)</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/25/LeetCode-220-Contains-Duplicate-III/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -208,10 +446,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-03-25 16:18:45 / 修改时间：22:58:32" itemprop="dateCreated datePublished" datetime="2020-03-25T16:18:45+08:00">2020-03-25</time>
+              <time title="创建时间：2020-03-25 16:18:45" itemprop="dateCreated datePublished" datetime="2020-03-25T16:18:45+08:00">2020-03-25</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-27 14:38:48" itemprop="dateModified" datetime="2020-03-27T14:38:48+08:00">2020-03-27</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -241,13 +485,24 @@ Medium
 
 <h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p><a href="https://leetcode.com/problems/contains-duplicate-iii/" target="_blank" rel="noopener">Go to LeetCode</a></p>
 <h3 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution 1"></a>Solution 1</h3><p>滑动窗口法。维护一个宽度为 <code>k</code> 的滑动窗口 <code>win</code> ，显然窗口内的元素两两间的索引之差不会超过 <code>k</code> ，难点在于如何检查窗口内是否存在绝对差值不超过 <code>t</code> 的两个元素。</p>
-<p>滑动窗口每插入一个新的元素 <code>x</code> ，就要检查窗口中是否已经存在与 <code>x</code> 的绝对差值不超过的 <code>t</code> 的元素。换句话说，要检查窗口内是否存在 <code>[x-t, x+t]</code> 区间内的元素。</p>
-<p>为了做到这一点，可利用一个升序表存储滑动窗口，例如C++ STL 中的 set 容器；要检查一个升序表中是否存在包含于特定区间 <code>[left, right]</code> 中的元素，可利用二分查找的方法在 $O(\log n)$ 时间内完成。具体做法是：在升序表中二分查找区间的左边界 <code>left</code> ，返回<strong>第一个大于等于 <code>left</code> 的元素</strong> ，即表中最小的大于等于 <code>left</code> 的元素，然后检查该元素是否小于等于区间的右边界 <code>right</code> ；如果表中所有元素都小于 <code>left</code> ，则查找失败，不存在目标区间内的元素。</p>
-<p>C++ STL set 容器的 <code>lower_bound</code> 方法实现了查找有序表中第一个大于等于目标元素的功能，直接调用即可。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">containsNearbyAlmostDuplicate</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k, <span class="keyword">int</span> t)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">set</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt; win;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> kl = k, tl = t;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.size();i++)&#123;</span><br><span class="line">            <span class="keyword">long</span> <span class="keyword">long</span> x = nums[i];</span><br><span class="line">            <span class="keyword">if</span>(i&gt;k) win.erase(nums[i-k<span class="number">-1</span>]); <span class="comment">//窗口满，每滑动一步删除第一个元素</span></span><br><span class="line">            <span class="keyword">auto</span> it = win.lower_bound(x-tl);</span><br><span class="line">            <span class="keyword">if</span>(it != win.end() &amp;&amp; *it &lt;= x+tl)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            win.insert(x);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>滑动窗口每插入一个新的元素 <code>x</code> ，就要检查窗口中是否已经存在与 <code>x</code> 的绝对差值不超过的 <code>t</code> 的元素。换句话说，要检查窗口内是否存在 <code>[x-t, x+t]</code> 区间内的元素。为了做到这一点，可利用一个升序表存储滑动窗口。要检查一个升序表中是否存在包含于特定区间 <code>[left, right]</code> 中的元素，可利用二分查找的方法在 $O(\log n)$ 时间内完成。具体做法是：在升序表中二分查找区间的左边界 <code>left</code> ，返回<strong>第一个大于等于 <code>left</code> 的元素</strong> ，即表中最小的大于等于 <code>left</code> 的元素，然后检查该元素是否小于等于区间的右边界 <code>right</code> ；如果表中所有元素都小于 <code>left</code> ，则查找失败，不存在目标区间内的元素。</p>
+<p>根据上述分析，利用 AVL 树或者红黑树来存储滑动窗口比较合适，这里选择 C++ STL 的 set 容器，该容器自带的 <code>lower_bound</code> 方法实现了查找有序表中第一个大于等于目标元素的功能，直接调用即可。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">containsNearbyAlmostDuplicate</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k, <span class="keyword">int</span> t)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">set</span>&lt;<span class="keyword">int</span>&gt; win;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.size();i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i&gt;k) win.erase(nums[i-k<span class="number">-1</span>]); <span class="comment">// 窗口满，每滑动一步删除第一个元素</span></span><br><span class="line">            <span class="keyword">auto</span> it = win.lower_bound(nums[i]-t);</span><br><span class="line">            <span class="keyword">if</span>(it != win.end() &amp;&amp; *it &lt;= nums[i]+t)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            win.insert(nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>上面的代码逻辑上虽然没问题，但涉及到两个 <code>int</code> 型变量的加减时可能导致溢出，在 LeetCode 上不能 AC，简单修改后防止 <code>int</code> 溢出的代码如下：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">containsNearbyAlmostDuplicate</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k, <span class="keyword">int</span> t)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">set</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt; win;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> kl = k, tl = t;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.size();i++)&#123;</span><br><span class="line">            <span class="keyword">long</span> <span class="keyword">long</span> x = nums[i];</span><br><span class="line">            <span class="keyword">if</span>(i&gt;k) win.erase(nums[i-k<span class="number">-1</span>]);</span><br><span class="line">            <span class="keyword">auto</span> it = win.lower_bound(x-tl);</span><br><span class="line">            <span class="keyword">if</span>(it != win.end() &amp;&amp; *it &lt;= x+tl)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            win.insert(x);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>此方法的时间复杂度为 $O(n\log k)$ ，空间复杂度为 $O(k)$ 。</p>
+<h3 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution 2"></a>Solution 2</h3><p>本题作为前面两题的 follow up ，将与 <code>x</code> 相差不超过 <code>t</code> 的元素都视为 <code>x</code> 的 duplicate 。方法 1 中利用 BST 类型的数据结构存储滑动窗口，能够在 $O(\log k)$ 时间内检查窗口内是否存在当前元素的 duplicate 。实际上，可借鉴桶排序的思路，在 $O(1)$ 时间内检查 duplicate 。</p>
+<p>具体来讲，将非负整数域划分成大小为 <code>t + 1</code> 的桶，每个桶都包含 <code>t + 1</code> 个数 。以 <code>t = 3</code> 为例，第一个桶 <code>0,1,2,3</code> ，第二个桶为 <code>4,5,6,7</code> ，第三个桶为 <code>8,9,10,11</code> ，…… ，以此类推。将这些桶按顺序从 <code>0</code> 开始编号，则整数 <code>num</code> 位于 <code>num/(t+1)</code> 号桶中。</p>
+<p>这样划分桶之后，一个很重要的性质就是<strong>差距不超过的 <code>t</code> 的两个元素要么位于同一个桶中，要么位于相邻的两个桶中</strong>。换句话说，如果将滑动窗口中的元素都存储到对应的桶中，当一个新的元素 <code>x</code> 到来时，只需要检查 <code>x</code> 对应的桶 <code>x/(t+1)</code> 以及它前后的两个相邻的桶 <code>x/(t+1)-1</code> ，<code>x/(t+1)+1</code> 即可判断窗口中是否已经有 <code>x</code> 的 duplicate 。具体怎么检查呢？这还要分情况：</p>
+<ul>
+<li>对于 <code>x</code> 对应的桶 <code>x/(t+1)</code> ，只要桶不空，他就一定包含了 <code>x</code> 的 duplicate 。这是因为一个桶内的任何两个数的差距不会超过 <code>t</code> ；</li>
+<li>对于桶 <code>x/(t+1)</code> 的两个邻居 <code>x/(t+1)-1</code> ，<code>x/(t+1)+1</code> ，它们包含的数可能是 <code>x</code> 的 duplicate 也可能不是。例如在上面 <code>t = 3</code> 的例子中若 <code>x = 6</code> ，那么在第三个桶中 <code>8</code> 和 <code>9</code> 都是 <code>6</code> 的 duplicate ，而 <code>10</code> 不是。因此对于这种情况，不仅要检查桶是否空，还要检查桶中的数与 <code>x</code> 的差距来判断这些数到底是不是 <code>x</code> 的 duplicate 。</li>
+</ul>
+<p>这样来看不能只存储每个桶的元素数目，而要存储桶中的元素。此时还要注意一个非常重要的事实，<strong>在窗口滑动过程中任何一个桶要么为空，要么只存储了一个元素。</strong> 只是因为如果遍历到当前元素 <code>x</code> 时它对应的桶 <code>x/t</code> 不空，那么就是上面第一种情况，此时程序直接退出了，返回 true 。</p>
+<p>根据上述分析，可用一个 <code>unordered_map</code> 类型的数据 <code>bucket[id] = elem</code> 来保存滑动窗口，<code>id</code> 表示桶的编号，<code>elem</code> 表示桶中的唯一元素，而对于空桶是没必要保存的，在 <code>bucket</code> 中查找不到对应的 <code>id</code> 表示桶 <code>id</code> 为空。对于每一个新到来的元素 <code>x</code> ，至多需要三次查询 + 判断，而  <code>unordered_map</code> 底层采用哈希表实现，因此整个检查 <code>x</code> 的 duplicate 的过程是 $O(1)$ 的。</p>
+<p>在编码实现中还有一点要注意，就是给定 <code>int</code> 型数组中的元素 <code>x</code> 可能为负整数，此时 <code>x/t</code> 仅仅返回 0 ，因此需要另行处理。一种思路是直接将所有元素全部以 <code>INT_MIN</code> 为基准进行平移，这样就全部转换成了非负整数。另一种方案是将桶的划分扩展到全部整数，桶的编号以 0 为基准向两边扩展，也可以为负数，还是以上面  <code>t = 3</code> 为例，<code>-1</code> 号桶为 <code>-1，-2，-3，-4</code> ，……，以此类推，容易求得负数 <code>x</code> 对应的桶的编号为 <code>-(-x/(t+1) + 1)</code> 。最后为了防止 <code>int</code> 溢出，所有运算改用 <code>long long</code> 类型进行。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">containsNearbyAlmostDuplicate</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k, <span class="keyword">int</span> t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(t&lt;<span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> kl = k, tl = (<span class="keyword">long</span> <span class="keyword">long</span>)t + <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>, <span class="keyword">long</span> <span class="keyword">long</span>&gt; bucket;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.size();i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i&gt;k)</span><br><span class="line">                bucket.erase(getID((<span class="keyword">long</span> <span class="keyword">long</span>)nums[i-k<span class="number">-1</span>], tl));</span><br><span class="line">            <span class="keyword">long</span> <span class="keyword">long</span> x = nums[i];</span><br><span class="line">            <span class="keyword">long</span> <span class="keyword">long</span> id = getID(x, tl);</span><br><span class="line">            <span class="keyword">if</span>(bucket.find(id) != bucket.end())</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(bucket.find(id<span class="number">-1</span>) != bucket.end() &amp;&amp; <span class="built_in">abs</span>(bucket[id<span class="number">-1</span>] - x) &lt;= t)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(bucket.find(id+<span class="number">1</span>) != bucket.end() &amp;&amp; <span class="built_in">abs</span>(bucket[id+<span class="number">1</span>] - x) &lt;= t)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                bucket.insert(make_pair(id, x));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">getID</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> x, <span class="keyword">long</span> <span class="keyword">long</span> t)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(x&gt;=<span class="number">0</span>) <span class="keyword">return</span> x/t;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> -(-x/t+<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>此方法时间复杂度为 $O(n)$ ，空间复杂度为 $O(k)$ 。</p>
 
       
     </div>
@@ -447,10 +702,16 @@ Easy
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-03-24 16:17:41 / 修改时间：19:03:31" itemprop="dateCreated datePublished" datetime="2020-03-24T16:17:41+08:00">2020-03-24</time>
+              <time title="创建时间：2020-03-24 16:17:41" itemprop="dateCreated datePublished" datetime="2020-03-24T16:17:41+08:00">2020-03-24</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-27 14:39:36" itemprop="dateModified" datetime="2020-03-27T14:39:36+08:00">2020-03-27</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -488,8 +749,8 @@ Medium
 <p>该算法的时间复杂度比较难以分析。由于节点数为 $n$ 的完全二叉树的两个孩子一定至少有一个是满二叉树，对这个孩子可在 $O(\log n)$ 时间内判定并求解；对于另一个孩子进行递归处理，产生了一个节点数至多为 $n/2$ 的子问题，故对于时间复杂度有如下的递推关系：</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-O(n)&=O(n/2) + c_1 \log n \\
-&=O(n/4) + c_1 \log n + c_2 \log n \\
+O(T)&=O(T/2) + c_1 \log n \\
+&=O(T/4) + c_1 \log n + c_2 \log n \\
 &=\cdots \\
 &=O(1)+c_1\log n + c_2\log n + \cdots \\
 &=O(\log^2 n)
@@ -787,252 +1048,6 @@ Hard
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/17/LeetCode-229-Majority-Element-II/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Claps">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mind Palace of Claps">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/17/LeetCode-229-Majority-Element-II/" class="post-title-link" itemprop="url">LeetCode-229-Majority Element II</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-03-17 14:46:12 / 修改时间：15:24:33" itemprop="dateCreated datePublished" datetime="2020-03-17T14:46:12+08:00">2020-03-17</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="229-Majority-Element-II"><a href="#229-Majority-Element-II" class="headerlink" title="229. Majority Element II"></a>229. Majority Element II</h2><font color="orange">
-<b>
-Medium
-</b>
-</font>
-
-<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p><a href="https://leetcode.com/problems/majority-element-ii/" target="_blank" rel="noopener">Go to LeetCode</a></p>
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>Boyer-Moore 多数投票算法的扩展。</p>
-<p>Boyer-Moore Majority Vote algorithm 是一个利用 $O(n)$ 时间和 $O(1)$ 空间寻找长度为 $n$ 的数组中出现次数超过 $\lfloor n/2 \rfloor$ 的元素的算法，其流程如下：</p>
-<p>变量 <code>candidate</code> 表示当前候选元素，初始化为任意值，变量 <code>count</code> 表示当前计数，初始化为0，从第一个元素开始扫描数组：</p>
-<ul>
-<li>若当前元素与 <code>candidate</code> 相同，<code>count</code> 加1；</li>
-<li>若当前元素与 <code>candidate</code> 不同且 <code>count &gt; 0</code> ，<code>count</code> 减1；</li>
-<li>若当前元素与 <code>candidate</code> 不同且 <code>count = 0</code> ，当前元素成为新的 <code>candidate</code> ，<code>count</code> 重置为1；</li>
-</ul>
-<p>最终 <code>candidate</code> 的值即为所求。</p>
-<p>该算法的原理在于，对于任意的 <code>candidate</code> ，如果扫描到的元素和 <code>candidate</code> 不相等，就在数组中同时划去一个 <code>candidate</code> 和当前元素。<code>count = 0</code> 表示当前的 <code>candidate</code> 都被划去了，因此指定新的 <code>candidate</code> 。由于目标元素 $x$ 在数组中出现的次数超过了一半，那么其它元素出现的次数必定小于一半。这样不断划去<strong>成对的不相同的元素</strong>之后，最终剩下的一定是 $x$ 。</p>
-<p>注意上述算法需要保证给定的数组中一定存在目标元素，如果没有这一保证，只需要在求出最后的 <code>candidate</code> 后再检查一遍它出现的额次数即可，这一操作不增加复杂度。</p>
-<p>本题将 $\lfloor n/2 \rfloor$ 改成了  $\lfloor n/3 \rfloor$ ，解法是一样的。只需要维护两个候选元素 <code>cdt1</code> ，<code>cdt2</code> 和它们各自的计数 <code>cnt1</code> ，<code>cnt2</code> ，若当前扫描的元素和其中任一个相同，对应的计数加1；若都不同则将当前元素和任一个候选元素同时划去（对应计数减一）；若某个候选元素被全部划去（计数为0）则将当前元素置为新的候选元素。最终剩下的两个候选元素就是可能的目标，若题目并未保证存在目标元素则再检验一下两个元素出现的次数。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; majorityElement(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">        <span class="keyword">int</span> cdt1 = <span class="number">0</span>, cdt2 = <span class="number">0</span>, cnt1 = <span class="number">0</span>, cnt2 = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> x:nums)&#123;</span><br><span class="line">            <span class="keyword">if</span>(x == cdt1) cnt1++;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(x == cdt2) cnt2++;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(!cnt1)&#123;</span><br><span class="line">                cdt1 = x;</span><br><span class="line">                cnt1 = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(!cnt2)&#123;</span><br><span class="line">                cdt2 = x;</span><br><span class="line">                cnt2 = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                cnt1--;</span><br><span class="line">                cnt2--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cnt1 = <span class="number">0</span>;</span><br><span class="line">        cnt2 = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> x:nums)&#123;</span><br><span class="line">            <span class="keyword">if</span>(x == cdt1) cnt1++;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(x == cdt2) cnt2++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">        <span class="keyword">if</span>(cnt1 &gt; nums.size()/<span class="number">3</span>) res.push_back(cdt1);</span><br><span class="line">        <span class="keyword">if</span>(cnt2 &gt; nums.size()/<span class="number">3</span>) res.push_back(cdt2);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/17/LeetCode-228-Summary-Ranges/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Claps">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mind Palace of Claps">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/17/LeetCode-228-Summary-Ranges/" class="post-title-link" itemprop="url">LeetCode-228-Summary Ranges</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-03-17 14:37:11 / 修改时间：14:42:04" itemprop="dateCreated datePublished" datetime="2020-03-17T14:37:11+08:00">2020-03-17</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="228-Summary-Ranges"><a href="#228-Summary-Ranges" class="headerlink" title="228. Summary Ranges"></a>228. Summary Ranges</h2><font color="orange">
-<b>
-Medium
-</b>
-</font>
-
-<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p><a href="https://leetcode.com/problems/summary-ranges/" target="_blank" rel="noopener">Go to LeetCode</a></p>
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>用两个指针 <code>start</code> 和 <code>end</code> 分别标识一段的起始元素和终止元素即可，注意区分出只含一个数的情形，即判断 <code>start == end</code> 。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; summaryRanges(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">        <span class="keyword">if</span>(nums.size() == <span class="number">0</span>) <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; res;</span><br><span class="line">        <span class="keyword">int</span> start = nums[<span class="number">0</span>], end = start;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;nums.size();i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i] != nums[i<span class="number">-1</span>]+<span class="number">1</span>)&#123;</span><br><span class="line">                end = nums[i<span class="number">-1</span>];</span><br><span class="line">                <span class="keyword">if</span>(start != end)&#123;</span><br><span class="line">                    <span class="built_in">string</span> temp = to_string(start) + <span class="string">"-&gt;"</span> + to_string(end);</span><br><span class="line">                    res.push_back(temp);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    res.push_back(to_string(start));</span><br><span class="line">                start = nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        end = nums[nums.size()<span class="number">-1</span>];</span><br><span class="line">        <span class="keyword">if</span>(start != end)&#123;</span><br><span class="line">            <span class="built_in">string</span> temp = to_string(start) + <span class="string">"-&gt;"</span> + to_string(end);</span><br><span class="line">            res.push_back(temp);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            res.push_back(to_string(start));</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/16/LeetCode-227-Basic-Calculator-II/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Claps">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mind Palace of Claps">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/16/LeetCode-227-Basic-Calculator-II/" class="post-title-link" itemprop="url">LeetCode-227-Basic Calculator II</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-16 19:31:59" itemprop="dateCreated datePublished" datetime="2020-03-16T19:31:59+08:00">2020-03-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-17 14:31:47" itemprop="dateModified" datetime="2020-03-17T14:31:47+08:00">2020-03-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="227-Basic-Calculator-II"><a href="#227-Basic-Calculator-II" class="headerlink" title="227. Basic Calculator II"></a>227. Basic Calculator II</h2><font color="orange">
-<b>
-Medium
-</b>
-</font>
-
-<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p><a href="https://leetcode.com/problems/basic-calculator-ii/" target="_blank" rel="noopener">Go to LeetCode</a></p>
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>此类表达式实际上就是若干单项式的和，因此只要求出每一项的值然后加到结果变量中即可。</p>
-<p>利用字符串流 <code>stringstream</code> 来处理表达式串相对比较方便，在输入的最前面补一个 <code>+</code> 号使得输入的串统一为符号与数字相间隔的模式，然后每次读入一个符号 <code>op</code> 和一个数字 <code>num</code> 。</p>
-<p>用 <code>term</code> 表示当前项的值，每次循环读入一个运算符 <code>op</code> 及其后面的数 <code>num</code> ，若 <code>op</code> = <code>+</code> 或 <code>-</code> ，表示新的一项开始了，前一项计算完成，因此将 <code>term</code> 加到结果中，并重置 <code>term</code> 的值为新一项的第一个数 <code>num</code> 或者 <code>-num</code> (视 <code>op</code> 的值而定)；若 <code>op</code> = <code>*</code> 或 <code>/</code> ，则继续计算当前项，更新 <code>term</code> 。</p>
-<p>注意最后一次循环只计算完成了最后一项的值，还需要加到结果中。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">calculate</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="built_in">istringstream</span> <span class="title">ss</span><span class="params">(<span class="string">"+"</span> + s)</span></span>;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> term = <span class="number">0</span>, num = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">char</span> op;</span><br><span class="line">        <span class="keyword">while</span>(ss &gt;&gt; op &gt;&gt; num)&#123;</span><br><span class="line">            <span class="keyword">if</span>(op == <span class="string">'+'</span> || op == <span class="string">'-'</span>)&#123;</span><br><span class="line">                res += term;</span><br><span class="line">                term = op == <span class="string">'+'</span> ? num : - num;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                term = op == <span class="string">'*'</span> ? term * num : term / num;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        res += term;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> speedup = []()&#123;</span><br><span class="line">    <span class="built_in">std</span>::ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;();</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1103,7 +1118,7 @@ Medium
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1116,7 +1131,7 @@ Medium
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
