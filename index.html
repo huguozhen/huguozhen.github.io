@@ -210,7 +210,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-04-02 18:47:02 / 修改时间：19:42:53" itemprop="dateCreated datePublished" datetime="2020-04-02T18:47:02+08:00">2020-04-02</time>
+              <time title="创建时间：2020-04-02 18:47:02 / 修改时间：19:45:43" itemprop="dateCreated datePublished" datetime="2020-04-02T18:47:02+08:00">2020-04-02</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -919,7 +919,7 @@ Easy
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-27 14:39:36" itemprop="dateModified" datetime="2020-03-27T14:39:36+08:00">2020-03-27</time>
+                <time title="修改时间：2020-04-02 19:44:46" itemprop="dateModified" datetime="2020-04-02T19:44:46+08:00">2020-04-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -958,8 +958,8 @@ Medium
 <p>该算法的时间复杂度比较难以分析。由于节点数为 $n$ 的完全二叉树的两个孩子一定至少有一个是满二叉树，对这个孩子可在 $O(\log n)$ 时间内判定并求解；对于另一个孩子进行递归处理，产生了一个节点数至多为 $n/2$ 的子问题，故对于时间复杂度有如下的递推关系：</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
-O(T)&=O(T/2) + c_1 \log n \\
-&=O(T/4) + c_1 \log n + c_2 \log n \\
+T(n)&=T(\frac{n}{2}) + c_1 \log n \\
+&=T(\frac{n}{4}) + c_1 \log n + c_2 \log n \\
 &=\cdots \\
 &=O(1)+c_1\log n + c_2\log n + \cdots \\
 &=O(\log^2 n)
