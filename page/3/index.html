@@ -185,6 +185,205 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/11/LeetCode-232-Implement-Queue-using-Stacks/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Claps">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mind Palace of Claps">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/11/LeetCode-232-Implement-Queue-using-Stacks/" class="post-title-link" itemprop="url">LeetCode-232-Implement Queue using Stacks</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-11 20:34:42" itemprop="dateCreated datePublished" datetime="2020-03-11T20:34:42+08:00">2020-03-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-16 12:28:51" itemprop="dateModified" datetime="2020-03-16T12:28:51+08:00">2020-03-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="232-Implement-Queue-using-Stacks"><a href="#232-Implement-Queue-using-Stacks" class="headerlink" title="232. Implement Queue using Stacks"></a>232. Implement Queue using Stacks</h2><font color="green">
+<b>
+Easy
+</b>
+</font>
+
+<p>Implement the following operations of a queue using stacks.</p>
+<ul>
+<li>push(x) — Push element x to the back of queue.</li>
+<li>pop() — Removes the element from in front of queue.</li>
+<li>peek() — Get the front element.</li>
+<li>empty() — Return whether the queue is empty.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">MyQueue queue = new MyQueue();</span><br><span class="line"></span><br><span class="line">queue.push(1);</span><br><span class="line">queue.push(2);  </span><br><span class="line">queue.peek();  // returns 1</span><br><span class="line">queue.pop();   // returns 1</span><br><span class="line">queue.empty(); // returns false</span><br></pre></td></tr></table></figure>
+<p><strong>Notes:</strong></p>
+<ul>
+<li>You must use _only_ standard operations of a stack — which means only <code>push to top</code>, <code>peek/pop from top</code>, <code>size</code>, and <code>is empty</code> operations are valid.</li>
+<li>Depending on your language, stack may not be supported natively. You may simulate a stack by using a list or deque (double-ended queue), as long as you use only standard operations of a stack.</li>
+<li>You may assume that all operations are valid (for example, no pop or peek operations will be called on an empty queue).</li>
+</ul>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>想象两个栈的栈底连在一起，一个作为队尾，一个作为队头。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyQueue</span> &#123;</span></span><br><span class="line">    <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; stk_head;</span><br><span class="line">    <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; stk_tail;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">/** Initialize your data structure here. */</span></span><br><span class="line">    MyQueue() &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Push element x to the back of queue. */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        stk_tail.push(x);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Removes the element from in front of queue and returns that element. */</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!empty())&#123;</span><br><span class="line">            <span class="keyword">int</span> res = peek();</span><br><span class="line">            stk_head.pop();</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Get the front element. */</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">peek</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!stk_head.empty())</span><br><span class="line">            <span class="keyword">return</span> stk_head.top();</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(!stk_tail.empty())&#123;</span><br><span class="line">            <span class="keyword">while</span>(!stk_tail.empty())&#123;</span><br><span class="line">                <span class="keyword">int</span> temp = stk_tail.top();</span><br><span class="line">                stk_tail.pop();</span><br><span class="line">                stk_head.push(temp);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> stk_head.top();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/** Returns whether the queue is empty. */</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">empty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> stk_head.empty() &amp;&amp; stk_tail.empty();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your MyQueue object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * MyQueue* obj = new MyQueue();</span></span><br><span class="line"><span class="comment"> * obj-&gt;push(x);</span></span><br><span class="line"><span class="comment"> * int param_2 = obj-&gt;pop();</span></span><br><span class="line"><span class="comment"> * int param_3 = obj-&gt;peek();</span></span><br><span class="line"><span class="comment"> * bool param_4 = obj-&gt;empty();</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/10/LeetCode-233-Number-of-Digit-One/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Claps">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mind Palace of Claps">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/10/LeetCode-233-Number-of-Digit-One/" class="post-title-link" itemprop="url">LeetCode-233-Number of Digit One</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-10 21:36:12" itemprop="dateCreated datePublished" datetime="2020-03-10T21:36:12+08:00">2020-03-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-16 12:28:40" itemprop="dateModified" datetime="2020-03-16T12:28:40+08:00">2020-03-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="233-Number-of-Digit-One"><a href="#233-Number-of-Digit-One" class="headerlink" title="233. Number of Digit One"></a>233. Number of Digit One</h2><font color="red">
+<b>
+Hard
+</b>
+</font>
+
+<p>Given an integer n, count the total number of digit 1 appearing in all non-negative integers less than or equal to n.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: 13</span><br><span class="line">Output: 6 </span><br><span class="line">Explanation: Digit 1 occurred in the following numbers: 1, 10, 11, 12, 13.</span><br></pre></td></tr></table></figure>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>Broute - Force 将会超时。</p>
+<p>显然本题应当从数字 1 在 <code>n</code> 的任一数位上出现的次数分析，找出规律，本质上是一个数学问题。</p>
+<ul>
+<li>对于 <code>n = 1230567</code>，分析数字 1 在千位上出现的次数，可能的形式包括 <code>1221999</code> ~ <code>1221000</code> ，<code>1211999</code> ~ <code>1211000</code> ，… … ，<code>0001999</code> ~ <code>0001000</code> ，共 <code>123 * 1000</code> 次；</li>
+<li>对于 <code>n = 1231567</code>，分析数字 1 在千位上出现的次数，可能的形式包括 <code>1231567</code> ~ <code>1231000</code> ， <code>1221999</code> ~ <code>1221000</code> ，<code>1211999</code> ~ <code>1211000</code> ，… … ，<code>0001999</code> ~ <code>0001000</code> ，共 <code>567 + 1 + 123 * 1000</code> 次；</li>
+<li>对于 <code>n = 1232567</code>，分析数字 1 在千位上出现的次数，可能的形式包括 <code>1231999</code> ~ <code>1231000</code> ， <code>1221999</code> ~ <code>1221000</code> ，<code>1211999</code> ~ <code>1211000</code> ，… … ，<code>0001999</code> ~ <code>0001000</code> ，共 <code>1000 + 123 * 1000</code> 次；</li>
+<li>对于 <code>n = 1233567</code>，<code>1234567</code> ，… … ，结果同上。</li>
+</ul>
+<p>故对于 $n=abcdefg$ ，数字 1 在千位上出现的次数为</p>
+<script type="math/tex; mode=display">
+\left\{
+\begin{aligned}
+    &abc*1000, &d=0 \\
+    &abc*1000+efg+1, &d=1 \\
+    &abc*1000+1000, &d>1 \\
+\end{aligned}
+\right.</script><p>同理可得数字 1 在百分位上出现的次数为</p>
+<script type="math/tex; mode=display">
+\left\{\begin{aligned}    &abcd*100, &e=0 \\    &abcd*100+fg+1, &e=1 \\    &abcd*100+100, &e>1 \\\end{aligned}\right.</script><p>其他数位规律相同，这就是一般规律，可据此编程，注意处理边界情形即可。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countDigitOne</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n&lt;=<span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// num为数位基数，digit为当前数位，right为当前位右边的数</span></span><br><span class="line">        <span class="keyword">int</span> num = <span class="number">10</span>, digit = n%<span class="number">10</span>, right = digit;</span><br><span class="line">        <span class="comment">// n为当前位左边的数</span></span><br><span class="line">        n /= <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">int</span> res;</span><br><span class="line">        <span class="comment">// 个位单独处理</span></span><br><span class="line">        <span class="keyword">if</span>(digit == <span class="number">0</span>) res = n;</span><br><span class="line">        <span class="keyword">else</span> res = n + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(n)&#123;</span><br><span class="line">            digit = n%<span class="number">10</span>;</span><br><span class="line">            n /= <span class="number">10</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(digit == <span class="number">0</span>) res += n*num;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(digit == <span class="number">1</span>) res += n*num + right + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> res += n*num + num;</span><br><span class="line">            </span><br><span class="line">            right = digit*num + right;</span><br><span class="line">            <span class="keyword">if</span>(n) num *= <span class="number">10</span>; <span class="comment">// 此处n比较大时num可能会在最后一次循环时溢出int的表示范围，故判断一下是否为最后一次循环。</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>此方法时间复杂度为 $O(\log n)$ ，空间复杂度为 $O(1)$ 。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/09/LeetCode-234-Palindrome-Linked-List/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1017,187 +1216,6 @@ Medium
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/06/LeetCode-241-Different-Ways-to-Add-Parentheses/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Claps">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mind Palace of Claps">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/06/LeetCode-241-Different-Ways-to-Add-Parentheses/" class="post-title-link" itemprop="url">LeetCode-241-Different Ways to Add Parentheses</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-06 09:42:52" itemprop="dateCreated datePublished" datetime="2020-03-06T09:42:52+08:00">2020-03-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-16 12:26:47" itemprop="dateModified" datetime="2020-03-16T12:26:47+08:00">2020-03-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="241-Different-Ways-to-Add-Parentheses"><a href="#241-Different-Ways-to-Add-Parentheses" class="headerlink" title="241. Different Ways to Add Parentheses"></a>241. Different Ways to Add Parentheses</h2><font color="orange">
-<b>
-Medium
-</b>
-</font>
-
-<p>Given a string of numbers and operators, return all possible results from computing all the different possible ways to group numbers and operators. The valid operators are <code>+</code>, <code>-</code> and <code>*</code>.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;2-1-1&quot;</span><br><span class="line">Output: [0, 2]</span><br><span class="line">Explanation: </span><br><span class="line">((2-1)-1) = 0 </span><br><span class="line">(2-(1-1)) = 2</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;2*3-4*5&quot;</span><br><span class="line">Output: [-34, -14, -10, -10, 10]</span><br><span class="line">Explanation: </span><br><span class="line">(2*(3-(4*5))) = -34 </span><br><span class="line">((2*3)-(4*5)) = -14 </span><br><span class="line">((2*(3-4))*5) = -10 </span><br><span class="line">(2*((3-4)*5)) = -10 </span><br><span class="line">(((2*3)-4)*5) = 10</span><br></pre></td></tr></table></figure>
-<h3 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution 1"></a>Solution 1</h3><p>分治法。对于每个运算符分成左右两段，递归计算做左边的所有可能取值和右边的所有可能取值，再把左右两边通过当前运算符计算的所有值存到结果集中。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; diffWaysToCompute(<span class="built_in">string</span> input)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; input.length(); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (input[i] == <span class="string">'+'</span> || input[i] == <span class="string">'-'</span> || input[i] == <span class="string">'*'</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res_left = diffWaysToCompute(input.substr(<span class="number">0</span>, i));</span><br><span class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res_right = diffWaysToCompute(input.substr(i + <span class="number">1</span>));</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> a : res_left)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> b : res_right)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">if</span> (input[i] == <span class="string">'+'</span>)</span><br><span class="line">                        res.push_back(a + b);</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (input[i] == <span class="string">'-'</span>)</span><br><span class="line">                        res.push_back(a - b);</span><br><span class="line">                    <span class="keyword">else</span></span><br><span class="line">                        res.push_back(a * b);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (res.empty()) <span class="comment">//当前串只含数字</span></span><br><span class="line">        res.push_back(atoi(input.c_str()));</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution 2"></a>Solution 2</h3><p>DP。注意到在上面的递归中有很多重复计算，所以可以建立一个备忘录，用查表的方式避免重复计算。自顶向下递归式DP的代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; diffWaysToCompute(<span class="built_in">string</span> input)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="built_in">string</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; dp;</span><br><span class="line">    <span class="keyword">return</span> cal(input, dp);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; cal(<span class="built_in">string</span> input, <span class="built_in">unordered_map</span>&lt;<span class="built_in">string</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; &amp;dp)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (dp.find(input) != dp.end())</span><br><span class="line">        <span class="keyword">return</span> dp[input];</span><br><span class="line"></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; input.length(); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (input[i] == <span class="string">'+'</span> || input[i] == <span class="string">'-'</span> || input[i] == <span class="string">'*'</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">string</span> s_left = input.substr(<span class="number">0</span>, i);</span><br><span class="line">            <span class="built_in">string</span> s_right = input.substr(i + <span class="number">1</span>);</span><br><span class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res_left = cal(s_left, dp);</span><br><span class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res_right = cal(s_right, dp);</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> a : res_left)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> b : res_right)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">if</span> (input[i] == <span class="string">'+'</span>)</span><br><span class="line">                        res.push_back(a + b);</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span> (input[i] == <span class="string">'-'</span>)</span><br><span class="line">                        res.push_back(a - b);</span><br><span class="line">                    <span class="keyword">else</span></span><br><span class="line">                        res.push_back(a * b);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (res.empty())</span><br><span class="line">        res.push_back(atoi(input.c_str()));</span><br><span class="line">    dp[input] = res;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Follow-up"><a href="#Follow-up" class="headerlink" title="Follow up"></a>Follow up</h3><ol>
-<li>不用递归，自底向上的迭代式 DP 如何写？</li>
-<li>本题的复杂度如何分析？</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/05/LeetCode-242-Valid-Anagram/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Claps">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mind Palace of Claps">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/05/LeetCode-242-Valid-Anagram/" class="post-title-link" itemprop="url">LeetCode-242-Valid Anagram</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-05 15:40:58" itemprop="dateCreated datePublished" datetime="2020-03-05T15:40:58+08:00">2020-03-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-16 12:26:33" itemprop="dateModified" datetime="2020-03-16T12:26:33+08:00">2020-03-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="242-Valid-Anagram"><a href="#242-Valid-Anagram" class="headerlink" title="242. Valid Anagram"></a>242. Valid Anagram</h2><font color="green">
-<b>
-Easy
-</b>
-</font>
-
-<p>Given two strings _s_ and _t_, write a function to determine if _t_ is an anagram of _s_.</p>
-<p><strong>Example 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: s = &quot;anagram&quot;, t = &quot;nagaram&quot;</span><br><span class="line">Output: true</span><br></pre></td></tr></table></figure>
-<p><strong>Example 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: s = &quot;rat&quot;, t = &quot;car&quot;</span><br><span class="line">Output: false</span><br></pre></td></tr></table></figure>
-<p><strong>Note:</strong><br>You may assume the string contains only lowercase alphabets.</p>
-<p><strong>Follow up:</strong><br>What if the inputs contain unicode characters? How would you adapt your solution to such case?</p>
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>建立一个 Hash 表来计数，如果字符串中只包含小写字母，可以直接用数组来计数。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isAnagram</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(s.length() != t.length()) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>,<span class="keyword">int</span>&gt; count;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;s.length();i++)&#123;</span><br><span class="line">            count[s[i]]++;</span><br><span class="line">            count[t[i]]--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> x:count)</span><br><span class="line">            <span class="keyword">if</span>(x.second) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>注意这里利用了 <code>map</code> 的初始化特性，对于语句 <code>count[s[i]];</code>, 如果 <code>count</code> 中没有键 <code>s[i]</code>，将自动插入改该键并将相应的值初始化为 0。因此 <code>count[s[i]]++;</code> 无需检测 <code>s[i]</code> 的存在性。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1268,7 +1286,7 @@ Easy
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

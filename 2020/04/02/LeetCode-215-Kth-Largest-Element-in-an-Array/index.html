@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"public/search.xml"};
   </script>
 
-  <meta name="description" content="本题算法层面无需赘述，唯一值得注意的是int溢出的检查，这可能涉及一些具体语言特性相关的知识。对C++而言，以下几个知识点可能有所帮助：  预定义常量：int最大正数INT_MAX，最小负数INT_MIN，其他类型也有类似常量定义 整数类型：一般而言 short，int，long long 分别为2字节，4字节，8字节整数，值得注意的是 long 一般与 int 相同，这一特殊情形是历史原因造成的">
-<meta name="keywords" content="LeetCode,算法,整数逆序">
+  <meta name="description" content="215. Kth Largest Element in an Array  Medium    DescriptionGo to LeetCode Solution 1最直接的方法就是排序，然后直接选择第 K 大的元素即可。 1234567class Solution &amp;#123;public:    int findKthLargest(vector&amp;lt;int&amp;gt;&amp;amp; nums,">
+<meta name="keywords" content="LeetCode,算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode-07-整数逆序-Reverse-Integer">
-<meta property="og:url" content="http://yoursite.com/2019/10/16/LeetCode-07-整数逆序-Reverse-Integer/index.html">
+<meta property="og:title" content="LeetCode-215-Kth Largest Element in an Array">
+<meta property="og:url" content="http://yoursite.com/2020/04/02/LeetCode-215-Kth-Largest-Element-in-an-Array/index.html">
 <meta property="og:site_name" content="Mind Palace of Claps">
-<meta property="og:description" content="本题算法层面无需赘述，唯一值得注意的是int溢出的检查，这可能涉及一些具体语言特性相关的知识。对C++而言，以下几个知识点可能有所帮助：  预定义常量：int最大正数INT_MAX，最小负数INT_MIN，其他类型也有类似常量定义 整数类型：一般而言 short，int，long long 分别为2字节，4字节，8字节整数，值得注意的是 long 一般与 int 相同，这一特殊情形是历史原因造成的">
+<meta property="og:description" content="215. Kth Largest Element in an Array  Medium    DescriptionGo to LeetCode Solution 1最直接的方法就是排序，然后直接选择第 K 大的元素即可。 1234567class Solution &amp;#123;public:    int findKthLargest(vector&amp;lt;int&amp;gt;&amp;amp; nums,">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-16T10:01:50.000Z">
+<meta property="og:updated_time" content="2020-04-02T11:42:53.185Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode-07-整数逆序-Reverse-Integer">
-<meta name="twitter:description" content="本题算法层面无需赘述，唯一值得注意的是int溢出的检查，这可能涉及一些具体语言特性相关的知识。对C++而言，以下几个知识点可能有所帮助：  预定义常量：int最大正数INT_MAX，最小负数INT_MIN，其他类型也有类似常量定义 整数类型：一般而言 short，int，long long 分别为2字节，4字节，8字节整数，值得注意的是 long 一般与 int 相同，这一特殊情形是历史原因造成的">
+<meta name="twitter:title" content="LeetCode-215-Kth Largest Element in an Array">
+<meta name="twitter:description" content="215. Kth Largest Element in an Array  Medium    DescriptionGo to LeetCode Solution 1最直接的方法就是排序，然后直接选择第 K 大的元素即可。 1234567class Solution &amp;#123;public:    int findKthLargest(vector&amp;lt;int&amp;gt;&amp;amp; nums,">
 
-<link rel="canonical" href="http://yoursite.com/2019/10/16/LeetCode-07-整数逆序-Reverse-Integer/">
+<link rel="canonical" href="http://yoursite.com/2020/04/02/LeetCode-215-Kth-Largest-Element-in-an-Array/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>LeetCode-07-整数逆序-Reverse-Integer | Mind Palace of Claps</title>
+  <title>LeetCode-215-Kth Largest Element in an Array | Mind Palace of Claps</title>
   
 
 
@@ -190,7 +190,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/16/LeetCode-07-整数逆序-Reverse-Integer/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/02/LeetCode-215-Kth-Largest-Element-in-an-Array/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -203,7 +203,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          LeetCode-07-整数逆序-Reverse-Integer
+          LeetCode-215-Kth Largest Element in an Array
         </h1>
 
         <div class="post-meta">
@@ -214,7 +214,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2019-10-16 17:35:06 / 修改时间：18:01:50" itemprop="dateCreated datePublished" datetime="2019-10-16T17:35:06+08:00">2019-10-16</time>
+              <time title="创建时间：2020-04-02 18:47:02 / 修改时间：19:42:53" itemprop="dateCreated datePublished" datetime="2020-04-02T18:47:02+08:00">2020-04-02</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -237,15 +237,31 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>本题算法层面无需赘述，唯一值得注意的是int溢出的检查，这可能涉及一些具体语言特性相关的知识。对C++而言，以下几个知识点可能有所帮助：</p>
-<ul>
-<li>预定义常量：int最大正数INT_MAX，最小负数INT_MIN，其他类型也有类似常量定义</li>
-<li>整数类型：一般而言 short，int，long long 分别为2字节，4字节，8字节整数，值得注意的是 long 一般与 int 相同，这一特殊情形是历史原因造成的。int，long 等类型的实际宽度与机器字长、编译器等因素均有关</li>
-<li>代码中数字常量的默认类型：对于正数，按照 int $\rightarrow$ unsigned int $\rightarrow$ long long $\rightarrow$ unsigned long long 匹配；对于浮点数和科学计数法，一律为double型。超出最大表示范围的数字常量会报错</li>
-</ul>
-<p>本题代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">reverse</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> result = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span> (x != <span class="number">0</span>) &#123;</span><br><span class="line">			result = result * <span class="keyword">static_cast</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt;(<span class="number">10</span>) + <span class="keyword">static_cast</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt;(x % <span class="number">10</span>);</span><br><span class="line">			x /= <span class="number">10</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (result &gt; INT_MAX || result &lt; INT_MIN)</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">static_cast</span>&lt;<span class="keyword">int</span>&gt;(result);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>循环次数为十进制整数的位数，因此复杂度为$O(\mathrm{log}_{10} n)$ 。</p>
+        <h2 id="215-Kth-Largest-Element-in-an-Array"><a href="#215-Kth-Largest-Element-in-an-Array" class="headerlink" title="215. Kth Largest Element in an Array"></a>215. Kth Largest Element in an Array</h2><font color="orange">
+<b>
+Medium
+</b>
+</font>
+
+<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p><a href="https://leetcode.com/problems/kth-largest-element-in-an-array/" target="_blank" rel="noopener">Go to LeetCode</a></p>
+<h3 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution 1"></a>Solution 1</h3><p>最直接的方法就是排序，然后直接选择第 K 大的元素即可。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        sort(nums.begin(),nums.end());</span><br><span class="line">        <span class="keyword">return</span> nums[nums.size()-k];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>时空复杂度完全取决于排序算法的复杂度，就常用的快速排序而言，期望意义下的时间复杂度为 $O(n\log n)$ 。</p>
+<h3 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution 2"></a>Solution 2</h3><p>利用快速排序的思想。</p>
+<p>快速排序中每次 partition 都会确定一个枢轴元素 pivot 的最终位置，并且枢轴左边的元素都比它小，右边的元素都比它大（或者反过来，取决于升序还是降序）。</p>
+<p>根据这个性质，一次 partition 过后如果 pivot 恰好是第 K 个元素，那么已经找到了目标，算法结束；否则可根据 K 与 pivot 的位置的大小关系在 pivot 的左边或者右边寻找目标元素，这样每次 partition 都排除了一部分元素，能够排除多少取决于选择的 pivot 的质量。</p>
+<p>故有如下的<strong>快速选择算法</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = nums.size()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(left &lt;= right)&#123;</span><br><span class="line">            <span class="keyword">int</span> ans = partition(nums, left, right);</span><br><span class="line">            <span class="keyword">if</span>(ans == k<span class="number">-1</span>)</span><br><span class="line">                <span class="keyword">return</span> nums[ans];</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(ans &lt; k<span class="number">-1</span>)</span><br><span class="line">                left = ans + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                right = ans - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;nums, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> pivot_idx = left + ((right-left) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> pivot = nums[pivot_idx];</span><br><span class="line">        swap(nums[pivot_idx], nums[left]);</span><br><span class="line">        <span class="keyword">int</span> i = left, j = right;</span><br><span class="line">        <span class="keyword">while</span>(i &lt; j)&#123;</span><br><span class="line">            <span class="keyword">while</span>(i&lt;j &amp;&amp; nums[j]&lt;=pivot) j--;</span><br><span class="line">            nums[i] = nums[j];</span><br><span class="line">            <span class="keyword">while</span>(i&lt;j &amp;&amp; nums[i]&gt;=pivot) i++;</span><br><span class="line">            nums[j] = nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        nums[i] = pivot;</span><br><span class="line">        <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>和快速排序的特点相同，该算法的效率取决于选取的 pivot 的质量，上述代码选择中间的元素作为 pivot 在 LeetCode 测试中的表现较好，实际应用中也可换用三者取中、随机化等选取 pivot 的方式。在期望意义下，每次 partition 能够排除一半的元素，因此平均时间复杂度为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+T(n) &= T(\frac{n}{2}) + n \\
+&=T(\frac{n}{4}) + n + \frac{n}{2} \\
+&=\cdots \\
+&=O(n+\frac{n}{2}+\frac{n}{4}+\cdots+1) \\
+&=O(n)
+\end{aligned}</script><p>最坏时间复杂度仍然为 $O(n^2)$ 。空间复杂度为 $O(1)$ 。</p>
+<h3 id="Remark"><a href="#Remark" class="headerlink" title="Remark"></a>Remark</h3><p>对于选择第 K 大元素的问题，可用的方法非常多，处了上述提到的两种，还可以用堆排序方法。此外，C++ STL 中内置了 <code>nth_element</code> 和 <code>partial_sort</code> 函数，可以直接调用来解决此问题。最后，实际上有所谓 <a href="https://en.wikipedia.org/wiki/Median_of_medians" target="_blank" rel="noopener">线性时间选择算法</a> ，其最坏情形下时间复杂度仍然为 $O(n)$ 。当然，该算法只是理论意义比较重大，在实际应用中还是上面的 <a href="https://en.wikipedia.org/wiki/Quickselect" target="_blank" rel="noopener">快速选择算法</a> 综合性能最好，它和快速排序实际上是同一个人提出的，原理和特性几乎也是相同的。</p>
 
     </div>
 
@@ -257,7 +273,6 @@
           <div class="post-tags">
               <a href="/tags/LeetCode/" rel="tag"># LeetCode</a>
               <a href="/tags/算法/" rel="tag"># 算法</a>
-              <a href="/tags/整数逆序/" rel="tag"># 整数逆序</a>
           </div>
 
         
@@ -266,13 +281,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/10/15/LeetCode-06-之字形转换-ZigZag-Conversion/" rel="prev" title="LeetCode-06-之字形转换-ZigZag-Conversion">
-      <i class="fa fa-chevron-left"></i> LeetCode-06-之字形转换-ZigZag-Conversion
+    <a href="/2020/04/01/LeetCode-377-Combination-Sum-IV/" rel="prev" title="LeetCode-377-Combination Sum IV">
+      <i class="fa fa-chevron-left"></i> LeetCode-377-Combination Sum IV
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2019/11/22/LeetCode-01-两数之和-Two-Sum/" rel="next" title="LeetCode-01-两数之和-Two Sum">
-      LeetCode-01-两数之和-Two Sum <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -332,6 +344,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#215-Kth-Largest-Element-in-an-Array"><span class="nav-number">1.</span> <span class="nav-text">215. Kth Largest Element in an Array</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Description"><span class="nav-number">1.1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-1"><span class="nav-number">1.2.</span> <span class="nav-text">Solution 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-2"><span class="nav-number">1.3.</span> <span class="nav-text">Solution 2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Remark"><span class="nav-number">1.4.</span> <span class="nav-text">Remark</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

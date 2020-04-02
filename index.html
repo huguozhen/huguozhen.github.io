@@ -185,6 +185,203 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/02/LeetCode-215-Kth-Largest-Element-in-an-Array/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Claps">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mind Palace of Claps">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/02/LeetCode-215-Kth-Largest-Element-in-an-Array/" class="post-title-link" itemprop="url">LeetCode-215-Kth Largest Element in an Array</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-02 18:47:02 / 修改时间：19:42:53" itemprop="dateCreated datePublished" datetime="2020-04-02T18:47:02+08:00">2020-04-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="215-Kth-Largest-Element-in-an-Array"><a href="#215-Kth-Largest-Element-in-an-Array" class="headerlink" title="215. Kth Largest Element in an Array"></a>215. Kth Largest Element in an Array</h2><font color="orange">
+<b>
+Medium
+</b>
+</font>
+
+<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p><a href="https://leetcode.com/problems/kth-largest-element-in-an-array/" target="_blank" rel="noopener">Go to LeetCode</a></p>
+<h3 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution 1"></a>Solution 1</h3><p>最直接的方法就是排序，然后直接选择第 K 大的元素即可。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        sort(nums.begin(),nums.end());</span><br><span class="line">        <span class="keyword">return</span> nums[nums.size()-k];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>时空复杂度完全取决于排序算法的复杂度，就常用的快速排序而言，期望意义下的时间复杂度为 $O(n\log n)$ 。</p>
+<h3 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution 2"></a>Solution 2</h3><p>利用快速排序的思想。</p>
+<p>快速排序中每次 partition 都会确定一个枢轴元素 pivot 的最终位置，并且枢轴左边的元素都比它小，右边的元素都比它大（或者反过来，取决于升序还是降序）。</p>
+<p>根据这个性质，一次 partition 过后如果 pivot 恰好是第 K 个元素，那么已经找到了目标，算法结束；否则可根据 K 与 pivot 的位置的大小关系在 pivot 的左边或者右边寻找目标元素，这样每次 partition 都排除了一部分元素，能够排除多少取决于选择的 pivot 的质量。</p>
+<p>故有如下的<strong>快速选择算法</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = nums.size()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(left &lt;= right)&#123;</span><br><span class="line">            <span class="keyword">int</span> ans = partition(nums, left, right);</span><br><span class="line">            <span class="keyword">if</span>(ans == k<span class="number">-1</span>)</span><br><span class="line">                <span class="keyword">return</span> nums[ans];</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(ans &lt; k<span class="number">-1</span>)</span><br><span class="line">                left = ans + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                right = ans - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;nums, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> pivot_idx = left + ((right-left) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> pivot = nums[pivot_idx];</span><br><span class="line">        swap(nums[pivot_idx], nums[left]);</span><br><span class="line">        <span class="keyword">int</span> i = left, j = right;</span><br><span class="line">        <span class="keyword">while</span>(i &lt; j)&#123;</span><br><span class="line">            <span class="keyword">while</span>(i&lt;j &amp;&amp; nums[j]&lt;=pivot) j--;</span><br><span class="line">            nums[i] = nums[j];</span><br><span class="line">            <span class="keyword">while</span>(i&lt;j &amp;&amp; nums[i]&gt;=pivot) i++;</span><br><span class="line">            nums[j] = nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        nums[i] = pivot;</span><br><span class="line">        <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>和快速排序的特点相同，该算法的效率取决于选取的 pivot 的质量，上述代码选择中间的元素作为 pivot 在 LeetCode 测试中的表现较好，实际应用中也可换用三者取中、随机化等选取 pivot 的方式。在期望意义下，每次 partition 能够排除一半的元素，因此平均时间复杂度为</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+T(n) &= T(\frac{n}{2}) + n \\
+&=T(\frac{n}{4}) + n + \frac{n}{2} \\
+&=\cdots \\
+&=O(n+\frac{n}{2}+\frac{n}{4}+\cdots+1) \\
+&=O(n)
+\end{aligned}</script><p>最坏时间复杂度仍然为 $O(n^2)$ 。空间复杂度为 $O(1)$ 。</p>
+<h3 id="Remark"><a href="#Remark" class="headerlink" title="Remark"></a>Remark</h3><p>对于选择第 K 大元素的问题，可用的方法非常多，处了上述提到的两种，还可以用堆排序方法。此外，C++ STL 中内置了 <code>nth_element</code> 和 <code>partial_sort</code> 函数，可以直接调用来解决此问题。最后，实际上有所谓 <a href="https://en.wikipedia.org/wiki/Median_of_medians" target="_blank" rel="noopener">线性时间选择算法</a> ，其最坏情形下时间复杂度仍然为 $O(n)$ 。当然，该算法只是理论意义比较重大，在实际应用中还是上面的 <a href="https://en.wikipedia.org/wiki/Quickselect" target="_blank" rel="noopener">快速选择算法</a> 综合性能最好，它和快速排序实际上是同一个人提出的，原理和特性几乎也是相同的。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/01/LeetCode-377-Combination-Sum-IV/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Claps">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mind Palace of Claps">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/01/LeetCode-377-Combination-Sum-IV/" class="post-title-link" itemprop="url">LeetCode-377-Combination Sum IV</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-01 15:16:32 / 修改时间：23:34:13" itemprop="dateCreated datePublished" datetime="2020-04-01T15:16:32+08:00">2020-04-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="377-Combination-Sum-IV"><a href="#377-Combination-Sum-IV" class="headerlink" title="377. Combination Sum IV"></a>377. Combination Sum IV</h2><font color="orange">
+<b>
+Medium
+</b>
+</font>
+
+<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p><a href="https://leetcode.com/problems/combination-sum-iv/" target="_blank" rel="noopener">Go to LeetCode</a></p>
+<h3 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution 1"></a>Solution 1</h3><p>相对于 <a href="https://www.claps.com.cn/2020/03/29/LeetCode-039-Combination-Sum/" target="_blank" rel="noopener">原问题 Combination Sum</a> 有两点变化：</p>
+<ul>
+<li>结果集的不同的序列视为不同的 combination ，换句话说，此问题实质上是一个 permutation sum 问题而非 combination sum 。</li>
+<li>只需要返回符合条件的 combination 的个数，而不需要返回每个具体的 combination 。</li>
+</ul>
+<p>一个最直接的思路就是仍然使用原问题的回溯解法，考虑到第一点变化因此无需通过排序来去重，最终返回结果集中的元素个数即可，这样得到的代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">combinationSum4</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line">        backtrack(nums, target, res, ans);</span><br><span class="line">        <span class="keyword">return</span> res.size();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;nums, <span class="keyword">int</span> target, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; &amp;res, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;ans)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(target &lt; <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span>(!target)&#123;</span><br><span class="line">            res.emplace_back(ans);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.size();i++)&#123;</span><br><span class="line">            ans.emplace_back(nums[i]);</span><br><span class="line">            backtrack(nums, target-nums[i], res, ans);</span><br><span class="line">            ans.pop_back();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>一个显而易见的优化在于回溯过程中根本不需要存储每个 combination ，因为最终结果只需要 combination 的个数，因此使用一个计数器即可：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">combinationSum4</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(target &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(!target) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.size();i++)&#123;</span><br><span class="line">            res += combinationSum4(nums, target-nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>很遗憾这两段代码由于使用了回溯法，其时间复杂度都很高，提交 LeetCode 均超时了。</p>
+<h3 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution 2"></a>Solution 2</h3><p>仔细分析方法 1 中的代码可以发现回溯过程中可能包含了一些重复计算，因为一旦我们在某次回溯中计算出了某个特定的 <code>target</code> 对应的结果，在后续的回溯中如果再次遇到这个 <code>target</code> 会重复对其进行递归计算。故可以用 DP 的思想将已经计算出的结果存起来，每次计算前先查表看看是否已经有结果，这种自顶向下的递归式 DP 实现，或称记忆化搜索的代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">combinationSum4</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; dp;</span><br><span class="line">        <span class="keyword">return</span> backtrack(nums, target, dp);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">backtrack</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;nums, <span class="keyword">int</span> target, <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; &amp;dp)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(target &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(!target) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(dp.find(target) != dp.end()) <span class="keyword">return</span> dp[target];</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.size();i++)&#123;</span><br><span class="line">            res += backtrack(nums, target-nums[i], dp);</span><br><span class="line">        &#125;</span><br><span class="line">        dp[target] = res;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>显然，也可以通过自底向上的迭代式 DP 实现来解决该问题。用一个一维数组 <code>dp[i]</code> 表示 <code>target = i</code> 时 combination 的总数，则状态转移方程为 </p>
+<script type="math/tex; mode=display">
+dp[i]=
+\left\{
+\begin{aligned}
+&\sum_{nums[j] < i} dp[i-nums[j]], \ &i \notin nums \\
+&\sum_{nums[j] \leqslant i} dp[i-nums[j]] + 1,\ &i \in nums 
+\end{aligned}
+\right.
+\tag{1}</script><p>即为了求 <code>target = i</code> 时 combination 的总数，依次选择 <code>nums</code> 中不超过 <code>i</code> 的数作为 combination 的最后一个数，选择 <code>nums[j]</code> 的情形下会有 <code>dp[i-nums[j]]</code> 个 combination ，最后求和即可；如果 <code>nums</code> 中恰好含有 <code>i</code> ，那么 <code>i</code> 自身就是一个符合题意的 combination ，此时还需要再加上 1 。</p>
+<p>对于该状态转移方程，有必要研究一下 <code>dp</code> 数组的初始状态和初始值，因为该方程的初始化不向其他 DP 问题一样直观。从上述方程可以看出，只有当 <code>nums[j] &lt;= i</code> 时，等号的右边才存在有效项，才能够根据这一方程更新当前的 <code>dp[i]</code> 。因此，记 <code>m</code> 为 <code>nums</code> 数组中的最小值，那么所有的 <code>dp[i], i&lt;m</code> 都是初值，它们不能通过上述方程进行更新，而且会对后面的值产生影响，因此必须初始化。根据 <code>dp</code> 数组的定义，如果 <code>target &lt; m</code> 则不存在符合题意的 combination ，所以应该把所有的 <code>dp[i], i&lt;m</code> 都初始化为 0 。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">combinationSum4</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">unsigned</span> <span class="keyword">int</span>&gt; dp(target+<span class="number">1</span>, <span class="number">0</span>); <span class="comment">//使用int会溢出</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=target;i++)&#123;</span><br><span class="line">            <span class="keyword">bool</span> flag = <span class="literal">false</span>; <span class="comment">//判断nums中是否含有i</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;nums.size();j++)</span><br><span class="line">                <span class="keyword">if</span>(nums[j] &lt;= i)&#123;</span><br><span class="line">                    dp[i] += dp[i-nums[j]];</span><br><span class="line">                    <span class="keyword">if</span>(nums[j] == i)</span><br><span class="line">                        flag = <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            <span class="keyword">if</span>(flag)</span><br><span class="line">                dp[i] += <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[target];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>一个小的 trick 在于初始化 <code>dp[0] = 1</code> ，注意它并不代表 <code>target = 0</code> 时 combination 的数目为 1，仅仅是因为这样做可以讲上面 $(1)$ 式中的两种情况合并起来，变成：</p>
+<script type="math/tex; mode=display">
+dp[i]=\sum_{nums[j] \leqslant i} dp[i-nums[j]]
+\tag{2}</script><p>这是因为 <code>nums</code> 中恰好含有 <code>i</code> 时，求和中会有 <code>dp[0]</code> 这一项，从而将 +1 合并了进去。根据这个式子写出来的代码更紧凑，但这个初始化  <code>dp[0] = 1</code> 往往难以理解：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">combinationSum4</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">unsigned</span> <span class="keyword">int</span>&gt; dp(target+<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=target;i++)</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;nums.size();j++)</span><br><span class="line">                <span class="keyword">if</span>(i &gt;= nums[j])</span><br><span class="line">                    dp[i] += dp[i-nums[j]];</span><br><span class="line">        <span class="keyword">return</span> dp[target];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="Follow-up"><a href="#Follow-up" class="headerlink" title="Follow up"></a>Follow up</h3><p>对于 follow up，如果允许 <code>nums</code> 中含有负数，可能会导致该问题有无穷多解。因为每个数都可以使用任意多次，故和为 0 的一组数可以任意多次地添加到 combination 中，而不改变其和。</p>
+<p>这种情形下可添加限制 <code>nums</code> 中的每个数最多只能使用一次。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/29/LeetCode-216-Combination-Sum-III/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -208,10 +405,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-03-29 19:59:37 / 修改时间：20:03:48" itemprop="dateCreated datePublished" datetime="2020-03-29T19:59:37+08:00">2020-03-29</time>
+              <time title="创建时间：2020-03-29 19:59:37" itemprop="dateCreated datePublished" datetime="2020-03-29T19:59:37+08:00">2020-03-29</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-01 15:26:24" itemprop="dateModified" datetime="2020-04-01T15:26:24+08:00">2020-04-01</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -240,7 +443,7 @@ Medium
 </font>
 
 <h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p><a href="https://leetcode.com/problems/combination-sum-iii/" target="_blank" rel="noopener">Go to LeetCode</a></p>
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>相对于 <a href>原问题 Combination Sum</a>  只是限定了每个 combination 中数字的个数，因此只需要在原回溯解法中检查一下递归的深度即可。</p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>相对于 <a href="https://www.claps.com.cn/2020/03/29/LeetCode-039-Combination-Sum/" target="_blank" rel="noopener">原问题 Combination Sum</a>  只是限定了每个 combination 中数字的个数，因此只需要在原回溯解法中检查一下递归的深度即可。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; combinationSum3(<span class="keyword">int</span> k, <span class="keyword">int</span> n) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line">        backtrack(k, n, <span class="number">1</span>, res, ans);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="keyword">int</span> k, <span class="keyword">int</span> n, <span class="keyword">int</span> start, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; &amp;res, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;ans)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!k)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!n)</span><br><span class="line">                res.emplace_back(ans);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=start;i&lt;=min(<span class="number">9</span>,n);i++)&#123;</span><br><span class="line">            ans.emplace_back(i);</span><br><span class="line">            backtrack(k<span class="number">-1</span>, n-i, i+<span class="number">1</span>, res, ans);</span><br><span class="line">            ans.pop_back();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
       
@@ -284,10 +487,16 @@ Medium
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-03-29 15:40:13 / 修改时间：19:40:38" itemprop="dateCreated datePublished" datetime="2020-03-29T15:40:13+08:00">2020-03-29</time>
+              <time title="创建时间：2020-03-29 15:40:13" itemprop="dateCreated datePublished" datetime="2020-03-29T15:40:13+08:00">2020-03-29</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-01 15:26:11" itemprop="dateModified" datetime="2020-04-01T15:26:11+08:00">2020-04-01</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -316,7 +525,7 @@ Medium
 </font>
 
 <h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p><a href="https://leetcode.com/problems/combination-sum-ii/" target="_blank" rel="noopener">Go to LeetCode</a></p>
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>相对于 <a href>原问题 Combination Sum</a> 有两点变化：</p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>相对于 <a href="https://www.claps.com.cn/2020/03/29/LeetCode-039-Combination-Sum/" target="_blank" rel="noopener">原问题 Combination Sum</a> 有两点变化：</p>
 <ul>
 <li><code>candidates</code> 数组允许有重复元素</li>
 <li>限定每个 <code>candidate</code> 最多只能使用一次</li>
@@ -454,7 +663,7 @@ Medium
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-27 14:38:48" itemprop="dateModified" datetime="2020-03-27T14:38:48+08:00">2020-03-27</time>
+                <time title="修改时间：2020-03-29 21:05:12" itemprop="dateModified" datetime="2020-03-29T21:05:12+08:00">2020-03-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -498,9 +707,9 @@ Medium
 <li>对于 <code>x</code> 对应的桶 <code>x/(t+1)</code> ，只要桶不空，他就一定包含了 <code>x</code> 的 duplicate 。这是因为一个桶内的任何两个数的差距不会超过 <code>t</code> ；</li>
 <li>对于桶 <code>x/(t+1)</code> 的两个邻居 <code>x/(t+1)-1</code> ，<code>x/(t+1)+1</code> ，它们包含的数可能是 <code>x</code> 的 duplicate 也可能不是。例如在上面 <code>t = 3</code> 的例子中若 <code>x = 6</code> ，那么在第三个桶中 <code>8</code> 和 <code>9</code> 都是 <code>6</code> 的 duplicate ，而 <code>10</code> 不是。因此对于这种情况，不仅要检查桶是否空，还要检查桶中的数与 <code>x</code> 的差距来判断这些数到底是不是 <code>x</code> 的 duplicate 。</li>
 </ul>
-<p>这样来看不能只存储每个桶的元素数目，而要存储桶中的元素。此时还要注意一个非常重要的事实，<strong>在窗口滑动过程中任何一个桶要么为空，要么只存储了一个元素。</strong> 只是因为如果遍历到当前元素 <code>x</code> 时它对应的桶 <code>x/t</code> 不空，那么就是上面第一种情况，此时程序直接退出了，返回 true 。</p>
+<p>这样来看不能只存储每个桶的元素数目，而要存储桶中的元素。此时还要注意一个非常重要的事实，<strong>在窗口滑动过程中任何一个桶要么为空，要么只存储了一个元素。</strong> 只是因为如果遍历到当前元素 <code>x</code> 时它对应的桶 <code>x/(t+1)</code> 不空，那么就是上面第一种情况，此时程序直接退出了，返回 true，桶中不可能放入第二个元素 。</p>
 <p>根据上述分析，可用一个 <code>unordered_map</code> 类型的数据 <code>bucket[id] = elem</code> 来保存滑动窗口，<code>id</code> 表示桶的编号，<code>elem</code> 表示桶中的唯一元素，而对于空桶是没必要保存的，在 <code>bucket</code> 中查找不到对应的 <code>id</code> 表示桶 <code>id</code> 为空。对于每一个新到来的元素 <code>x</code> ，至多需要三次查询 + 判断，而  <code>unordered_map</code> 底层采用哈希表实现，因此整个检查 <code>x</code> 的 duplicate 的过程是 $O(1)$ 的。</p>
-<p>在编码实现中还有一点要注意，就是给定 <code>int</code> 型数组中的元素 <code>x</code> 可能为负整数，此时 <code>x/t</code> 仅仅返回 0 ，因此需要另行处理。一种思路是直接将所有元素全部以 <code>INT_MIN</code> 为基准进行平移，这样就全部转换成了非负整数。另一种方案是将桶的划分扩展到全部整数，桶的编号以 0 为基准向两边扩展，也可以为负数，还是以上面  <code>t = 3</code> 为例，<code>-1</code> 号桶为 <code>-1，-2，-3，-4</code> ，……，以此类推，容易求得负数 <code>x</code> 对应的桶的编号为 <code>-(-x/(t+1) + 1)</code> 。最后为了防止 <code>int</code> 溢出，所有运算改用 <code>long long</code> 类型进行。</p>
+<p>在编码实现中还有一点要注意，就是给定 <code>int</code> 型数组中的元素 <code>x</code> 可能为负整数，此时 <code>x/(t+1)</code> 仅仅返回 0 ，因此需要另行处理。一种思路是直接将所有元素全部以 <code>INT_MIN</code> 为基准进行平移，这样就全部转换成了非负整数。另一种方案是将桶的划分扩展到全部整数，桶的编号以 0 为基准向两边扩展，也可以为负数，还是以上面  <code>t = 3</code> 为例，<code>-1</code> 号桶为 <code>-1，-2，-3，-4</code> ，……，以此类推，容易求得负数 <code>x</code> 对应的桶的编号为 <code>-(-x/(t+1) + 1)</code> 。最后为了防止 <code>int</code> 溢出，所有运算改用 <code>long long</code> 类型进行。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">containsNearbyAlmostDuplicate</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k, <span class="keyword">int</span> t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(t&lt;<span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> kl = k, tl = (<span class="keyword">long</span> <span class="keyword">long</span>)t + <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>, <span class="keyword">long</span> <span class="keyword">long</span>&gt; bucket;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.size();i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i&gt;k)</span><br><span class="line">                bucket.erase(getID((<span class="keyword">long</span> <span class="keyword">long</span>)nums[i-k<span class="number">-1</span>], tl));</span><br><span class="line">            <span class="keyword">long</span> <span class="keyword">long</span> x = nums[i];</span><br><span class="line">            <span class="keyword">long</span> <span class="keyword">long</span> id = getID(x, tl);</span><br><span class="line">            <span class="keyword">if</span>(bucket.find(id) != bucket.end())</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(bucket.find(id<span class="number">-1</span>) != bucket.end() &amp;&amp; <span class="built_in">abs</span>(bucket[id<span class="number">-1</span>] - x) &lt;= t)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(bucket.find(id+<span class="number">1</span>) != bucket.end() &amp;&amp; <span class="built_in">abs</span>(bucket[id+<span class="number">1</span>] - x) &lt;= t)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                bucket.insert(make_pair(id, x));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">getID</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> x, <span class="keyword">long</span> <span class="keyword">long</span> t)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(x&gt;=<span class="number">0</span>) <span class="keyword">return</span> x/t;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> -(-x/t+<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>此方法时间复杂度为 $O(n)$ ，空间复杂度为 $O(k)$ 。</p>
 
@@ -859,195 +1068,6 @@ dp(i,j)=\min\left\{dp(i-1,j-1),dp(i-1,j),dp(i,j-1)\right\}+1</script><p>对于�
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/18/LeetCode-223-Rectangle-Area/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Claps">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mind Palace of Claps">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/18/LeetCode-223-Rectangle-Area/" class="post-title-link" itemprop="url">LeetCode-223-Rectangle Area</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-03-18 11:57:19 / 修改时间：12:04:46" itemprop="dateCreated datePublished" datetime="2020-03-18T11:57:19+08:00">2020-03-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="223-Rectangle-Area"><a href="#223-Rectangle-Area" class="headerlink" title="223. Rectangle Area"></a>223. Rectangle Area</h2><font color="orange">
-<b>
-Medium
-</b>
-</font>
-
-<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p><a href="https://leetcode.com/problems/rectangle-area/" target="_blank" rel="noopener">Go to LeetCode</a></p>
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>基本思路是两个矩形的面积之和减去相交部分的面积，关键在于如何求相交部分的面积。分不同位置的相交情形进行讨论可能是最直接的办法，但情况太多，太复杂。实际上相交部分的四条边的坐标都很容易求得，比如相交部分上边界的纵坐标一定是两个矩形的上边界的纵坐标中较小的一个，以此类推。当然，还需要考虑是否相交。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">computeArea</span><span class="params">(<span class="keyword">int</span> A, <span class="keyword">int</span> B, <span class="keyword">int</span> C, <span class="keyword">int</span> D, <span class="keyword">int</span> E, <span class="keyword">int</span> F, <span class="keyword">int</span> G, <span class="keyword">int</span> H)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> x = max(A,E) &lt; min(C,G) ? min(C,G) - max(A,E) : <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> y = max(B,F) &lt; min(D,H) ? min(D,H) - max(B,F) : <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> (C-A)*(D-B) - x*y + (G-E)*(H-F); <span class="comment">//此处减法必须放到中间，因为先算加法可能会溢出</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/17/LeetCode-Weekly-Contest-180/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Claps">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mind Palace of Claps">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/17/LeetCode-Weekly-Contest-180/" class="post-title-link" itemprop="url">LeetCode Weekly Contest 180</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-17 19:57:54" itemprop="dateCreated datePublished" datetime="2020-03-17T19:57:54+08:00">2020-03-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-25 14:36:00" itemprop="dateModified" datetime="2020-03-25T14:36:00+08:00">2020-03-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="1374-Generate-a-String-With-Characters-That-Have-Odd-Counts"><a href="#1374-Generate-a-String-With-Characters-That-Have-Odd-Counts" class="headerlink" title="1374. Generate a String With Characters That Have Odd Counts"></a>1374. Generate a String With Characters That Have Odd Counts</h2><font color="green">
-<b>
-Easy
-</b>
-</font>
-
-<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p><a href="https://leetcode.com/contest/weekly-contest-180/problems/lucky-numbers-in-a-matrix/" target="_blank" rel="noopener">Go to LeetCode</a></p>
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>对于每一行，先找到最小元 <code>elem</code> ，然后检查它是不是所在列的最大元。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; luckyNumbers (<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; matrix) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;matrix.size();i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> elem = INT_MAX, index = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;matrix[<span class="number">0</span>].size();j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(matrix[i][j]&lt;elem)&#123;</span><br><span class="line">                    elem = matrix[i][j];</span><br><span class="line">                    index = j;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> k=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(;k&lt;matrix.size();k++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(matrix[k][index]&gt;elem)</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(k == matrix.size())</span><br><span class="line">                res.push_back(elem);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>时间复杂度为 $O(mn)$ 。</p>
-<h2 id="1381-Design-a-Stack-With-Increment-Operation"><a href="#1381-Design-a-Stack-With-Increment-Operation" class="headerlink" title="1381. Design a Stack With Increment Operation"></a>1381. Design a Stack With Increment Operation</h2><font color="orange">
-<b>
-Medium
-</b>
-</font>
-
-<h3 id="Description-1"><a href="#Description-1" class="headerlink" title="Description"></a>Description</h3><p><a href="url">Go to LeetCode</a></p>
-<h3 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution"></a>Solution</h3><p>维护一个数组即可。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomStack</span> &#123;</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; data;</span><br><span class="line">    <span class="keyword">int</span> top;</span><br><span class="line">    <span class="keyword">int</span> max_size;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    CustomStack(<span class="keyword">int</span> maxSize) &#123;</span><br><span class="line">        top = <span class="number">0</span>;</span><br><span class="line">        max_size = maxSize;</span><br><span class="line">        data.resize(max_size);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(top &lt; max_size)</span><br><span class="line">            data[top++] = x;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(top&gt;<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> data[--top];</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">increment</span><span class="params">(<span class="keyword">int</span> k, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;k &amp;&amp; i&lt;top;i++)</span><br><span class="line">            data[i] += val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your CustomStack object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * CustomStack* obj = new CustomStack(maxSize);</span></span><br><span class="line"><span class="comment"> * obj-&gt;push(x);</span></span><br><span class="line"><span class="comment"> * int param_2 = obj-&gt;pop();</span></span><br><span class="line"><span class="comment"> * obj-&gt;increment(k,val);</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
-<h2 id="1382-Balance-a-Binary-Search-Tree"><a href="#1382-Balance-a-Binary-Search-Tree" class="headerlink" title="1382. Balance a Binary Search Tree"></a>1382. Balance a Binary Search Tree</h2><font color="orange">
-<b>
-Medium
-</b>
-</font>
-
-<h3 id="Description-2"><a href="#Description-2" class="headerlink" title="Description"></a>Description</h3><p><a href="https://leetcode.com/contest/weekly-contest-180/problems/balance-a-binary-search-tree/" target="_blank" rel="noopener">Go to LeetCode</a></p>
-<h3 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution 1"></a>Solution 1</h3><p>考虑到一个有序数组转化为平衡二叉树是容易的（首先将中间的元素作为根节点，再利用分治法递归处理两边即可），而二叉排序树的中序遍历序列就是一个升序数组，因此先对 BST 进行中序遍历得到升序数组，再根据有序数组建立 BBST 即可。注意数组直接存储节点指针比较省空间。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">balanceBST</span><span class="params">(TreeNode* root)</span></span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;TreeNode*&gt; seq;</span><br><span class="line">        getInOrderSeq(root, seq);</span><br><span class="line">        <span class="keyword">return</span> getBalancedBST(seq, <span class="number">0</span>, seq.size()<span class="number">-1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">getInOrderSeq</span><span class="params">(TreeNode* t, <span class="built_in">vector</span>&lt;TreeNode*&gt; &amp;seq)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!t) <span class="keyword">return</span>;</span><br><span class="line">        getInOrderSeq(t-&gt;left, seq);</span><br><span class="line">        seq.push_back(t);</span><br><span class="line">        getInOrderSeq(t-&gt;right, seq);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">TreeNode* <span class="title">getBalancedBST</span><span class="params">(<span class="built_in">vector</span>&lt;TreeNode*&gt; &amp;seq, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(left &gt; right) <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">int</span> mid = left + ((right - left) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">        TreeNode *res = seq[mid];</span><br><span class="line">        res-&gt;left = getBalancedBST(seq, left, mid - <span class="number">1</span>);</span><br><span class="line">        res-&gt;right = getBalancedBST(seq, mid + <span class="number">1</span>, right);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>此方法时间复杂度为和空间复杂度均为 $O(n)$ 。</p>
-<h3 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution 2"></a>Solution 2</h3><p>实际上，有所谓 DSW 算法能够在 $O(n)$ 时间和 $O(1)$ 空间内对二叉排序树进行平衡化，详见下列资料：</p>
-<p><a href="https://en.wikipedia.org/wiki/Day–Stout–Warren_algorithm" target="_blank" rel="noopener">Day–Stout–Warren algorithm - Wikipedia</a></p>
-<p><a href="https://www.cnblogs.com/s-lisheng/p/11974830.html" target="_blank" rel="noopener">二叉查找树的平衡（DSW算法）</a></p>
-<h2 id="1383-Maximum-Performance-of-a-Team"><a href="#1383-Maximum-Performance-of-a-Team" class="headerlink" title="1383. Maximum Performance of a Team"></a>1383. Maximum Performance of a Team</h2><font color="red">
-<b>
-Hard
-</b>
-</font>
-
-<h3 id="Description-3"><a href="#Description-3" class="headerlink" title="Description"></a>Description</h3><p><a href="https://leetcode.com/contest/weekly-contest-180/problems/maximum-performance-of-a-team/" target="_blank" rel="noopener">Go to LeetCode</a></p>
-<h3 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution"></a>Solution</h3><p>（待补充…）</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1118,7 +1138,7 @@ Hard
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
