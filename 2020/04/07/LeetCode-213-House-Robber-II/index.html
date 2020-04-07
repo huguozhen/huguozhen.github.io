@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"public/search.xml"};
   </script>
 
-  <meta name="description" content="写几个例子找规律即可，不难发现转换后第一行和最后一行的字符在原串中的索引构成等差数列，中间行的字符在原串中的索引构成“双“等差数列（$a_1=a_0+d_1, a_2=a_1+d_2, a_3=a_2+d_1, \cdots$），找出三个公差即可。 12345678910111213141516171819202122232425262728293031323334353637class Solu">
-<meta name="keywords" content="LeetCode,算法,之字形转换">
+  <meta name="description" content="213. House Robber II  Medium    DescriptionGo to LeetCode Solution相对于 原问题 House Robber 只是将房子的逻辑连接由线形变成了环形。 对于原问题的线形结构，robber 到达第 i 个房子时是否抢劫该房子只与它前面的房子有关。而对于此问题的环形结构，robber 是否抢劫第 i 个房子不仅与它前面的房子有关，还与它后面">
+<meta name="keywords" content="LeetCode,算法,DP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode-06-之字形转换-ZigZag-Conversion">
-<meta property="og:url" content="http://yoursite.com/2019/10/15/LeetCode-06-之字形转换-ZigZag-Conversion/index.html">
+<meta property="og:title" content="LeetCode-213-House Robber II">
+<meta property="og:url" content="http://yoursite.com/2020/04/07/LeetCode-213-House-Robber-II/index.html">
 <meta property="og:site_name" content="Mind Palace of Claps">
-<meta property="og:description" content="写几个例子找规律即可，不难发现转换后第一行和最后一行的字符在原串中的索引构成等差数列，中间行的字符在原串中的索引构成“双“等差数列（$a_1=a_0+d_1, a_2=a_1+d_2, a_3=a_2+d_1, \cdots$），找出三个公差即可。 12345678910111213141516171819202122232425262728293031323334353637class Solu">
+<meta property="og:description" content="213. House Robber II  Medium    DescriptionGo to LeetCode Solution相对于 原问题 House Robber 只是将房子的逻辑连接由线形变成了环形。 对于原问题的线形结构，robber 到达第 i 个房子时是否抢劫该房子只与它前面的房子有关。而对于此问题的环形结构，robber 是否抢劫第 i 个房子不仅与它前面的房子有关，还与它后面">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-15T01:23:44.000Z">
+<meta property="og:updated_time" content="2020-04-07T06:36:57.032Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode-06-之字形转换-ZigZag-Conversion">
-<meta name="twitter:description" content="写几个例子找规律即可，不难发现转换后第一行和最后一行的字符在原串中的索引构成等差数列，中间行的字符在原串中的索引构成“双“等差数列（$a_1=a_0+d_1, a_2=a_1+d_2, a_3=a_2+d_1, \cdots$），找出三个公差即可。 12345678910111213141516171819202122232425262728293031323334353637class Solu">
+<meta name="twitter:title" content="LeetCode-213-House Robber II">
+<meta name="twitter:description" content="213. House Robber II  Medium    DescriptionGo to LeetCode Solution相对于 原问题 House Robber 只是将房子的逻辑连接由线形变成了环形。 对于原问题的线形结构，robber 到达第 i 个房子时是否抢劫该房子只与它前面的房子有关。而对于此问题的环形结构，robber 是否抢劫第 i 个房子不仅与它前面的房子有关，还与它后面">
 
-<link rel="canonical" href="http://yoursite.com/2019/10/15/LeetCode-06-之字形转换-ZigZag-Conversion/">
+<link rel="canonical" href="http://yoursite.com/2020/04/07/LeetCode-213-House-Robber-II/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>LeetCode-06-之字形转换-ZigZag-Conversion | Mind Palace of Claps</title>
+  <title>LeetCode-213-House Robber II | Mind Palace of Claps</title>
   
 
 
@@ -190,7 +190,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/15/LeetCode-06-之字形转换-ZigZag-Conversion/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/07/LeetCode-213-House-Robber-II/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -203,7 +203,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          LeetCode-06-之字形转换-ZigZag-Conversion
+          LeetCode-213-House Robber II
         </h1>
 
         <div class="post-meta">
@@ -214,7 +214,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2019-10-15 09:15:10 / 修改时间：09:23:44" itemprop="dateCreated datePublished" datetime="2019-10-15T09:15:10+08:00">2019-10-15</time>
+              <time title="创建时间：2020-04-07 13:58:31 / 修改时间：14:36:57" itemprop="dateCreated datePublished" datetime="2020-04-07T13:58:31+08:00">2020-04-07</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -237,9 +237,26 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>写几个例子找规律即可，不难发现转换后第一行和最后一行的字符在原串中的索引构成等差数列，中间行的字符在原串中的索引构成“双“等差数列（$a_1=a_0+d_1, a_2=a_1+d_2, a_3=a_2+d_1, \cdots$），找出三个公差即可。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">convert</span><span class="params">(<span class="built_in">string</span> s, <span class="keyword">int</span> numRows)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> L = s.length();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//行数为1或者行数不小于s的长度返回s即可</span></span><br><span class="line">        <span class="keyword">if</span> (numRows == <span class="number">1</span> || numRows &gt;= L)</span><br><span class="line">			<span class="keyword">return</span> s;</span><br><span class="line">        </span><br><span class="line">		<span class="built_in">string</span> szz = <span class="string">""</span>; <span class="comment">//保存结果</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= numRows; i++) &#123;</span><br><span class="line">            <span class="comment">//处理第一行和最后一行，等差数列</span></span><br><span class="line">			<span class="keyword">if</span>(i == <span class="number">1</span> || i == numRows) &#123;</span><br><span class="line">				<span class="keyword">int</span> j = i - <span class="number">1</span>;</span><br><span class="line">				<span class="keyword">while</span>(j &lt; L) &#123;</span><br><span class="line">					szz += s[j];</span><br><span class="line">					j += <span class="number">2</span> * (numRows - <span class="number">1</span>);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">            <span class="comment">//中间的行，“双”等差数列</span></span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">int</span> j = i - <span class="number">1</span>;</span><br><span class="line">				<span class="keyword">while</span> (j &lt; L) &#123;</span><br><span class="line">					szz += s[j];</span><br><span class="line">					j += <span class="number">2</span> * (numRows - i);</span><br><span class="line">					<span class="keyword">if</span> (j &lt; L) &#123;</span><br><span class="line">						szz += s[j];</span><br><span class="line">						j += <span class="number">2</span> * (i - <span class="number">1</span>);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> szz;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>每次操作均能确定目标串的一个字符，时间复杂度为$O(n)$。</p>
+        <h2 id="213-House-Robber-II"><a href="#213-House-Robber-II" class="headerlink" title="213. House Robber II"></a>213. House Robber II</h2><font color="orange">
+<b>
+Medium
+</b>
+</font>
+
+<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p><a href="https://leetcode.com/problems/house-robber-ii/" target="_blank" rel="noopener">Go to LeetCode</a></p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>相对于 <a href>原问题 House Robber</a> 只是将房子的逻辑连接由线形变成了环形。</p>
+<p>对于原问题的线形结构，robber 到达第 <code>i</code> 个房子时是否抢劫该房子只与它前面的房子有关。而对于此问题的环形结构，robber 是否抢劫第 <code>i</code> 个房子不仅与它前面的房子有关，还与它后面的房子有关。因为环形结构中第一个房子和最后一个房子在逻辑上也是相邻的，本质上没有头尾之分，对后面的房子的选择会反过来影响对第 <code>i</code> 个房子的选择。因此本题的难点在于如何 “破圈” 。</p>
+<p>现在考虑任意两个相邻的房子，这里就以 <code>0</code> 号房和 <code>n-1</code> 号房为例，根据题意，这两个房子最多只能抢劫一个。据此将所有可能的抢劫方案分成两类：</p>
+<ul>
+<li>不抢劫 <code>0</code> 号房</li>
+<li>不抢劫 <code>n-1</code> 号房</li>
+</ul>
+<p>注意这两类可能有重叠，因为两个房子都不抢劫的方案一定同时存在于两类中，但是这两类的并集一定遍历了该问题的解空间。</p>
+<p>现在考虑第一类方案，既然不抢劫 <code>0</code> 号房，那么就可以在 <code>0</code> 号房的位置进行 “破圈” ：将 <code>0</code> 号房直接去掉，<code>n-1</code> 号房和 <code>1</code> 号房在逻辑上又不相邻，此时问题转化成了一个输入为 <code>nums[1...n-1]</code> 的线形结构的问题，直接用原问题的 DP 解法求解即可。</p>
+<p>同理，对于第二类方案，问题转化成了一个输入为 <code>nums[0...n-2]</code> 的线形结构的问题。</p>
+<p>综上所述，该问题转化成了两个线形结构的子问题，只需要两次调用原问题的解函数，然后取两个解的较大者即为本题的解。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">rob</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums.empty()) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(nums.size() == <span class="number">1</span>) <span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">return</span> max(rob_linear(nums, <span class="number">0</span>, nums.size()<span class="number">-2</span>), rob_linear(nums, <span class="number">1</span>, nums.size()<span class="number">-1</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">rob_linear</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> start, <span class="keyword">int</span> end)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> dp2, dp1, dp;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=start;i&lt;=end;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i == start)</span><br><span class="line">                dp = nums[start];</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(i == start + <span class="number">1</span>)</span><br><span class="line">                dp = max(nums[start], nums[start + <span class="number">1</span>]);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                dp = max(dp2 + nums[i], dp1);</span><br><span class="line">            dp2 = dp1;</span><br><span class="line">            dp1 = dp;</span><br><span class="line">            res = max(res, dp);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>时间 $O(n)$ ，空间 $O(1)$ ，与原问题相同。</p>
 
     </div>
 
@@ -251,7 +268,7 @@
           <div class="post-tags">
               <a href="/tags/LeetCode/" rel="tag"># LeetCode</a>
               <a href="/tags/算法/" rel="tag"># 算法</a>
-              <a href="/tags/之字形转换/" rel="tag"># 之字形转换</a>
+              <a href="/tags/DP/" rel="tag"># DP</a>
           </div>
 
         
@@ -260,12 +277,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/10/09/LeetCode-05-最长回文子串-LPS/" rel="prev" title="LeetCode-05.最长回文子串(LPS)">
-      <i class="fa fa-chevron-left"></i> LeetCode-05.最长回文子串(LPS)
+    <a href="/2020/04/06/LeetCode-198-House-Robber/" rel="prev" title="LeetCode-198-House Robber">
+      <i class="fa fa-chevron-left"></i> LeetCode-198-House Robber
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/10/16/LeetCode-07-整数逆序-Reverse-Integer/" rel="next" title="LeetCode-07-整数逆序-Reverse-Integer">
-      LeetCode-07-整数逆序-Reverse-Integer <i class="fa fa-chevron-right"></i>
+    <a href="/2020/04/07/LeetCode-337-House-Robber-III/" rel="next" title="LeetCode-337-House Robber III">
+      LeetCode-337-House Robber III <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -326,6 +343,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#213-House-Robber-II"><span class="nav-number">1.</span> <span class="nav-text">213. House Robber II</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Description"><span class="nav-number">1.1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution"><span class="nav-number">1.2.</span> <span class="nav-text">Solution</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

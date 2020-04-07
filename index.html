@@ -185,6 +185,280 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/07/LeetCode-337-House-Robber-III/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Claps">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mind Palace of Claps">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/07/LeetCode-337-House-Robber-III/" class="post-title-link" itemprop="url">LeetCode-337-House Robber III</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-07 14:38:57 / 修改时间：16:32:41" itemprop="dateCreated datePublished" datetime="2020-04-07T14:38:57+08:00">2020-04-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="337-House-Robber-III"><a href="#337-House-Robber-III" class="headerlink" title="337. House Robber III"></a>337. House Robber III</h2><font color="orange">
+<b>
+Medium
+</b>
+</font>
+
+<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p><a href="https://leetcode.com/problems/house-robber-iii/" target="_blank" rel="noopener">Go to LeetCode</a></p>
+<h3 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution 1"></a>Solution 1</h3><p>相对于 <a href>原问题 House Robber</a> 将房子的逻辑连接由线形变成了树形。</p>
+<p>在 <a href>第一个变体</a> 中，房子的逻辑连接变成了环形，对应的解法是设法 “破圈” ，转化成两个线形结构的子问题求解。</p>
+<p>对于此问题是否可以采取相同的思路呢？</p>
+<p>这里要考虑到树形结构转换为线形结构进行处理一般而言是非常困难的，典型的想法是将树的每一条路径拆分出来，但这样做的问题在于不同的路径没办法同时达到最优，因为公共节点的取值不一样。</p>
+<p>对于树形结构的问题，首先考虑的方法一般都是递归，因为树本身就是递归定义的，天然适合递归算法。考虑当前节点 <code>p</code> ：</p>
+<ul>
+<li>如果抢劫了 <code>p</code> ，根据题意不能再抢劫 <code>p</code> 的两个子节点 <code>p-&gt;left</code> ，<code>p-&gt;right</code> ，此时的最大收益为抢劫 <code>p</code> 的收益再加上抢劫以 <code>p</code> 的 4 个孙节点 (如果存在) 为根的 4 颗子树的最大收益</li>
+<li>如果不抢劫 <code>p</code> ，则最大收益为抢劫以 <code>p</code> 的两个子节点为根的 2 颗子树的最大收益</li>
+</ul>
+<p>故抢劫以 <code>p</code> 为根的树的最大收益为上述两种情形的收益的较大者，据此容易写出如下代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">rob</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> res1 = root-&gt;val;</span><br><span class="line">        <span class="keyword">if</span>(root-&gt;left)</span><br><span class="line">            res1 += rob(root-&gt;left-&gt;left) + rob(root-&gt;left-&gt;right);</span><br><span class="line">        <span class="keyword">if</span>(root-&gt;right)</span><br><span class="line">            res1 += rob(root-&gt;right-&gt;left) + rob(root-&gt;right-&gt;right);</span><br><span class="line">        <span class="keyword">int</span> res2 = rob(root-&gt;left) + rob(root-&gt;right);</span><br><span class="line">        <span class="keyword">return</span> max(res1, res2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>但是该方法复杂度较高，提交 LeetCode 超时了。</p>
+<p>仔细分析上述代码不难发现其中包含了许多重复计算，为了计算 <code>rob(root)</code> 需要递归计算 <code>rob(root-&gt;left)</code> ，<code>rob(root-&gt;right)</code> ，<code>rob(root-&gt;left-&gt;left)</code> ，<code>rob(root-&gt;left-&gt;right)</code> ，<code>rob(root-&gt;right-&gt;left)</code> 以及 <code>rob(root-&gt;right-&gt;right)</code> ；而计算 <code>rob(root-&gt;left)</code> 的过程中又会重复递归计算 <code>rob(root-&gt;left-&gt;left)</code> 和  <code>rob(root-&gt;left-&gt;right)</code> …… 以此类推。</p>
+<p>为了消除重复计算，用 DP 的思想利用一个哈希表保存已有结果，每次计算前先查表即可 。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">rob</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;TreeNode*, <span class="keyword">int</span>&gt; dp;</span><br><span class="line">        <span class="keyword">return</span> cal(root, dp);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">cal</span><span class="params">(TreeNode* root, <span class="built_in">unordered_map</span>&lt;TreeNode*, <span class="keyword">int</span>&gt; &amp;dp)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(dp.find(root) != dp.end())</span><br><span class="line">            <span class="keyword">return</span> dp[root];</span><br><span class="line">        <span class="keyword">int</span> res1 = root-&gt;val;</span><br><span class="line">        <span class="keyword">if</span>(root-&gt;left)</span><br><span class="line">            res1 += cal(root-&gt;left-&gt;left, dp) + cal(root-&gt;left-&gt;right, dp);</span><br><span class="line">        <span class="keyword">if</span>(root-&gt;right)</span><br><span class="line">            res1 += cal(root-&gt;right-&gt;left, dp) + cal(root-&gt;right-&gt;right, dp);</span><br><span class="line">        <span class="keyword">int</span> res2 = cal(root-&gt;left, dp) + cal(root-&gt;right, dp);</span><br><span class="line">        <span class="keyword">int</span> res = max(res1, res2);</span><br><span class="line">        dp[root] = res;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>此方法每个节点只需要计算一次，时间复杂度为 $O(n)$ 。</p>
+<h3 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution 2"></a>Solution 2</h3><p>再次分析一下方法 1 中第一段递归代码产生重复计算的原因，实质上是因为每次递归都要从当前节点 <code>p</code> 向下计算两层。如果每次递归只向下计算一层，那肯定不会有重复计算了。如何达成这一目的呢？</p>
+<p>其实只需要将抢劫当前节点 <code>p</code> 和不抢劫 <code>p</code> 这两种情形下的最大收益分开计算并保存即可，这样每次每次递归就需要返回 <code>inc</code> (表示抢劫当前节点的最大收益，inclusive) 和 <code>exc</code> (表示不抢劫当前节点的最大收益，exclusive) 两个值。这里通过函数参数进行返回，得到的代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">rob</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> inc = <span class="number">0</span>, exc = <span class="number">0</span>;</span><br><span class="line">        cal(root, inc, exc);</span><br><span class="line">        <span class="keyword">return</span> max(inc, exc);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">cal</span><span class="params">(TreeNode* root, <span class="keyword">int</span> &amp;inc, <span class="keyword">int</span> &amp;exc)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">int</span> l_inc = <span class="number">0</span>, l_exc = <span class="number">0</span> , r_inc = <span class="number">0</span>, r_exc = <span class="number">0</span>;</span><br><span class="line">        cal(root-&gt;left, l_inc, l_exc);</span><br><span class="line">        cal(root-&gt;right, r_inc, r_exc);</span><br><span class="line">        </span><br><span class="line">        inc = root-&gt;val + l_exc + r_exc;</span><br><span class="line">        exc = max(l_inc, l_exc) + max(r_inc, r_exc);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>可以看到每次递归只从 <code>root</code> 向下计算了一层，时间复杂度 $O(n)$ 。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/07/LeetCode-213-House-Robber-II/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Claps">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mind Palace of Claps">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/07/LeetCode-213-House-Robber-II/" class="post-title-link" itemprop="url">LeetCode-213-House Robber II</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-07 13:58:31 / 修改时间：14:36:57" itemprop="dateCreated datePublished" datetime="2020-04-07T13:58:31+08:00">2020-04-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="213-House-Robber-II"><a href="#213-House-Robber-II" class="headerlink" title="213. House Robber II"></a>213. House Robber II</h2><font color="orange">
+<b>
+Medium
+</b>
+</font>
+
+<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p><a href="https://leetcode.com/problems/house-robber-ii/" target="_blank" rel="noopener">Go to LeetCode</a></p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>相对于 <a href>原问题 House Robber</a> 只是将房子的逻辑连接由线形变成了环形。</p>
+<p>对于原问题的线形结构，robber 到达第 <code>i</code> 个房子时是否抢劫该房子只与它前面的房子有关。而对于此问题的环形结构，robber 是否抢劫第 <code>i</code> 个房子不仅与它前面的房子有关，还与它后面的房子有关。因为环形结构中第一个房子和最后一个房子在逻辑上也是相邻的，本质上没有头尾之分，对后面的房子的选择会反过来影响对第 <code>i</code> 个房子的选择。因此本题的难点在于如何 “破圈” 。</p>
+<p>现在考虑任意两个相邻的房子，这里就以 <code>0</code> 号房和 <code>n-1</code> 号房为例，根据题意，这两个房子最多只能抢劫一个。据此将所有可能的抢劫方案分成两类：</p>
+<ul>
+<li>不抢劫 <code>0</code> 号房</li>
+<li>不抢劫 <code>n-1</code> 号房</li>
+</ul>
+<p>注意这两类可能有重叠，因为两个房子都不抢劫的方案一定同时存在于两类中，但是这两类的并集一定遍历了该问题的解空间。</p>
+<p>现在考虑第一类方案，既然不抢劫 <code>0</code> 号房，那么就可以在 <code>0</code> 号房的位置进行 “破圈” ：将 <code>0</code> 号房直接去掉，<code>n-1</code> 号房和 <code>1</code> 号房在逻辑上又不相邻，此时问题转化成了一个输入为 <code>nums[1...n-1]</code> 的线形结构的问题，直接用原问题的 DP 解法求解即可。</p>
+<p>同理，对于第二类方案，问题转化成了一个输入为 <code>nums[0...n-2]</code> 的线形结构的问题。</p>
+<p>综上所述，该问题转化成了两个线形结构的子问题，只需要两次调用原问题的解函数，然后取两个解的较大者即为本题的解。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">rob</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums.empty()) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(nums.size() == <span class="number">1</span>) <span class="keyword">return</span> nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">return</span> max(rob_linear(nums, <span class="number">0</span>, nums.size()<span class="number">-2</span>), rob_linear(nums, <span class="number">1</span>, nums.size()<span class="number">-1</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">rob_linear</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> start, <span class="keyword">int</span> end)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> dp2, dp1, dp;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=start;i&lt;=end;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i == start)</span><br><span class="line">                dp = nums[start];</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(i == start + <span class="number">1</span>)</span><br><span class="line">                dp = max(nums[start], nums[start + <span class="number">1</span>]);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                dp = max(dp2 + nums[i], dp1);</span><br><span class="line">            dp2 = dp1;</span><br><span class="line">            dp1 = dp;</span><br><span class="line">            res = max(res, dp);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>时间 $O(n)$ ，空间 $O(1)$ ，与原问题相同。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/06/LeetCode-198-House-Robber/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Claps">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mind Palace of Claps">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/06/LeetCode-198-House-Robber/" class="post-title-link" itemprop="url">LeetCode-198-House Robber</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-06 22:35:49" itemprop="dateCreated datePublished" datetime="2020-04-06T22:35:49+08:00">2020-04-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-07 13:56:47" itemprop="dateModified" datetime="2020-04-07T13:56:47+08:00">2020-04-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="198-House-Robber"><a href="#198-House-Robber" class="headerlink" title="198. House Robber"></a>198. House Robber</h2><font color="green">
+<b>
+Easy
+</b>
+</font>
+
+<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p><a href="https://leetcode.com/problems/house-robber/" target="_blank" rel="noopener">Go to LeetCode</a></p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>DP。用 <code>dp[i]</code> 表示 robber 离开第 <code>i</code> 间房子时的最大收益。</p>
+<p>当 robber 到达第 <code>i</code> 间房子时，他仅有两个选择：抢劫该房子，或者不抢。</p>
+<ul>
+<li>如果抢劫该房子，由于相邻的房子不可同时抢劫，那么第 <code>i-1</code> 间房子一定不能抢，这种情况下 robber 获得的收益为 <code>dp[i-2] + nums[i]</code> ，即 robber 离开第 <code>i-2</code> 间房子时得到的最大收益再加上第 <code>i</code> 间房子的收益；</li>
+<li>如果不抢该房子，那么 robber 的收益与其离开第 <code>i-1</code> 间房子时的最大收益相同，即 <code>dp[i-1]</code> 。</li>
+</ul>
+<p>因此 robber 离开第 <code>i</code> 间房子时的最大收益为上述两种情形下收益的较大者，故有如下的状态转移方程：</p>
+<script type="math/tex; mode=display">
+dp[i] = \max\left\{dp[i-2] + nums[i],\ dp[i-1]\right\}</script><p>据此易得如下代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">rob</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp(nums.size());</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.size();i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i == <span class="number">0</span>)</span><br><span class="line">                dp[i] = nums[<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(i == <span class="number">1</span>)</span><br><span class="line">                dp[i] = max(nums[<span class="number">0</span>], nums[<span class="number">1</span>]);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                dp[i] = max(dp[i<span class="number">-2</span>] + nums[i], dp[i<span class="number">-1</span>]);</span><br><span class="line">            res = max(res, dp[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>观察上述代码不难发现，为了求 <code>dp[i]</code> 只需要知道 <code>dp[i-2]</code> 和 <code>dp[i-1]</code> 的值，因此只需要用两个变量来滚动保存这两个值即可，而无需保存整个 <code>dp</code> 数组。因此下面的代码可将空间复杂度由 $O(n)$ 降至 $O(1)$ ：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">rob</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> dp2, dp1, dp;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.size();i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i == <span class="number">0</span>)</span><br><span class="line">                dp = nums[<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(i == <span class="number">1</span>)</span><br><span class="line">                dp = max(nums[<span class="number">0</span>], nums[<span class="number">1</span>]);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                dp = max(dp2 + nums[i], dp1);</span><br><span class="line">            dp2 = dp1;</span><br><span class="line">            dp1 = dp;</span><br><span class="line">            res = max(res, dp);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>时间复杂度为 $O(n)$ 。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/02/LeetCode-215-Kth-Largest-Element-in-an-Array/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -804,270 +1078,6 @@ Easy
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/25/LeetCode-217-Contains-Duplicate/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Claps">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mind Palace of Claps">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/25/LeetCode-217-Contains-Duplicate/" class="post-title-link" itemprop="url">LeetCode-217-Contains Duplicate</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-03-25 14:34:45 / 修改时间：14:59:40" itemprop="dateCreated datePublished" datetime="2020-03-25T14:34:45+08:00">2020-03-25</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="217-Contains-Duplicate"><a href="#217-Contains-Duplicate" class="headerlink" title="217. Contains Duplicate"></a>217. Contains Duplicate</h2><font color="green">
-<b>
-Easy
-</b>
-</font>
-
-<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p><a href="https://leetcode.com/problems/contains-duplicate/" target="_blank" rel="noopener">Go to LeetCode</a></p>
-<h3 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution 1"></a>Solution 1</h3><p>先排序，然后检查相邻的两个元素有没有相等的情形。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">containsDuplicate</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums.empty()) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        sort(nums.begin(),nums.end());</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.size()<span class="number">-1</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i] == nums[i+<span class="number">1</span>])</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>时间 $O(n\log n)$ ，空间 $O(1)$ 。</p>
-<h3 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution 2"></a>Solution 2</h3><p>遍历的同时用一个哈希表存储已有的元素，每访问一个元素检查是否已在表中。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">containsDuplicate</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">unordered_set</span>&lt;<span class="keyword">int</span>&gt; hash;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> x:nums)</span><br><span class="line">            <span class="keyword">if</span>(!hash.insert(x).second) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>时间 $O(n)$ ，空间 $O(n)$ 。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/24/LeetCode-222-Count-Complete-Tree-Nodes/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Claps">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mind Palace of Claps">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/24/LeetCode-222-Count-Complete-Tree-Nodes/" class="post-title-link" itemprop="url">LeetCode-222-Count Complete Tree Nodes</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-24 16:17:41" itemprop="dateCreated datePublished" datetime="2020-03-24T16:17:41+08:00">2020-03-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-02 19:44:46" itemprop="dateModified" datetime="2020-04-02T19:44:46+08:00">2020-04-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="222-Count-Complete-Tree-Nodes"><a href="#222-Count-Complete-Tree-Nodes" class="headerlink" title="222. Count Complete Tree Nodes"></a>222. Count Complete Tree Nodes</h2><font color="orange">
-<b>
-Medium
-</b>
-</font>
-
-<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p><a href="https://leetcode.com/problems/count-complete-tree-nodes/" target="_blank" rel="noopener">Go to LeetCode</a></p>
-<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>如果是一般的二叉树，一个简单的递归即可：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countNodes</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> countNodes(root-&gt;left) + countNodes(root-&gt;right) + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>时间复杂度为 $O(n)$ ，空间复杂度为 $O(\log n)$ 。</p>
-<p>题目给了完全二叉树的条件，就要充分利用完全二叉树的性质。如果该完全二叉树是满二叉树，则其节点数为 $2^h-1$ ，其中 $h$ 为树的高度。如果不是满二叉树，那么它的左孩子和右孩子一定都是完全二叉树并且至少有一个是满二叉树，可由此递归求得节点总数。</p>
-<p>判断一颗完全二叉树是否是满二叉树，只需要分别沿最左边和最右边的路径走到底，看路径长度是否相等即可，该操作的时间复杂度为 $O(\log n)$ ，同时也求出了树高 $h$ 。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countNodes</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> hl = <span class="number">0</span>, hr = <span class="number">0</span>;</span><br><span class="line">        TreeNode* p = root;</span><br><span class="line">        <span class="keyword">while</span>(p)&#123;</span><br><span class="line">            p = p-&gt;left;</span><br><span class="line">            hl++;</span><br><span class="line">        &#125;</span><br><span class="line">        p = root;</span><br><span class="line">        <span class="keyword">while</span>(p)&#123;</span><br><span class="line">            p = p-&gt;right;</span><br><span class="line">            hr++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(hl == hr) <span class="keyword">return</span> <span class="built_in">pow</span>(<span class="number">2</span>, hl) - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">1</span> + countNodes(root-&gt;left) + countNodes(root-&gt;right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>该算法的时间复杂度比较难以分析。由于节点数为 $n$ 的完全二叉树的两个孩子一定至少有一个是满二叉树，对这个孩子可在 $O(\log n)$ 时间内判定并求解；对于另一个孩子进行递归处理，产生了一个节点数至多为 $n/2$ 的子问题，故对于时间复杂度有如下的递推关系：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-T(n)&=T(\frac{n}{2}) + c_1 \log n \\
-&=T(\frac{n}{4}) + c_1 \log n + c_2 \log n \\
-&=\cdots \\
-&=O(1)+c_1\log n + c_2\log n + \cdots \\
-&=O(\log^2 n)
-\end{aligned}</script><p>空间复杂度仍为 $O(\log n)$ 。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/24/LeetCode-221-Maximal-Square/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Claps">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mind Palace of Claps">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/24/LeetCode-221-Maximal-Square/" class="post-title-link" itemprop="url">LeetCode-221-Maximal Square</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-03-24 15:00:17 / 修改时间：16:13:02" itemprop="dateCreated datePublished" datetime="2020-03-24T15:00:17+08:00">2020-03-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index"><span itemprop="name">LeetCode</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="221-Maximal-Square"><a href="#221-Maximal-Square" class="headerlink" title="221. Maximal Square"></a>221. Maximal Square</h2><font color="orange">
-<b>
-Medium
-</b>
-</font>
-
-<h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p><a href="https://leetcode.com/problems/maximal-square/" target="_blank" rel="noopener">Go to LeetCode</a></p>
-<h3 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution 1"></a>Solution 1</h3><p>DP。用 $dp(i,j)$ 表示以元素 $(i,j)$ 为右下顶点的全1最大正方形的边长，可得如下的状态转移方程</p>
-<script type="math/tex; mode=display">
-dp(i,j)=\min\left\{dp(i-1,j-1),dp(i-1,j),dp(i,j-1)\right\}+1</script><p>对于第一行和第一列中的元素，对应的最大边长只能为 0 或 1，根据矩阵 <code>matrix</code> 的第一行和第一列初始化 <code>dp</code> 数组即可。</p>
-<p>注意小坑：给的 <code>matrix</code> 中存储的是字符 <code>&#39;0&#39;</code> 和 <code>&#39;1&#39;</code> 而不是数字。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maximalSquare</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&gt;&amp; matrix)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(matrix.empty() || matrix[<span class="number">0</span>].empty()) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> m = matrix.size(), n = matrix[<span class="number">0</span>].size();</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; dp(m, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(n, <span class="number">0</span>));</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(!i || !j)</span><br><span class="line">                    dp[i][j] = matrix[i][j] - <span class="string">'0'</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(matrix[i][j] == <span class="string">'1'</span>)&#123;</span><br><span class="line">                    dp[i][j] = min(dp[i<span class="number">-1</span>][j<span class="number">-1</span>], min(dp[i][j<span class="number">-1</span>], dp[i<span class="number">-1</span>][j])) + <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                res = max(res, dp[i][j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res*res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>时间复杂度和空间复杂度均为 $O(mn)$ 。</p>
-<h3 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution 2"></a>Solution 2</h3><p>注意到方法1中的状态转移方程中需要得到当前元素的左边、上方、以及左上方三个邻居的最小值，而循环又是逐行从左向右进行遍历的，处理新的一行时只需要上一行的结果和当前行已有的结果，对于更前面的行的结果是没必要保存的。因此，只需要两个长为 <code>n</code> 的数组 <code>last_row</code> 和 <code>this_row</code> 分别保存上一行的结果和当前行的结果，当新的一行开始时，把 <code>this_row</code> 的值赋给  <code>last_row</code> 。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maximalSquare</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&gt;&amp; matrix)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(matrix.empty() || matrix[<span class="number">0</span>].empty()) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> m = matrix.size(), n = matrix[<span class="number">0</span>].size();</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; last_row(n, <span class="number">0</span>), this_row(n, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(!i)</span><br><span class="line">                    this_row[j] = matrix[i][j] - <span class="string">'0'</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(!j)&#123;</span><br><span class="line">                    last_row.assign(this_row.begin(), this_row.end());</span><br><span class="line">                    this_row[j] = matrix[i][j] - <span class="string">'0'</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(matrix[i][j] == <span class="string">'1'</span>)&#123;</span><br><span class="line">                    this_row[j] = min(this_row[j<span class="number">-1</span>], min(last_row[j<span class="number">-1</span>], last_row[j])) + <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    this_row[j] = <span class="number">0</span>;</span><br><span class="line">                res = max(res, this_row[j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res*res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>此方法时间复杂度为 $O(mn)$ ，空间复杂度为 $O(n)$ 。</p>
-<h3 id="Solution-3"><a href="#Solution-3" class="headerlink" title="Solution 3"></a>Solution 3</h3><p>显然方法2中仍然多保存了不必要的元素。</p>
-<p>处理当前元素 $(i,j)$ 时，上一行中 $(i-1,j-1)$ 之前的元素也是没必要保存的，这部分空间恰好可以用来保存当前行已经得到的结果，这样只用一个长为 <code>n</code> 的数组 <code>row</code> 就可以完成任务。</p>
-<p>当然由于上一行需要保存的元素为从 $dp(i-1,j-1)$ 到 $dp(i-1,n-1)$ ，共 $n-j+1$ 个；当前行已有的结果为从 $dp(i,0)$ 到 $dp(i,j-1)$ ，共 $j$ 个，因此共 $n+1$ 个元素需要保存，多出一个。于是额外用一个变量 <code>left_up</code> 来保存当前元素左上方的邻居。</p>
-<p>这样来看， <code>row[0]</code> 到 <code>row[j-1]</code> 保存的是当前行的前一段  $dp(i,0)$ 到 $dp(i,j-1)$ ， <code>row[j]</code> 到 <code>row[n-1]</code> 保存的是上一行的后一段  $dp(i-1,j)$ 到 $dp(i-1,n-1)$ ，剩一个  $dp(i-1,j-1)$ 用  <code>left_up</code> 来保存。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maximalSquare</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">char</span>&gt;&gt;&amp; matrix)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(matrix.empty() || matrix[<span class="number">0</span>].empty()) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> m = matrix.size(), n = matrix[<span class="number">0</span>].size(), left_up = <span class="number">0</span>, res = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; row(n, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++)&#123;</span><br><span class="line">                <span class="keyword">int</span> temp = row[j];</span><br><span class="line">                <span class="keyword">if</span>(!i || !j || matrix[i][j] == <span class="string">'0'</span>)&#123;</span><br><span class="line">                    row[j] = matrix[i][j] - <span class="string">'0'</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    row[j] = min(left_up, min(row[j<span class="number">-1</span>],row[j])) + <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                res = max(res, row[j]);</span><br><span class="line">                left_up = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res*res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>此方法时间复杂度为 $O(mn)$ ，空间复杂度也为 $O(n)$ ，但与方法2相比常数因子更小，少用了一个长为 <code>n</code> 的数组。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1138,7 +1148,7 @@ dp(i,j)=\min\left\{dp(i-1,j-1),dp(i-1,j),dp(i,j-1)\right\}+1</script><p>对于�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
